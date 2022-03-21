@@ -95,7 +95,7 @@ class Search_Results extends \Elementor\Widget_Heading {
 
 
 		$this->add_control(
-			'html-tag',
+			'html_tag',
 			[
 				'label' => esc_html__( 'HTML Tag', 'elementor' ),
 				'type' => Controls_Manager::SELECT,
@@ -118,6 +118,7 @@ class Search_Results extends \Elementor\Widget_Heading {
 		$search_query = get_search_query();
 		if (is_null($search_query) || $search_query == '') {
 			$this->remove_control('search_query');
+			$this->remove_control('post_count');
 		} else {
 			$this->add_control(
 				'search_query',
@@ -127,7 +128,19 @@ class Search_Results extends \Elementor\Widget_Heading {
 					'default' => $search_query,
 				]
 			);
+			$searchall = new \WP_Query("s=$search_query&showposts=-1");
+			$post_count = $searchall->post_count;
+			$this->add_control(
+				'post_count',
+				[
+					'label' => esc_html__( 'Post count', 'elemendas-addons' ),
+					'type' => \Elementor\Controls_Manager::HIDDEN,
+					'default' => $post_count,
+				]
+			);
 		}
+
+
 
 		$this->end_controls_section();
 
@@ -306,12 +319,11 @@ class Search_Results extends \Elementor\Widget_Heading {
 		if ( '' === $settings['show_results_plural'] ) {
 			return;
 		}
-
 		if ( '' === $settings['show_results_single'] ) {
-			$settings['show_results_single'] = $settings['show_results_plural'];
+			return;
 		}
 		if ( '' === $settings['show_results_none'] ) {
-			$settings['show_results_none'] = $settings['show_results_plural'];
+			return;
 		}
 
 		if (isset ($settings['search_query'])) {
@@ -323,10 +335,8 @@ class Search_Results extends \Elementor\Widget_Heading {
 		if ( ! empty( $settings['size'] ) ) {
 			$this->add_render_attribute( 'show_results', 'class', 'elementor-size-' . $settings['size'] );
 		}
-		
-		$searchall = new \WP_Query("s=$search_query&showposts=-1");
-		
-		$post_count = $searchall->post_count;
+
+		$post_count = $settings['post_count'];
 		switch ($post_count) {
 			case 0:
 				$settings['show_results'] = $settings['show_results_none'];
@@ -344,7 +354,7 @@ class Search_Results extends \Elementor\Widget_Heading {
 		$render_text = str_replace ("{{search-string}}",'<span class="elemendas-search-terms elemendas-search-result">'.$search_query.'</span>',$render_text);
 		$render_text = str_replace ("{{result-number}}",$post_count,$render_text);
 		
-		$render_text = sprintf( '<%1$s %2$s>%3$s</%1$s>', \Elementor\Utils::validate_html_tag( $settings['html-tag'] ), $this->get_render_attribute_string( 'show_results' ), $render_text );
+		$render_text = sprintf( '<%1$s %2$s>%3$s</%1$s>', \Elementor\Utils::validate_html_tag( $settings['html_tag'] ), $this->get_render_attribute_string( 'show_results' ), $render_text );
 
 		echo $render_text;
 	}
@@ -352,42 +362,76 @@ class Search_Results extends \Elementor\Widget_Heading {
 	protected function content_template() {
 		?>
 		<#
-		if (settings.search_query) {
-			view.addRenderAttribute('show_results',	{'class': 'elemendas-results-message',}	);
-			if ( settings.size ) {
-				view.addRenderAttribute('show_results',	{'class': 'elementor-size-'+settings.size,}	);
-			}
-		#>
-			<h4 {{{ view.getRenderAttributeString( 'show_results' ) }}}>{{{ settings.show_results_plural }}}</h4>
-		<#
-		} else {
+		if ('' === settings.show_results_plural || '' === settings.show_results_single || '' === settings.show_results_none) {
 		#>
 			<div class="elemendas-warning">
 				<i aria-hidden="true" class="fas fa-exclamation-circle"></i>
-				<h4><?=esc_html__('This widget only works on the search results page', 'elemendas-addons')?></h4>
-				<ol>
-					<li><?php
-						//translators: %s : Preview Settings
-						printf( esc_html__('Go to "%s"', 'elemendas-addons'), esc_html__( 'Preview Settings', 'elementor-pro' ))?>
-						<i class="eicon-cog" aria-hidden="true"></i>.
+				<h4><?=esc_html__('This widget needs to have some text to show', 'elemendas-addons')?></h4>
+				<?=esc_html__('In the content area, fill in the fields for:', 'elemendas-addons')?>
+				<ul>
+					<li>
+						<?=esc_html__( 'Multiple results', 'elemendas-addons' )?>.
 					</li>
-					<li><?php
-						//translators: 1: 'Preview Dynamic Content as', 2: 'Search Results' 3: 'Search Term'
-						printf( esc_html__('Set "%1$s" "%2$s" and fill the "%3$s"', 'elemendas-addons'),
-									esc_html__( 'Preview Dynamic Content as', 'elementor-pro' ),
-									esc_html__( 'Search Results', 'elementor-pro' ),
-									esc_html__( 'Search Term', 'elementor-pro' ) )?>.
+					<li>
+						<?=esc_html__( 'Only one result', 'elemendas-addons' )?>.
 					</li>
-					<li><?php
-						//translators: 1: 'Display Conditions' 2: flow icon 3: 'Search Results'
-						printf( esc_html__('Adjust the "%1$s" %2$s to "%3$s"', 'elemendas-addons'),
-								esc_html__( 'Display Conditions', 'elementor-pro' ),
-								'<i class="eicon-flow" aria-hidden="true"></i>',
-								esc_html__( 'Search Results', 'elementor-pro' )) ?>.
+					<li>
+						<?=esc_html__( 'No results found', 'elemendas-addons' )?>.
 					</li>
-				</ol>
+				</ul>
 			</div>
 		<#
+		} else {
+			if (settings.search_query) {
+				view.addRenderAttribute('show_results',	{'class': 'elemendas-results-message',}	);
+				if ( settings.size ) {
+					view.addRenderAttribute('show_results',	{'class': 'elementor-size-'+settings.size,}	);
+				}
+				switch (settings.post_count) {
+					case 0:
+						show_results = settings.show_results_none;
+						break;
+					case 1:
+						show_results = settings.show_results_single;
+						break;
+					default:
+						show_results = settings.show_results_plural;
+						break;
+				}
+				show_results = show_results.replace ('{{search-string}}','<span class="elemendas-search-terms elemendas-search-result">'+settings.search_query+'</span>');
+				show_results = show_results.replace ('{{result-number}}',settings.post_count);
+			#>
+				<{{{ settings.html_tag }}} {{{ view.getRenderAttributeString( 'show_results' ) }}}>{{{ show_results }}}</{{{ settings.html_tag }}}>
+			<#
+			} else {
+			#>
+				<div class="elemendas-warning">
+					<i aria-hidden="true" class="fas fa-exclamation-circle"></i>
+					<h4><?=esc_html__('This widget only works on the search results page', 'elemendas-addons')?></h4>
+					<ol>
+						<li><?php
+							//translators: %s : Preview Settings
+							printf( esc_html__('Go to "%s"', 'elemendas-addons'), esc_html__( 'Preview Settings', 'elementor-pro' ))?>
+							<i class="eicon-cog" aria-hidden="true"></i>.
+						</li>
+						<li><?php
+							//translators: 1: 'Preview Dynamic Content as', 2: 'Search Results' 3: 'Search Term'
+							printf( esc_html__('Set "%1$s" "%2$s" and fill the "%3$s"', 'elemendas-addons'),
+										esc_html__( 'Preview Dynamic Content as', 'elementor-pro' ),
+										esc_html__( 'Search Results', 'elementor-pro' ),
+										esc_html__( 'Search Term', 'elementor-pro' ) )?>.
+						</li>
+						<li><?php
+							//translators: 1: 'Display Conditions' 2: flow icon 3: 'Search Results'
+							printf( esc_html__('Adjust the "%1$s" %2$s to "%3$s"', 'elemendas-addons'),
+									esc_html__( 'Display Conditions', 'elementor-pro' ),
+									'<i class="eicon-flow" aria-hidden="true"></i>',
+									esc_html__( 'Search Results', 'elementor-pro' )) ?>.
+						</li>
+					</ol>
+				</div>
+			<#
+			}
 		}
 		#>
 		<?php
