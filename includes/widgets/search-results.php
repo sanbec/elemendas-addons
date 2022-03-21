@@ -1,5 +1,5 @@
 <?php
-namespace Elemendas_Addon;
+namespace Elemendas_Addons;
 
 use Elementor\Controls_Manager;
 use Elementor\Core\Kits\Documents\Tabs\Global_Colors;
@@ -12,7 +12,7 @@ class Search_Results extends \Elementor\Widget_Heading {
 	}
 
 	public function get_title() {
-		return esc_html__( 'Search Results', 'elemendas-addon' );
+		return esc_html__( 'Search Results', 'elemendas-addons' );
 	}
 
 	public function get_icon() {
@@ -30,7 +30,7 @@ class Search_Results extends \Elementor\Widget_Heading {
 	public function get_keywords() {
 		return [ 'Search', 'Results' ];
 	}
-	
+
 	
 	public function get_style_depends() {
 
@@ -54,38 +54,42 @@ class Search_Results extends \Elementor\Widget_Heading {
 		$this->add_control(
 			'show_results-plural',
 			[
-				'label' => esc_html__( 'Multiple results', 'elemendas-addon' ),
+				'label' => esc_html__( 'Multiple results', 'elemendas-addons' ),
 				'type' => Controls_Manager::TEXTAREA,
 				'rows' => 2,
-				/* translators: Keep {{result-number}} and {{search-string}}  as they are, without translation */
-				'default' => __( 'Here are the {{result-number}} posts containing {{search-string}}', 'elemendas-addon' ),
-				'description' => __('Shown when there are more than one post found', 'elemendas-addon').'<ul><li>'.
-					/* translators: Keep {{result-number}} as it is, without translation */
-					__('Use {{result-number}} to show the post found number', 'elemendas-addon' ).'</li><li>'.
-					/* translators: Keep {{search-string}}  as it is, without translation */
-					__('Use {{search-string}} to show the search string', 'elemendas-addon' ).'</li></ul>',
+				// translators: Keep {{result-number}} and {{search-string}}  as they are, without translation 
+				'default' => __( 'Here are the {{result-number}} posts containing {{search-string}}', 'elemendas-addons' ),
+	
+					'description' => __('Shown when there are more than one post found', 'elemendas-addons').'<ul><li>'.
+					// translators: Keep {{result-number}} as it is, without translation 
+					__('Use {{result-number}} to show the post found number', 'elemendas-addons' ).'</li><li>'.
+					// translators: Keep {{search-string}}  as it is, without translation 
+					__('Use {{search-string}} to show the search string', 'elemendas-addons' ).'</li></ul>',
 			]
 		);
+		
 		$this->add_control(
 			'show_results_single',
 			[
-				'label' => esc_html__( 'Only one result', 'elemendas-addon' ),
+				'label' => esc_html__( 'Only one result', 'elemendas-addons' ),
 				'type' => Controls_Manager::TEXTAREA,
 				'rows' => 2,
-				/* translators: Keep {{search-string}}  as it is, without translation */
-				'default' => __( 'Here is the unique post containing {{search-string}}', 'elemendas-addon' ),
-				'description' =>  __('Shown when there are more than one post found', 'elemendas-addon'),
+				// translators: Keep {{search-string}}  as it is, without translation 
+				'default' => __( 'Here is the unique post containing {{search-string}}', 'elemendas-addons' ),
+
+				'description' =>  __('Shown when a single entry is found', 'elemendas-addons'),
 			]
 		);
 		$this->add_control(
 			'show_results_none',
 			[
-				'label' => esc_html__( 'No results found', 'elemendas-addon' ),
+				'label' => esc_html__( 'No results found', 'elemendas-addons' ),
 				'type' => Controls_Manager::TEXTAREA,
 				'rows' => 2,
-				/* translators: Keep {{search-string}}  as it is, without translation */
-				'default' => __( 'There are no posts containing {{search-string}}', 'elemendas-addon' ),
-				'description' =>  __('Shown when there are no posts found', 'elemendas-addon'),
+				// translators: Keep {{search-string}}  as it is, without translation 
+				'default' => __( 'There are no posts containing {{search-string}}', 'elemendas-addons' ),
+
+				'description' =>  __('Shown when there are no posts found', 'elemendas-addons'),
 			]
 		);
 
@@ -125,7 +129,7 @@ class Search_Results extends \Elementor\Widget_Heading {
 		$this->start_controls_section(
 			'section_results_style',
 			[
-				'label' => esc_html__( 'Results message', 'elemendas-addon' ),
+				'label' => esc_html__( 'Results message', 'elemendas-addons' ),
 				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -205,7 +209,7 @@ class Search_Results extends \Elementor\Widget_Heading {
 				'label' => esc_html__( 'Size', 'elementor' ),
 				'type' => Controls_Manager::SELECT,
 				'default' => 'default',
-				'description' =>  __('This setting will have no effect if the font size is set', 'elemendas-addon'),
+				'description' =>  __('This setting will have no effect if the font size is set in the typography control', 'elemendas-addons'),
 				'options' => [
 					'default' => esc_html__( 'Default', 'elementor' ),
 					'small' => esc_html__( 'Small', 'elementor' ),
@@ -257,7 +261,7 @@ class Search_Results extends \Elementor\Widget_Heading {
 		$this->start_controls_section(
 			'section_search_string_style',
 			[
-				'label' => esc_html__( 'Search string highlighting', 'elemendas-addon' ),
+				'label' => esc_html__( 'Search string highlighting', 'elemendas-addons' ),
 				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -265,8 +269,12 @@ class Search_Results extends \Elementor\Widget_Heading {
 		$this->add_control(
 			'search_string_color',
 			[
-				'label' => esc_html__( 'Color', 'elemendas-addon' ),
+				'label' => esc_html__( 'Color', 'elementor' ),
 				'type' => Controls_Manager::COLOR,
+				'global' => [
+					'default' => Global_Colors::COLOR_ACCENT,
+				],
+
 				'selectors' => [
 					'{{WRAPPER}} .elemendas-search-terms' => 'color: {{VALUE}};',
 				],
@@ -292,17 +300,17 @@ class Search_Results extends \Elementor\Widget_Heading {
 		if ( '' === $settings['show_results_none'] ) {
 			$settings['show_results_none'] = $settings['show_results_plural'];
 		}
-		
+
 		$search_query = get_search_query();
-		if (is_null($search_query) || $search_query == '') return;
-		
+		if (is_null($search_query) || $search_query == '') {
+			return;
+		}
+
 		$this->add_render_attribute( 'show_results', 'class', 'elemendas-results-message' );
 		
 		if ( ! empty( $settings['size'] ) ) {
 			$this->add_render_attribute( 'show_results', 'class', 'elementor-size-' . $settings['size'] );
 		}
-
-
 		
 		$searchall = new \WP_Query("s=$search_query&showposts=-1");
 		
@@ -330,7 +338,38 @@ class Search_Results extends \Elementor\Widget_Heading {
 	}
 
 	protected function content_template() {
-		
+		if (!is_search()) {
+		?>
+			<?// Versión svg <img src="<?=plugins_url( '/assets/svg/alert.svg', __FILE__ );?><?//" style="width: 8em;float: left;margin-right: 3em;">
+
+		<div class="elemendas-warning">
+			<i aria-hidden="true" class="fas fa-exclamation-circle"></i>
+			<h4><?=esc_html__('This widget only works on the search results page', 'elemendas-addons')?></h4>
+			<ol>
+				<li><?php
+					//translators: %s : Preview Settings
+					printf( esc_html__('Go to "%s"', 'elemendas-addons'), esc_html__( 'Preview Settings', 'elementor-pro' ))?>
+					<i class="eicon-cog" aria-hidden="true"></i>.
+				</li>
+				<li><?php
+					//translators: 1: 'Preview Dynamic Content as', 2: 'Search Results' 3: 'Search Term'
+					printf( esc_html__('Set "%1$s" "%2$s" and fill the "%3$s"', 'elemendas-addons'),
+								  esc_html__( 'Preview Dynamic Content as', 'elementor-pro' ),
+								  esc_html__( 'Search Results', 'elementor-pro' ),
+								  esc_html__( 'Search Term', 'elementor-pro' ) )?>.
+				</li>
+				<li><?php
+					//translators: 1: 'Display Conditions' 2: flow icon 3: 'Search Results'
+					printf( esc_html__('Adjust the "%1$s" %2$s to "%3$s"', 'elemendas-addons'),
+							esc_html__( 'Display Conditions', 'elementor-pro' ),
+							'<i class="eicon-flow" aria-hidden="true"></i>',
+							esc_html__( 'Search Results', 'elementor-pro' )) ?>.
+				</li>
+			</ol>
+		</div>
+		<?php
+			return;
+		}
 	}
 
 } //END class Search_Results
