@@ -2,11 +2,13 @@
 namespace Elemendas_Addon;
 
 use Elementor\Controls_Manager;
+use Elementor\Core\Kits\Documents\Tabs\Global_Colors;
+use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
 
 class Search_Results extends \Elementor\Widget_Heading {
 
 	public function get_name() {
-		return 'search-results_widget';
+		return 'search-results';
 	}
 
 	public function get_title() {
@@ -28,6 +30,16 @@ class Search_Results extends \Elementor\Widget_Heading {
 	public function get_keywords() {
 		return [ 'Search', 'Results' ];
 	}
+	
+	
+	public function get_style_depends() {
+
+		wp_register_style( 'search-results-style', plugins_url( 'assets/css/search-results.css', __FILE__ ) );
+		return [
+			'search-results-style',
+		];
+
+	}
 
 	protected function register_controls() {
 
@@ -40,13 +52,18 @@ class Search_Results extends \Elementor\Widget_Heading {
 		);
 
 		$this->add_control(
-			'show_results_plural',
+			'show_results-plural',
 			[
 				'label' => esc_html__( 'Multiple results', 'elemendas-addon' ),
 				'type' => Controls_Manager::TEXTAREA,
 				'rows' => 2,
+				/* translators: Keep {{result-number}} and {{search-string}}  as they are, without translation */
 				'default' => __( 'Here are the {{result-number}} posts containing {{search-string}}', 'elemendas-addon' ),
-				'description' => __('Shown when there are more than one post fonnd').'<ul><li>'.__('Use {{result-number}} to show the post found number', 'elemendas-addon' ).'</li><li>'.__('Use {{search-string}} to show the search string', 'elemendas-addon' ).'</li></ul>',
+				'description' => __('Shown when there are more than one post found', 'elemendas-addon').'<ul><li>'.
+					/* translators: Keep {{result-number}} as it is, without translation */
+					__('Use {{result-number}} to show the post found number', 'elemendas-addon' ).'</li><li>'.
+					/* translators: Keep {{search-string}}  as it is, without translation */
+					__('Use {{search-string}} to show the search string', 'elemendas-addon' ).'</li></ul>',
 			]
 		);
 		$this->add_control(
@@ -55,8 +72,9 @@ class Search_Results extends \Elementor\Widget_Heading {
 				'label' => esc_html__( 'Only one result', 'elemendas-addon' ),
 				'type' => Controls_Manager::TEXTAREA,
 				'rows' => 2,
+				/* translators: Keep {{search-string}}  as it is, without translation */
 				'default' => __( 'Here is the unique post containing {{search-string}}', 'elemendas-addon' ),
-				'description' =>  __('Shown when there are more than one post fonnd'),
+				'description' =>  __('Shown when there are more than one post found', 'elemendas-addon'),
 			]
 		);
 		$this->add_control(
@@ -65,30 +83,15 @@ class Search_Results extends \Elementor\Widget_Heading {
 				'label' => esc_html__( 'No results found', 'elemendas-addon' ),
 				'type' => Controls_Manager::TEXTAREA,
 				'rows' => 2,
+				/* translators: Keep {{search-string}}  as it is, without translation */
 				'default' => __( 'There are no posts containing {{search-string}}', 'elemendas-addon' ),
-				'description' =>  __('Shown when there are no posts found'),
+				'description' =>  __('Shown when there are no posts found', 'elemendas-addon'),
 			]
 		);
 
-		$this->add_control(
-			'size',
-			[
-				'label' => esc_html__( 'Size', 'elementor' ),
-				'type' => Controls_Manager::SELECT,
-				'default' => 'default',
-				'options' => [
-					'default' => esc_html__( 'Default', 'elementor' ),
-					'small' => esc_html__( 'Small', 'elementor' ),
-					'medium' => esc_html__( 'Medium', 'elementor' ),
-					'large' => esc_html__( 'Large', 'elementor' ),
-					'xl' => esc_html__( 'XL', 'elementor' ),
-					'xxl' => esc_html__( 'XXL', 'elementor' ),
-				],
-			]
-		);
 
 		$this->add_control(
-			'header_size',
+			'html-tag',
 			[
 				'label' => esc_html__( 'HTML Tag', 'elementor' ),
 				'type' => Controls_Manager::SELECT,
@@ -103,10 +106,118 @@ class Search_Results extends \Elementor\Widget_Heading {
 					'span' => 'span',
 					'p' => 'p',
 				],
-				'default' => 'h2',
+				'default' => 'h1',
 				'separator' => 'before',
 			]
 		);
+		
+
+		$this->end_controls_section();
+
+		// Content Tab End
+
+/*******************
+ * Style Tab Start *
+ *******************/
+		
+		// Style section for the whole results message
+
+		$this->start_controls_section(
+			'section_results_style',
+			[
+				'label' => esc_html__( 'Results message', 'elemendas-addon' ),
+				'tab' => Controls_Manager::TAB_STYLE,
+			]
+		);
+
+		$this->add_control(
+			'title_color',
+			[
+				'label' => esc_html__( 'Text Color', 'elementor' ),
+				'type' => Controls_Manager::COLOR,
+				'global' => [
+					'default' => Global_Colors::COLOR_PRIMARY,
+				],
+				'selectors' => [
+					'{{WRAPPER}} .elemendas-results-message' => 'color: {{VALUE}};',
+				],
+			]
+		);
+
+		$this->add_group_control(
+			\Elementor\Group_Control_Typography::get_type(),
+			[
+				'name' => 'typography',
+				'global' => [
+					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
+				],
+				'selector' => '{{WRAPPER}} .elemendas-results-message',
+			]
+		);
+
+		$this->add_group_control(
+			\Elementor\Group_Control_Text_Stroke::get_type(),
+			[
+				'name' => 'text_stroke',
+				'selector' => '{{WRAPPER}} .elemendas-results-message',
+			]
+		);
+
+		$this->add_group_control(
+			\Elementor\Group_Control_Text_Shadow::get_type(),
+			[
+				'name' => 'text_shadow',
+				'selector' => '{{WRAPPER}} .elemendas-results-message',
+			]
+		);
+
+		$this->add_control(
+			'blend_mode',
+			[
+				'label' => esc_html__( 'Blend Mode', 'elementor' ),
+				'type' => Controls_Manager::SELECT,
+				'options' => [
+					'' => esc_html__( 'Normal', 'elementor' ),
+					'multiply' => 'Multiply',
+					'screen' => 'Screen',
+					'overlay' => 'Overlay',
+					'darken' => 'Darken',
+					'lighten' => 'Lighten',
+					'color-dodge' => 'Color Dodge',
+					'saturation' => 'Saturation',
+					'color' => 'Color',
+					'difference' => 'Difference',
+					'exclusion' => 'Exclusion',
+					'hue' => 'Hue',
+					'luminosity' => 'Luminosity',
+				],
+				'selectors' => [
+					'{{WRAPPER}} .elemendas-results-message' => 'mix-blend-mode: {{VALUE}}',
+				],
+				'separator' => 'none',
+			]
+		);
+
+		// 
+		$this->add_control(
+			'size',
+			[
+				'label' => esc_html__( 'Size', 'elementor' ),
+				'type' => Controls_Manager::SELECT,
+				'default' => 'default',
+				'description' =>  __('This setting will have no effect if the font size is set', 'elemendas-addon'),
+				'options' => [
+					'default' => esc_html__( 'Default', 'elementor' ),
+					'small' => esc_html__( 'Small', 'elementor' ),
+					'medium' => esc_html__( 'Medium', 'elementor' ),
+					'large' => esc_html__( 'Large', 'elementor' ),
+					'xl' => esc_html__( 'XL', 'elementor' ),
+					'xxl' => esc_html__( 'XXL', 'elementor' ),
+				],
+			]
+		);
+		
+		// Alignment
 		
 		$this->add_responsive_control(
 			'align',
@@ -138,38 +249,15 @@ class Search_Results extends \Elementor\Widget_Heading {
 			]
 		);
 //*/
-		$this->end_controls_section();
-
-		// Content Tab End
-
-
-		// Style Tab Start
-
-		$this->start_controls_section(
-			'section_results_style',
-			[
-				'label' => esc_html__( 'Results message', 'elemendas-addon' ),
-				'tab' => Controls_Manager::TAB_STYLE,
-			]
-		);
-
-		$this->add_control(
-			'results_color',
-			[
-				'label' => esc_html__( 'Color', 'elemendas-addon' ),
-				'type' => Controls_Manager::COLOR,
-				'selectors' => [
-					'{{WRAPPER}} .elemendas-results-message' => 'color: {{VALUE}};',
-				],
-			]
-		);
 
 		$this->end_controls_section();
+		
+		// Style section for the searched string
 		
 		$this->start_controls_section(
 			'section_search_string_style',
 			[
-				'label' => esc_html__( 'Search String', 'elemendas-addon' ),
+				'label' => esc_html__( 'Search string highlighting', 'elemendas-addon' ),
 				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -194,9 +282,10 @@ class Search_Results extends \Elementor\Widget_Heading {
 	protected function render() {
 		$settings = $this->get_settings_for_display();
 		
-		if ( '' === $settings['show_results_plural'] ) {
+		if ( '' === $settings['show_results-plural'] ) {
 			return;
 		}
+
 		if ( '' === $settings['show_results_single'] ) {
 			$settings['show_results_single'] = $settings['show_results_plural'];
 		}
@@ -204,11 +293,19 @@ class Search_Results extends \Elementor\Widget_Heading {
 			$settings['show_results_none'] = $settings['show_results_plural'];
 		}
 		
-		$this->add_render_attribute( 'title', 'class', 'elementor-heading-title' );
-
 		$search_query = get_search_query();
 		if (is_null($search_query) || $search_query == '') return;
+		
+		$this->add_render_attribute( 'show_results', 'class', 'elemendas-results-message' );
+		
+		if ( ! empty( $settings['size'] ) ) {
+			$this->add_render_attribute( 'show_results', 'class', 'elementor-size-' . $settings['size'] );
+		}
+
+
+		
 		$searchall = new \WP_Query("s=$search_query&showposts=-1");
+		
 		$post_count = $searchall->post_count;
 		switch ($post_count) {
 			case 0:
@@ -218,7 +315,7 @@ class Search_Results extends \Elementor\Widget_Heading {
 				$render_text = $settings['show_results_single'];
 				break;
 			default:
-				$render_text = $settings['show_results_plural'];
+				$render_text = $settings['show_results-plural'];
 				break;
 		}
 
@@ -227,7 +324,7 @@ class Search_Results extends \Elementor\Widget_Heading {
 		$render_text = str_replace ("{{search-string}}",'<span class="elemendas-search-terms elemendas-search-result">'.$search_query.'</span>',$render_text);
 		$render_text = str_replace ("{{result-number}}",$post_count,$render_text);
 		
-		$render_text = sprintf( '<%1$s class="elemendas-results-message">%2$s</%1$s>', \Elementor\Utils::validate_html_tag( $settings['header_size'] ), $render_text );
+		$render_text = sprintf( '<%1$s %2$s>%3$s</%1$s>', \Elementor\Utils::validate_html_tag( $settings['html-tag'] ), $this->get_render_attribute_string( 'show_results' ), $render_text );
 
 		echo $render_text;
 	}
