@@ -43,6 +43,20 @@ class Search_Results extends \Elementor\Widget_Heading {
 
 	protected function register_controls() {
 
+		parent::register_controls();
+
+
+		$this->remove_control ('title');
+		$this->remove_control ('link');
+		$this->update_control(
+			'size',
+			[
+				'description' =>  __('This setting will have no effect if the font size is set in the typography control', 'elemendas-addons'),
+			]
+		);
+
+
+
 		$this->start_controls_section(
 			'content_section_title',
 			[
@@ -93,28 +107,6 @@ class Search_Results extends \Elementor\Widget_Heading {
 			]
 		);
 
-
-		$this->add_control(
-			'html_tag',
-			[
-				'label' => esc_html__( 'HTML Tag', 'elementor' ),
-				'type' => Controls_Manager::SELECT,
-				'options' => [
-					'h1' => 'H1',
-					'h2' => 'H2',
-					'h3' => 'H3',
-					'h4' => 'H4',
-					'h5' => 'H5',
-					'h6' => 'H6',
-					'div' => 'div',
-					'span' => 'span',
-					'p' => 'p',
-				],
-				'default' => 'h1',
-				'separator' => 'before',
-			]
-		);
-
 		$search_query = get_search_query();
 		if (is_null($search_query) || $search_query == '') {
 			$this->remove_control('search_query');
@@ -149,141 +141,9 @@ class Search_Results extends \Elementor\Widget_Heading {
 /*******************
  * Style Tab Start *
  *******************/
-		
-		// Style section for the whole results message
 
-		$this->start_controls_section(
-			'section_results_style',
-			[
-				'label' => esc_html__( 'Results message', 'elemendas-addons' ),
-				'tab' => Controls_Manager::TAB_STYLE,
-			]
-		);
-
-		$this->add_control(
-			'title_color',
-			[
-				'label' => esc_html__( 'Text Color', 'elementor' ),
-				'type' => Controls_Manager::COLOR,
-				'global' => [
-					'default' => Global_Colors::COLOR_PRIMARY,
-				],
-				'selectors' => [
-					'{{WRAPPER}} .elemendas-results-message' => 'color: {{VALUE}};',
-				],
-			]
-		);
-
-		$this->add_group_control(
-			\Elementor\Group_Control_Typography::get_type(),
-			[
-				'name' => 'typography',
-				'global' => [
-					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
-				],
-				'selector' => '{{WRAPPER}} .elemendas-results-message',
-			]
-		);
-
-		$this->add_group_control(
-			\Elementor\Group_Control_Text_Stroke::get_type(),
-			[
-				'name' => 'text_stroke',
-				'selector' => '{{WRAPPER}} .elemendas-results-message',
-			]
-		);
-
-		$this->add_group_control(
-			\Elementor\Group_Control_Text_Shadow::get_type(),
-			[
-				'name' => 'text_shadow',
-				'selector' => '{{WRAPPER}} .elemendas-results-message',
-			]
-		);
-
-		$this->add_control(
-			'blend_mode',
-			[
-				'label' => esc_html__( 'Blend Mode', 'elementor' ),
-				'type' => Controls_Manager::SELECT,
-				'options' => [
-					'' => esc_html__( 'Normal', 'elementor' ),
-					'multiply' => 'Multiply',
-					'screen' => 'Screen',
-					'overlay' => 'Overlay',
-					'darken' => 'Darken',
-					'lighten' => 'Lighten',
-					'color-dodge' => 'Color Dodge',
-					'saturation' => 'Saturation',
-					'color' => 'Color',
-					'difference' => 'Difference',
-					'exclusion' => 'Exclusion',
-					'hue' => 'Hue',
-					'luminosity' => 'Luminosity',
-				],
-				'selectors' => [
-					'{{WRAPPER}} .elemendas-results-message' => 'mix-blend-mode: {{VALUE}}',
-				],
-				'separator' => 'none',
-			]
-		);
-
-		// 
-		$this->add_control(
-			'size',
-			[
-				'label' => esc_html__( 'Size', 'elementor' ),
-				'type' => Controls_Manager::SELECT,
-				'default' => 'default',
-				'description' =>  __('This setting will have no effect if the font size is set in the typography control', 'elemendas-addons'),
-				'options' => [
-					'default' => esc_html__( 'Default', 'elementor' ),
-					'small' => esc_html__( 'Small', 'elementor' ),
-					'medium' => esc_html__( 'Medium', 'elementor' ),
-					'large' => esc_html__( 'Large', 'elementor' ),
-					'xl' => esc_html__( 'XL', 'elementor' ),
-					'xxl' => esc_html__( 'XXL', 'elementor' ),
-				],
-			]
-		);
-		
-		// Alignment
-		
-		$this->add_responsive_control(
-			'align',
-			[
-				'label' => esc_html__( 'Alignment', 'elementor' ),
-				'type' => Controls_Manager::CHOOSE,
-				'options' => [
-					'left' => [
-						'title' => esc_html__( 'Left', 'elementor' ),
-						'icon' => 'eicon-text-align-left',
-					],
-					'center' => [
-						'title' => esc_html__( 'Center', 'elementor' ),
-						'icon' => 'eicon-text-align-center',
-					],
-					'right' => [
-						'title' => esc_html__( 'Right', 'elementor' ),
-						'icon' => 'eicon-text-align-right',
-					],
-					'justify' => [
-						'title' => esc_html__( 'Justified', 'elementor' ),
-						'icon' => 'eicon-text-align-justify',
-					],
-				],
-				'default' => '',
-				'selectors' => [
-					'{{WRAPPER}}' => 'text-align: {{VALUE}};',
-				],
-			]
-		);
-//*/
-
-		$this->end_controls_section();
-		
 		// Style section for the searched string
-		
+
 		$this->start_controls_section(
 			'section_search_string_style',
 			[
@@ -330,7 +190,7 @@ class Search_Results extends \Elementor\Widget_Heading {
 			$search_query =  $settings['search_query'];
 		} else return;
 
-		$this->add_render_attribute( 'show_results', 'class', 'elemendas-results-message' );
+		$this->add_render_attribute( 'show_results', 'class', 'elementor-heading-title' );
 		
 		if ( ! empty( $settings['size'] ) ) {
 			$this->add_render_attribute( 'show_results', 'class', 'elementor-size-' . $settings['size'] );
@@ -354,7 +214,7 @@ class Search_Results extends \Elementor\Widget_Heading {
 		$render_text = str_replace ("{{search-string}}",'<span class="elemendas-search-terms elemendas-search-result">'.$search_query.'</span>',$render_text);
 		$render_text = str_replace ("{{result-number}}",$post_count,$render_text);
 		
-		$render_text = sprintf( '<%1$s %2$s>%3$s</%1$s>', \Elementor\Utils::validate_html_tag( $settings['html_tag'] ), $this->get_render_attribute_string( 'show_results' ), $render_text );
+		$render_text = sprintf( '<%1$s %2$s>%3$s</%1$s>', \Elementor\Utils::validate_html_tag( $settings['header_size'] ), $this->get_render_attribute_string( 'show_results' ), $render_text );
 
 		echo $render_text;
 	}
@@ -383,7 +243,7 @@ class Search_Results extends \Elementor\Widget_Heading {
 		<#
 		} else {
 			if (settings.search_query) {
-				view.addRenderAttribute('show_results',	{'class': 'elemendas-results-message',}	);
+				view.addRenderAttribute('show_results',	{'class': 'elementor-heading-title',}	);
 				if ( settings.size ) {
 					view.addRenderAttribute('show_results',	{'class': 'elementor-size-'+settings.size,}	);
 				}
@@ -401,7 +261,7 @@ class Search_Results extends \Elementor\Widget_Heading {
 				show_results = show_results.replace ('{{search-string}}','<span class="elemendas-search-terms elemendas-search-result">'+settings.search_query+'</span>');
 				show_results = show_results.replace ('{{result-number}}',settings.post_count);
 			#>
-				<{{{ settings.html_tag }}} {{{ view.getRenderAttributeString( 'show_results' ) }}}>{{{ show_results }}}</{{{ settings.html_tag }}}>
+				<{{{ settings.header_size }}} {{{ view.getRenderAttributeString( 'show_results' ) }}}>{{{ show_results }}}</{{{ settings.header_size }}}>
 			<#
 			} else {
 			#>
