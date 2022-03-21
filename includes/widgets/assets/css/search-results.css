@@ -1,0 +1,39 @@
+.elementor-widget-search-results .elementor-heading-title.elementor-size-small {
+ font-size:15px
+}
+.elementor-widget-search-results .elementor-heading-title.elementor-size-medium {
+ font-size:19px
+}
+.elementor-widget-search-results .elementor-heading-title.elementor-size-large {
+ font-size:29px
+}
+.elementor-widget-search-results .elementor-heading-title.elementor-size-xl {
+ font-size:39px
+}
+.elementor-widget-search-results .elementor-heading-title.elementor-size-xxl {
+ font-size:59px
+}
+
+.elemendas-warning {
+    background-color: white;
+    margin: 1rem;
+    padding: 1rem;
+    border-radius: 1rem;
+    font-size: 15px;
+}
+.elemendas-warning h4 {
+    color: red;
+    margin-top: .5rem;
+    margin-bottom: 1rem;
+    font-size: 19px;
+}
+.elemendas-warning ol,.elemendas-warning  ul {
+    list-style-position: inside;
+    margin: 0;
+}
+.elemendas-warning i.fas {
+    color: red;
+    float: left;
+    font-size: 120px;
+    margin-right: 1rem;
+}
