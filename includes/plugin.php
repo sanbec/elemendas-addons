@@ -413,7 +413,7 @@ final class Plugin {
 	 */
 	public function register_widgets( $widgets_manager ) {
 		require_once( __DIR__ . '/widgets/search-results.php' );
-		$widgets_manager->register( new \Elemendas_Addons\Search_Results() );
+		$widgets_manager->register( new Search_Results() );
 	}
 
 	/**
@@ -426,6 +426,9 @@ final class Plugin {
 	 * @param \Elementor\Controls_Manager $controls_manager Elementor controls manager.
 	 */
 	public function register_controls( $controls_manager ) {
+		require_once( __DIR__ . '/controls/quotation-marks.php' );
+        $controls_manager->register( new Elemendas_Quotation_Control() );
+
 
 	}
 

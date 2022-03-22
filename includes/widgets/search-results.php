@@ -167,6 +167,15 @@ class Search_Results extends \Elementor\Widget_Heading {
 			]
 		);
 
+		$this->add_control(
+			'quotation_marks',
+			[
+				'label' => esc_html__( 'Quotation marks', 'elemendas-addons' ),
+				'type' => 'quotation-marks',
+			]
+		);
+
+
 		$this->end_controls_section();
 
 		// Style Tab End
