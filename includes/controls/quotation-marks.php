@@ -98,7 +98,7 @@ class Elemendas_Quotation_Control extends \Elementor\Base_Data_Control {
 				<select id="<?php echo $control_uid; ?>" data-setting="{{ data.name }}">
 					<option value=""><?php echo esc_html__( 'Select style', 'elemendas-addons' ); ?></option>
 					<# _.each( data.quotation_marks, function( quotation_value, quotation_label ) { #>
-					<option value="{{ quotation_label }}">{{ quotation_value[0] }}{{{ quotation_label }}}{{ quotation_value[1] }}</option>
+					<option value="{{{ quotation_value }}}">{{ quotation_value[0] }}{{{ quotation_label }}}{{ quotation_value[1] }}</option>
 					<# } ); #>
 				</select>
 			</div>
