@@ -35,21 +35,12 @@ class Elemendas_Quotation_Control extends \Elementor\Base_Data_Control {
 	 */
 	public static function get_quotation_marks() {
 		return [
-			'$' => 'USD ($)',
-			'EUR' => 'EUR (€)',
-			'GBP' => 'GBP (£)',
-			'JPY' => 'JPY (¥)',
-			'ILS' => 'ILS (₪)',
-/*
-			'none' => null,
-			'angular-double' => ['«','»'],
-			'angular-single' => ['‹','›'],
-			'english-double' => ['“','”'],
-			'english-single' => ['‘','’'],
-			'german-double' => ['„','“'],
-			'german-single' => ['‚','‘'],
-*/
-
+			'angular double' => ['«','»'],
+			'angular single' => ['‹','›'],
+			'english double' => ['“','”'],
+			'english single' => ['‘','’'],
+			'german double' => ['„','“'],
+			'german single' => ['‚','‘'],
 		];
 	}
 
@@ -81,7 +72,7 @@ class Elemendas_Quotation_Control extends \Elementor\Base_Data_Control {
 	 * @return array Currency control default value.
 	 */
 	public function get_default_value() {
-		return 'EUR';
+		return '';
 	}
 
 	/**
@@ -105,9 +96,9 @@ class Elemendas_Quotation_Control extends \Elementor\Base_Data_Control {
 
 			<div class="elementor-control-input-wrapper">
 				<select id="<?php echo $control_uid; ?>" data-setting="{{ data.name }}">
-					<option value=""><?php echo esc_html__( 'Select quotation marks', 'elemendas-addons' ); ?></option>
-					<# _.each( data.quotation_marks, function( quotation_label, quotation_value ) { #>
-					<option value="{{ quotation_value }}">{{{ quotation_label }}}</option>
+					<option value=""><?php echo esc_html__( 'Select style', 'elemendas-addons' ); ?></option>
+					<# _.each( data.quotation_marks, function( quotation_value, quotation_label ) { #>
+					<option value="{{ quotation_label }}">{{ quotation_value[0] }}{{{ quotation_label }}}{{ quotation_value[1] }}</option>
 					<# } ); #>
 				</select>
 			</div>
