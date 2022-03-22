@@ -32,6 +32,12 @@ You can customize the message according to the number of results obtained:
 It's simple! Just create a search results archive at the Elementor's theme builder, then drag and drop the Search Results Widget and enjoy it!
 
 == Screenshots ==
+1. The widget appears only in the Archive section
+1. Multiple results
+1. No results found
+1. Only one result
+1. Warning if any text is missing
+1. Warning if used in an archive other than search results
 
 == Upgrade Notice ==
 
