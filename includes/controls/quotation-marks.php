@@ -22,6 +22,13 @@ class Elemendas_Quotation_Control extends \Elementor\Base_Data_Control {
 		return 'quotation-marks';
 	}
 
+	public function enqueue() {
+		wp_enqueue_script( 'quotation-marks-script' , plugins_url( 'assets/js/quotation-marks.js', __FILE__ ) );
+//		wp_enqueue_style( 'quotation-marks-style' , plugins_url( 'assets/css/quotation-marks.css', __FILE__ ) );
+	}
+
+
+
 	/**
 	 * Get quotation marks.
 	 *
