@@ -164,7 +164,18 @@ class Search_Results extends \Elementor\Widget_Heading {
 				],
 			]
 		);
-
+/*
+		$this->add_control(
+			'quotation_marks_selector',
+			[
+				'label' => esc_html__( 'Quotation marks', 'elemendas-addons' ),
+				'type' => 'quotation-marks',
+				'selectors' => [
+					'{{WRAPPER}} .elemendas-search-terms:before' => 'content:"{{OPENQUOTE}}";',
+				]
+			]
+		);
+*/
 		$this->add_control(
 			'quotation_marks',
 			[
@@ -172,7 +183,6 @@ class Search_Results extends \Elementor\Widget_Heading {
 				'type' => 'quotation-marks',
 			]
 		);
-
 
 		$this->end_controls_section();
 
@@ -217,14 +227,10 @@ class Search_Results extends \Elementor\Widget_Heading {
 		}
 
 		$render_text = $settings['show_results'];
+		$openQuote = $settings['quotation_marks']['openQuote'];
+		$closeQuote = $settings['quotation_marks']['closeQuote'];
 
-		if ( '' === $settings['quotation_marks'] ) {
-			$quotes = ['',''];
-		} else {
-			$quotes = explode(',',$settings['quotation_marks']);
-		}
-
-		$render_text = str_replace ("{{search-string}}",'<span class="elemendas-search-terms elemendas-search-result">'.$quotes[0].$search_query.$quotes[1].'</span>',$render_text);
+		$render_text = str_replace ("{{search-string}}",'<span class="elemendas-search-terms elemendas-search-result">'.$openQuote.$search_query.$closeQuote.'</span>',$render_text);
 		$render_text = str_replace ("{{result-number}}",$post_count,$render_text);
 		
 		$render_text = sprintf( '<%1$s %2$s>%3$s</%1$s>', \Elementor\Utils::validate_html_tag( $settings['header_size'] ), $this->get_render_attribute_string( 'show_results' ), $render_text );
@@ -271,12 +277,14 @@ class Search_Results extends \Elementor\Widget_Heading {
 						show_results = settings.show_results_plural;
 						break;
 				}
-				if ('' === settings.quotation_marks) {
-					quotes = ['',''];
-				} else {
-					quotes = settings.quotation_marks.split(',');
-				}
-				show_results = show_results.replace ('{{search-string}}','<span class="elemendas-search-terms elemendas-search-result">'+quotes[0]+settings.search_query+quotes[1]+'</span>');
+
+				console.log(settings.quotation_marks);
+
+				openQuote = settings.quotation_marks.openQuote;
+				closeQuote = settings.quotation_marks.closeQuote;
+
+
+				show_results = show_results.replace ('{{search-string}}','<span class="elemendas-search-terms elemendas-search-result">'+openQuote+settings.search_query+closeQuote+'</span>');
 				show_results = show_results.replace ('{{result-number}}',settings.post_count);
 			#>
 				<{{{ settings.header_size }}} {{{ view.getRenderAttributeString( 'show_results' ) }}}>{{{ show_results }}}</{{{ settings.header_size }}}>

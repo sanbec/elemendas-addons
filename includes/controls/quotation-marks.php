@@ -1,13 +1,19 @@
 <?php
 namespace Elemendas_Addons;
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 /**
- * Elementor quotation marks control.
+ * Elemendas quotation marks control.
  *
  * A control for displaying a select field with the ability to choose quotation marks.
  *
+ *
  * @since 1.0.0
  */
-class Elemendas_Quotation_Control extends \Elementor\Base_Data_Control {
+class Elemendas_Quotation_Control extends \Elementor\Control_Base_Multiple {
 
 	/**
 	 * Get quotation marks control type.
@@ -16,18 +22,24 @@ class Elemendas_Quotation_Control extends \Elementor\Base_Data_Control {
 	 *
 	 * @since 1.0.0
 	 * @access public
+	 *
 	 * @return string Control type.
 	 */
 	public function get_type() {
 		return 'quotation-marks';
 	}
 
+	/**
+	 * Enqueue scripts ans styles.
+	 *
+	 * @since 1.0.0
+	 * @access public
+	 *
+	 */
 	public function enqueue() {
-		wp_enqueue_script( 'quotation-marks-script' , plugins_url( 'assets/js/quotation-marks.js', __FILE__ ) );
-//		wp_enqueue_style( 'quotation-marks-style' , plugins_url( 'assets/css/quotation-marks.css', __FILE__ ) );
+		wp_enqueue_script( 'quotation-marks', plugins_url( 'assets/js/QuotationMarks.js', __FILE__ ) );
+		wp_enqueue_style( 'quotation-marks', plugins_url( 'assets/css/QuotationMarks.css', __FILE__ ) );
 	}
-
-
 
 	/**
 	 * Get quotation marks.
@@ -40,6 +52,7 @@ class Elemendas_Quotation_Control extends \Elementor\Base_Data_Control {
 	 *
 	 * @return array Available quotation marks.
 	 */
+
 	public static function get_quotation_marks() {
 		return [
 			'angular double' => ['«','»'],
@@ -79,7 +92,11 @@ class Elemendas_Quotation_Control extends \Elementor\Base_Data_Control {
 	 * @return array Currency control default value.
 	 */
 	public function get_default_value() {
-		return '';
+		return [
+			'quotesType' => '',
+			'openQuote' => '',
+			'closeQuote' => '',
+		];
 	}
 
 	/**
@@ -93,23 +110,22 @@ class Elemendas_Quotation_Control extends \Elementor\Base_Data_Control {
 	 * @access public
 	 */
 	public function content_template() {
-		$control_uid = $this->get_control_uid();
 		?>
 		<div class="elementor-control-field">
-
 			<# if ( data.label ) {#>
-			<label for="<?php echo $control_uid; ?>" class="elementor-control-title">{{{ data.label }}}</label>
+			<label for="<?php $this->print_control_uid( 'quotesType' ); ?>" class="elementor-control-title">{{{ data.label }}}</label>
 			<# } #>
 
-			<div class="elementor-control-input-wrapper">
-				<select id="<?php echo $control_uid; ?>" data-setting="{{ data.name }}">
+			<div class="elementor-control-input-wrapper elemendas-quotation-marks">
+				<select id="<?php $this->print_control_uid( 'quotesType' ); ?>" data-setting="quotesType">
 					<option value=""><?php echo esc_html__( 'Select style', 'elemendas-addons' ); ?></option>
 					<# _.each( data.quotation_marks, function( quotation_value, quotation_label ) { #>
 					<option value="{{{ quotation_value }}}">{{ quotation_value[0] }}{{{ quotation_label }}}{{ quotation_value[1] }}</option>
 					<# } ); #>
 				</select>
+				<input id="<?php $this->print_control_uid( 'openQuote' ); ?>" type="text" data-setting="openQuote" />
+				<input id="<?php $this->print_control_uid( 'closeQuote' ); ?>" type="text" data-setting="closeQuote" />
 			</div>
-
 		</div>
 
 		<# if ( data.description ) { #>
@@ -117,6 +133,4 @@ class Elemendas_Quotation_Control extends \Elementor\Base_Data_Control {
 		<# } #>
 		<?php
 	}
-
 }
- 
