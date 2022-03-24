@@ -166,7 +166,7 @@ class Search_Results extends \Elementor\Widget_Heading {
 		);
 /*
 		$this->add_control(
-			'quotation_marks_selector',
+			'quotation_marks',
 			[
 				'label' => esc_html__( 'Quotation marks', 'elemendas-addons' ),
 				'type' => 'quotation-marks',
@@ -181,8 +181,15 @@ class Search_Results extends \Elementor\Widget_Heading {
 			[
 				'label' => esc_html__( 'Quotation marks', 'elemendas-addons' ),
 				'type' => 'quotation-marks',
+				'selectors' => [
+//					'{{WRAPPER}} .elemendas-search-terms:before' => 'content:"{{OPENQUOTE}}";',
+//					'{{WRAPPER}} .elemendas-search-terms:after' => 'content:"{{CLOSEQUOTE}}";',
+					'{{WRAPPER}} .elemendas-search-terms:before' => 'content:"{{LEFT}}";',
+					'{{WRAPPER}} .elemendas-search-terms:after' => 'content:"{{RIGHT}}";',
+				],
 			]
-		);
+ );
+
 
 		$this->end_controls_section();
 
@@ -227,10 +234,11 @@ class Search_Results extends \Elementor\Widget_Heading {
 		}
 
 		$render_text = $settings['show_results'];
-		$openQuote = $settings['quotation_marks']['openQuote'];
-		$closeQuote = $settings['quotation_marks']['closeQuote'];
+//		$openQuote = $settings['quotation_marks']['openQuote'];
+//		$closeQuote = $settings['quotation_marks']['closeQuote'];
 
-		$render_text = str_replace ("{{search-string}}",'<span class="elemendas-search-terms elemendas-search-result">'.$openQuote.$search_query.$closeQuote.'</span>',$render_text);
+//		$render_text = str_replace ("{{search-string}}",'<span class="elemendas-search-terms elemendas-search-result">'.$openQuote.$search_query.$closeQuote.'</span>',$render_text);
+		$render_text = str_replace ("{{search-string}}",'<span class="elemendas-search-terms elemendas-search-result">'.$search_query.'</span>',$render_text);
 		$render_text = str_replace ("{{result-number}}",$post_count,$render_text);
 		
 		$render_text = sprintf( '<%1$s %2$s>%3$s</%1$s>', \Elementor\Utils::validate_html_tag( $settings['header_size'] ), $this->get_render_attribute_string( 'show_results' ), $render_text );
@@ -245,17 +253,17 @@ class Search_Results extends \Elementor\Widget_Heading {
 		#>
 			<div class="elemendas-warning">
 				<i aria-hidden="true" class="fas fa-exclamation-circle"></i>
-				<h4><?=esc_html__('This widget needs to have some text to show', 'elemendas-addons')?></h4>
-				<?=esc_html__('In the content area, fill in the fields for:', 'elemendas-addons')?>
+				<h4><?php echo esc_html__('This widget needs to have some text to show', 'elemendas-addons')?></h4>
+				<?php echo esc_html__('In the content area, fill in the fields for:', 'elemendas-addons')?>
 				<ul>
 					<li>
-						<?=esc_html__( 'Multiple results', 'elemendas-addons' )?>.
+						<?php echo esc_html__( 'Multiple results', 'elemendas-addons' )?>.
 					</li>
 					<li>
-						<?=esc_html__( 'Only one result', 'elemendas-addons' )?>.
+						<?php echo esc_html__( 'Only one result', 'elemendas-addons' )?>.
 					</li>
 					<li>
-						<?=esc_html__( 'No results found', 'elemendas-addons' )?>.
+						<?php echo esc_html__( 'No results found', 'elemendas-addons' )?>.
 					</li>
 				</ul>
 			</div>
@@ -278,11 +286,8 @@ class Search_Results extends \Elementor\Widget_Heading {
 						break;
 				}
 
-				console.log(settings.quotation_marks);
-
-				openQuote = settings.quotation_marks.openQuote;
-				closeQuote = settings.quotation_marks.closeQuote;
-
+				openQuote = '';
+				closeQuote = '';
 
 				show_results = show_results.replace ('{{search-string}}','<span class="elemendas-search-terms elemendas-search-result">'+openQuote+settings.search_query+closeQuote+'</span>');
 				show_results = show_results.replace ('{{result-number}}',settings.post_count);
@@ -293,7 +298,7 @@ class Search_Results extends \Elementor\Widget_Heading {
 			#>
 				<div class="elemendas-warning">
 					<i aria-hidden="true" class="fas fa-exclamation-circle"></i>
-					<h4><?=esc_html__('This widget only works on the search results page', 'elemendas-addons')?></h4>
+					<h4><?php echo esc_html__('This widget only works on the search results page', 'elemendas-addons')?></h4>
 					<ol>
 						<li><?php
 							//translators: %s : Preview Settings
