@@ -1,4 +1,4 @@
-=== Manage Admin Columns ===
+=== Elemendas Addons ===
 Contributors: sanbec, elemendas
 Donate link: https://paypal.me/sanbec
 Tags: elementor,elementor addon,elementor addons,elementor widgets,elementor extensions,search results
