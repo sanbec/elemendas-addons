@@ -209,14 +209,13 @@ class Search_Results extends \Elementor\Widget_Heading {
 				break;
 		}
 
-				
-		$render_text = $settings['show_results'];
+		$render_text = sanitize_text_field( $settings['show_results'] );
 		$render_text = str_replace ("{{search-string}}",'<span class="elemendas-search-terms elemendas-search-result">'.$search_query.'</span>',$render_text);
 		$render_text = str_replace ("{{result-number}}",$post_count,$render_text);
-		
 		$render_text = sprintf( '<%1$s %2$s>%3$s</%1$s>', \Elementor\Utils::validate_html_tag( $settings['header_size'] ), $this->get_render_attribute_string( 'show_results' ), $render_text );
 
-		echo $render_text;
+		// PHPCS - the variable $render_text holds safe data. Can't be escaped with esc_html as it must deliver html code.
+		echo $render_text; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	}
 
 	protected function content_template() {
@@ -258,6 +257,7 @@ class Search_Results extends \Elementor\Widget_Heading {
 						show_results = settings.show_results_plural;
 						break;
 				}
+				// something like show_results.sanitize_text_field would be good
 				show_results = show_results.replace ('{{search-string}}','<span class="elemendas-search-terms elemendas-search-result">'+settings.search_query+'</span>');
 				show_results = show_results.replace ('{{result-number}}',settings.post_count);
 			#>
