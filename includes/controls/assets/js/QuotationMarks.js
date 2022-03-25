@@ -10,7 +10,7 @@
             this,
             arguments
           );
-          ui.controls = "input:enabled,select";
+          ui.controls = ".elemendas-quotation-marks > input:hidden, .elemendas-quotation-marks > select";
           ui.select = "select[data-setting=quotesType]";
           return ui;
         },
@@ -34,25 +34,30 @@
           );
           this.name_control = this.model.get(["name"]);
         },
+
         getPossibleInputs: function () {
-          return ["quotesType","openQuote", "closeQuote"];
+          return ["quotesType","openquote", "closequote"];
         },
+
         onReady: function () {
           var self = this,
             currentValue = self.getControlValue();
 
           self.fillEmptyInputs();
         },
-        // update open and close quotes
+
+        // update open and close quotes on select change
         setOpenCloseQuotes: function (event) {
           var text = $(event.target).val();
           quotes = text.split(',');
+
           $(
-            "input[type=text][data-setting=openQuote]"
+            "input[type=hidden][data-setting=openquote]"
           ) .val(quotes[0]);
           $(
-            "input[type=text][data-setting=closeQuote]"
+            "input[type=hidden][data-setting=closequote]"
           ) .val(quotes[1]);
+
           this.updateInputs();
         },
 
@@ -106,7 +111,6 @@
         // clear input
         resetInputs: function () {
           this.ui.controls.val("");
-
           this.updateInputsValue();
         },
         // run while inputs change

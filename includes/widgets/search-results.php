@@ -43,18 +43,11 @@ class Search_Results extends \Elementor\Widget_Heading {
 
 	protected function register_controls() {
 
-		parent::register_controls();
+/*********************
+ * Content Tab Start *
+ *********************/
 
-
-		$this->remove_control ('title');
-		$this->remove_control ('link');
-		$this->update_control(
-			'size',
-			[
-				'description' =>  __('This setting will have no effect if the font size is set in the typography control', 'elemendas-addons'),
-			]
-		);
-
+		//
 		$this->start_controls_section(
 			'content_section_title',
 			[
@@ -92,6 +85,7 @@ class Search_Results extends \Elementor\Widget_Heading {
 				'description' =>  __('Shown when a single entry is found', 'elemendas-addons'),
 			]
 		);
+
 		$this->add_control(
 			'show_results_none',
 			[
@@ -105,6 +99,8 @@ class Search_Results extends \Elementor\Widget_Heading {
 			]
 		);
 
+
+		// The following hidden controls are used to store the search string and the number of found results
 		$search_query = get_search_query();
 		if (is_null($search_query) || $search_query == '') {
 			$this->remove_control('search_query');
@@ -130,11 +126,9 @@ class Search_Results extends \Elementor\Widget_Heading {
 			);
 		}
 
-
-
 		$this->end_controls_section();
-
-		// Content Tab End
+		// Content Tab End. Note that this section will be followed by the content title section inherited from the heading widget.
+		// inherited from the heading widget. (See the end of this function)
 
 /*******************
  * Style Tab Start *
@@ -164,7 +158,7 @@ class Search_Results extends \Elementor\Widget_Heading {
 				],
 			]
 		);
-/*
+
 		$this->add_control(
 			'quotation_marks',
 			[
@@ -172,30 +166,27 @@ class Search_Results extends \Elementor\Widget_Heading {
 				'type' => 'quotation-marks',
 				'selectors' => [
 					'{{WRAPPER}} .elemendas-search-terms:before' => 'content:"{{OPENQUOTE}}";',
-				]
-			]
-		);
-*/
-		$this->add_control(
-			'quotation_marks',
-			[
-				'label' => esc_html__( 'Quotation marks', 'elemendas-addons' ),
-				'type' => 'quotation-marks',
-				'selectors' => [
-//					'{{WRAPPER}} .elemendas-search-terms:before' => 'content:"{{OPENQUOTE}}";',
-//					'{{WRAPPER}} .elemendas-search-terms:after' => 'content:"{{CLOSEQUOTE}}";',
-					'{{WRAPPER}} .elemendas-search-terms:before' => 'content:"{{LEFT}}";',
-					'{{WRAPPER}} .elemendas-search-terms:after' => 'content:"{{RIGHT}}";',
+					'{{WRAPPER}} .elemendas-search-terms:after' => 'content:"{{CLOSEQUOTE}}";',
+//					'{{WRAPPER}} .elemendas-search-terms:before' => 'content:"{{LEFT}}";',
+//					'{{WRAPPER}} .elemendas-search-terms:after' => 'content:"{{RIGHT}}";',
 				],
 			]
- );
-
+		);
 
 		$this->end_controls_section();
+		// Style Tab End. Note that this section will be followed by the style title section inherited from the heading widget.
 
-		// Style Tab End
+		parent::register_controls();
 
-	}
+		$this->remove_control ('title');
+		$this->remove_control ('link');
+		$this->update_control(
+			'size',
+			[
+				'description' =>  __('This setting will have no effect if the font size is set in the typography control', 'elemendas-addons'),
+			]
+		);
+	} // END protected function register_controls
 
 	protected function render() {
 		$settings = $this->get_settings_for_display();
@@ -234,17 +225,13 @@ class Search_Results extends \Elementor\Widget_Heading {
 		}
 
 		$render_text = $settings['show_results'];
-//		$openQuote = $settings['quotation_marks']['openQuote'];
-//		$closeQuote = $settings['quotation_marks']['closeQuote'];
-
-//		$render_text = str_replace ("{{search-string}}",'<span class="elemendas-search-terms elemendas-search-result">'.$openQuote.$search_query.$closeQuote.'</span>',$render_text);
 		$render_text = str_replace ("{{search-string}}",'<span class="elemendas-search-terms elemendas-search-result">'.$search_query.'</span>',$render_text);
 		$render_text = str_replace ("{{result-number}}",$post_count,$render_text);
 		
 		$render_text = sprintf( '<%1$s %2$s>%3$s</%1$s>', \Elementor\Utils::validate_html_tag( $settings['header_size'] ), $this->get_render_attribute_string( 'show_results' ), $render_text );
 
 		echo $render_text;
-	}
+	}  // END protected function render
 
 	protected function content_template() {
 		?>
@@ -286,10 +273,7 @@ class Search_Results extends \Elementor\Widget_Heading {
 						break;
 				}
 
-				openQuote = '';
-				closeQuote = '';
-
-				show_results = show_results.replace ('{{search-string}}','<span class="elemendas-search-terms elemendas-search-result">'+openQuote+settings.search_query+closeQuote+'</span>');
+				show_results = show_results.replace ('{{search-string}}','<span class="elemendas-search-terms elemendas-search-result">'+settings.search_query+'</span>');
 				show_results = show_results.replace ('{{result-number}}',settings.post_count);
 			#>
 				<{{{ settings.header_size }}} {{{ view.getRenderAttributeString( 'show_results' ) }}}>{{{ show_results }}}</{{{ settings.header_size }}}>
@@ -327,6 +311,6 @@ class Search_Results extends \Elementor\Widget_Heading {
 		#>
 		<?php
 		return;
-	}
+	}  //END protected function content_template
 
 } //END class Search_Results

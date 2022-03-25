@@ -52,7 +52,6 @@ class Elemendas_Quotation_Control extends \Elementor\Control_Base_Multiple {
 	 *
 	 * @return array Available quotation marks.
 	 */
-
 	public static function get_quotation_marks() {
 		return [
 			'angular double' => ['«','»'],
@@ -72,7 +71,7 @@ class Elemendas_Quotation_Control extends \Elementor\Control_Base_Multiple {
 	 *
 	 * @since 1.0.0
 	 * @access protected
-	 * @return array Currency control default settings.
+	 * @return array Quotation Marks Control default settings.
 	 */
 	protected function get_default_settings() {
 		return [
@@ -89,13 +88,13 @@ class Elemendas_Quotation_Control extends \Elementor\Control_Base_Multiple {
 	 * @since 1.0.0
 	 * @access public
 	 *
-	 * @return array Currency control default value.
+	 * @return array Quotation Marks control default value.
 	 */
 	public function get_default_value() {
 		return [
 			'quotesType' => '',
-			'openQuote' => '',
-			'closeQuote' => '',
+			'openquote' => '',
+			'closequote' => '',
 		];
 	}
 
@@ -110,6 +109,11 @@ class Elemendas_Quotation_Control extends \Elementor\Control_Base_Multiple {
 	 * @access public
 	 */
 	public function content_template() {
+		$quotes = [
+			'openquote',
+			'closequote',
+		];
+
 		?>
 		<div class="elementor-control-field">
 			<# if ( data.label ) {#>
@@ -123,8 +127,11 @@ class Elemendas_Quotation_Control extends \Elementor\Control_Base_Multiple {
 					<option value="{{{ quotation_value }}}">{{ quotation_value[0] }}{{{ quotation_label }}}{{ quotation_value[1] }}</option>
 					<# } ); #>
 				</select>
-				<input id="<?php $this->print_control_uid( 'openQuote' ); ?>" type="text" data-setting="openQuote" />
-				<input id="<?php $this->print_control_uid( 'closeQuote' ); ?>" type="text" data-setting="closeQuote" />
+
+				<?php foreach ( $quotes as $quote) : $control_uid = $this->get_control_uid( $quote ); ?>
+				<input id="<?php echo $control_uid; ?>" type="hidden" data-name="{{data.name}}-<?php echo esc_attr( $quote ); ?>" data-setting="<?php echo esc_attr( $quote ); ?>"/>
+				<?php endforeach; ?>
+
 			</div>
 		</div>
 
