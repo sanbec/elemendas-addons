@@ -160,6 +160,17 @@ class Search_Results extends \Elementor\Widget_Heading {
 		);
 
 		$this->add_control(
+			'search_string_bgcolor',
+			[
+				'label' => esc_html__( 'Background Color', 'elementor' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .elemendas-search-terms' => 'background-color: {{VALUE}};',
+				],
+			]
+		);
+
+		$this->add_control(
 			'quotation_marks',
 			[
 				'label' => esc_html__( 'Quotation marks', 'elemendas-addons' ),
@@ -167,8 +178,6 @@ class Search_Results extends \Elementor\Widget_Heading {
 				'selectors' => [
 					'{{WRAPPER}} .elemendas-search-terms:before' => 'content:"{{OPENQUOTE}}";',
 					'{{WRAPPER}} .elemendas-search-terms:after' => 'content:"{{CLOSEQUOTE}}";',
-//					'{{WRAPPER}} .elemendas-search-terms:before' => 'content:"{{LEFT}}";',
-//					'{{WRAPPER}} .elemendas-search-terms:after' => 'content:"{{RIGHT}}";',
 				],
 			]
 		);
