@@ -147,12 +147,8 @@ class Search_Results extends \Elementor\Widget_Heading {
 		$this->add_control(
 			'search_string_color',
 			[
-				'label' => esc_html__( 'Color', 'elementor' ),
+				'label' => esc_html__( 'Text Color', 'elementor' ),
 				'type' => Controls_Manager::COLOR,
-				'global' => [
-					'default' => Global_Colors::COLOR_ACCENT,
-				],
-
 				'selectors' => [
 					'{{WRAPPER}} .elemendas-search-terms' => 'color: {{VALUE}};',
 				],
@@ -171,6 +167,18 @@ class Search_Results extends \Elementor\Widget_Heading {
 		);
 
 		$this->add_control(
+			'search_string_highlighter',
+			[
+				'label' => esc_html__( 'Highligter color', 'elemendas-addons' ),
+				'type' => Controls_Manager::COLOR,
+				'default' => '#0f07',
+				'selectors' => [
+					'{{WRAPPER}} .elemendas-search-terms' => 'box-shadow: inset 0 -12px {{VALUE}};',
+				],
+			]
+		);
+
+		$this->add_control(
 			'quotation_marks',
 			[
 				'label' => esc_html__( 'Quotation marks', 'elemendas-addons' ),
@@ -179,6 +187,7 @@ class Search_Results extends \Elementor\Widget_Heading {
 					'{{WRAPPER}} .elemendas-search-terms:before' => 'content:"{{OPENQUOTE}}";',
 					'{{WRAPPER}} .elemendas-search-terms:after' => 'content:"{{CLOSEQUOTE}}";',
 				],
+				'separator' => 'before',
 			]
 		);
 
@@ -233,13 +242,13 @@ class Search_Results extends \Elementor\Widget_Heading {
 				break;
 		}
 
-		$render_text = $settings['show_results'];
+		$render_text = sanitize_text_field( $settings['show_results'] );
 		$render_text = str_replace ("{{search-string}}",'<span class="elemendas-search-terms elemendas-search-result">'.$search_query.'</span>',$render_text);
 		$render_text = str_replace ("{{result-number}}",$post_count,$render_text);
-		
 		$render_text = sprintf( '<%1$s %2$s>%3$s</%1$s>', \Elementor\Utils::validate_html_tag( $settings['header_size'] ), $this->get_render_attribute_string( 'show_results' ), $render_text );
 
-		echo $render_text;
+		// PHPCS - the variable $render_text holds safe data. Can't be escaped with esc_html as it must deliver html code.
+		echo $render_text; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	}  // END protected function render
 
 	protected function content_template() {
