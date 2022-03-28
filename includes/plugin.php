@@ -340,33 +340,6 @@ final class Plugin {
 		printf( '<div class="notice notice-warning is-dismissible"><p>%1$s</p></div>', $message );
 	}
 
-
-	public function elementor_not_loaded() {
-
-		if (!current_user_can('activate_plugins')) {
-			return;
-		}
-
-		$elementor = 'elementor/elementor.php';
-
-		if ($this->is_plugin_installed($elementor)) {
-			$activation_url = wp_nonce_url('plugins.php?action=activate&amp;plugin=' . $elementor . '&amp;plugin_status=all&amp;paged=1&amp;s', 'activate-plugin_' . $elementor);
-
-			$message = sprintf(__('%1$sEssential Addons for Elementor%2$s requires %1$sElementor%2$s plugin to be active. Please activate Elementor to continue.', 'essential-addons-for-elementor-lite'), "<strong>", "</strong>");
-
-			$button_text = __('Activate Elementor', 'essential-addons-for-elementor-lite');
-		} else {
-			$activation_url = wp_nonce_url(self_admin_url('update.php?action=install-plugin&plugin=elementor'), 'install-plugin_elementor');
-
-			$message = sprintf(__('%1$sEssential Addons for Elementor%2$s requires %1$sElementor%2$s plugin to be installed and activated. Please install Elementor to continue.', 'essential-addons-for-elementor-lite'), '<strong>', '</strong>');
-			$button_text = __('Install Elementor', 'essential-addons-for-elementor-lite');
-		}
-
-		$button = '<p><a href="' . esc_url( $activation_url ) . '" class="button-primary">' . esc_html( $button_text ) . '</a></p>';
-
-		printf('<div class="error"><p>%1$s</p>%2$s</div>', __($message), $button);
-	}
-
 	/**
 	 * Initialize
 	 *
@@ -408,5 +381,9 @@ final class Plugin {
 	public function register_controls( $controls_manager ) {
 		require_once( __DIR__ . '/controls/quotation-marks.php' );
 		$controls_manager->register( new Elemendas_Quotation_Control() );
+
+//		require_once( __DIR__ . '/controls/highlighter.php' );
+//		$controls_manager->register( new Group_Control_Highlighter() );
+
 	}
 }
