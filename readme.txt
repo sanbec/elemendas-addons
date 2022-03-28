@@ -4,22 +4,21 @@ Donate link: https://paypal.me/sanbec
 Tags: elementor,elementor addon,elementor addons,elementor widgets,elementor extensions,search results
 Requires at least: 5.0
 Tested up to: 5.9.2
-Stable tag: 1.0.0
+Stable tag: 1.0
 Requires PHP: 7.0
 License: GPL 3.0 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
-This addon for Elementor Pro allows you to show the number of posts containing the search query, and to highlight the search query string at the Search Result Archive.
+This addon for Elementor allows you to display the number of results of the search query, as well as highlight the searched string in the results.
 
 == Description ==
 
-This plugin is an addon for Elementor Pro. It adds the "Search Results" widget to the Search Results Archive. This widget allows you to show the number
-of posts containing the search query, and to highlight the search query string.
+This plugin is an addon for Elementor Pro. It adds the "Search Results" widget to the Search Results Archive. This widget allows you to show the number of posts containing the search query, and to highlight the search query string.
 You can customize the message according to the number of results obtained:
 
-*For no result,
-*for a single result and
-*for more than one result.
+* For no result,
+* for a single result and
+* for more than one result.
 
 
 == Installation ==
