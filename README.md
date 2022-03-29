@@ -51,5 +51,8 @@ It's simple! Just activate, adjust settings and enjoy.
 
 ## Changelog
 
+### 1.0.1
+* Minor changes to improve i10n
+
 ### 1.0.0
-* Initial release on Github
+* Initial release on WordPress.org

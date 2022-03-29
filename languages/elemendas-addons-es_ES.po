@@ -4,10 +4,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Elemendas Addon 1.0.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/elemendas-"
-"addonsPOT-Creation-Date: 2022-03-15T19:46:29+01:00\n"
-"POT-Creation-Date: \n"
-"PO-Revision-Date: 2022-03-20 12:24+0100\n"
-"Last-Translator: Santiago Becerra <santo@wpcombo.com>\n"
+"addons\n"
+"POT-Creation-Date: 2022-03-29T11:09:55+02:00\n"
+"PO-Revision-Date: 2022-03-29 11:13+0200\n"
+"Last-Translator: Santiago Becerra <santi@wpcombo.com>\n"
 "Language-Team: \n"
 "Language: es_ES\n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,8 @@ msgstr ""
 "X-Domain: elemendas-addon\n"
 
 #. Plugin Name of the plugin
-#: includes/plugin.php:134 includes/plugin.php:156
+#: includes/plugin.php:204 includes/plugin.php:231 includes/plugin.php:252
+#: includes/plugin.php:280 includes/plugin.php:306 includes/plugin.php:326
 msgid "Elemendas Addons"
 msgstr "Elemendas Addons"
 
@@ -38,25 +39,50 @@ msgstr "Elemendas"
 msgid "https://elemendas.com/"
 msgstr "https://elemendas.com/"
 
+#: includes/plugin.php:198
+msgid "Install Elementor"
+msgstr "Instalar Elementor"
+
 #. translators: 1: Plugin name 2: Elementor
-#: includes/plugin.php:133
+#: includes/plugin.php:203 includes/plugin.php:279
 msgid "\"%1$s\" requires \"%2$s\" to be installed and activated."
 msgstr "\"%1$s\" necesita que \"%2$s\" esté instalado y activado."
 
-#: includes/plugin.php:135 includes/plugin.php:157
+#. translators: %s: Elementor/Elementor Pro
+#: includes/plugin.php:205 includes/plugin.php:225 includes/plugin.php:232
+#: includes/plugin.php:253
 msgid "Elementor"
 msgstr "Elementor"
 
+#. translators: %s: Elementor/Elementor Pro
+#: includes/plugin.php:225 includes/plugin.php:301
+msgid "Activate %s"
+msgstr "Activar %s"
+
+#. translators: 1: Plugin name 2: Elementor/Elementor Pro
+#: includes/plugin.php:230 includes/plugin.php:305
+msgid "\"%1$s\" requires \"%2$s\" to be activated."
+msgstr "\"%1$s\" necesita que \"%2$s\" esté instalado y activado."
+
 #. translators: 1: Plugin name 2: Elementor/PHP 3: Required Elementor/PHP version
-#: includes/plugin.php:155 includes/plugin.php:179
+#: includes/plugin.php:251 includes/plugin.php:325 includes/plugin.php:349
 msgid "\"%1$s\" requires \"%2$s\" version %3$s or greater."
 msgstr "\"%1$s\" necesita la version %3$s o superior de \"%2$s\"."
 
-#: includes/plugin.php:180
+#: includes/plugin.php:275
+msgid "Install Elementor Pro"
+msgstr "Instalar Elementor Pro"
+
+#: includes/plugin.php:281 includes/plugin.php:301 includes/plugin.php:307
+#: includes/plugin.php:327
+msgid "Elementor Pro"
+msgstr "Elementor Pro"
+
+#: includes/plugin.php:350
 msgid "Elemendas Addon"
 msgstr "Elemendas Addon"
 
-#: includes/plugin.php:181
+#: includes/plugin.php:351
 msgid "PHP"
 msgstr "PHP"
 
@@ -64,61 +90,7 @@ msgstr "PHP"
 msgid "Search Results"
 msgstr "Resultados de búsqueda"
 
-#: includes/widgets/search-results.php:57
-msgid "Multiple results"
-msgstr "Varios resultados"
-
-#. translators: Keep {{result-number}} and {{search-string}}  as they are, without translation
-#: includes/widgets/search-results.php:61
-msgid "Here are the {{result-number}} posts containing {{search-string}}"
-msgstr ""
-"Aquí están las {{result-number}} entradas que contienen {{search-string}}"
-
-#: includes/widgets/search-results.php:63
-msgid "Shown when there are more than one post found"
-msgstr "Se muestra cuando se encuentra más de una entrada"
-
-#. translators: Keep {{result-number}} as it is, without translation
-#: includes/widgets/search-results.php:65
-msgid "Use {{result-number}} to show the post found number"
-msgstr "Usa {{result-number}} para mostrar el número de entradas encontradas"
-
-#. translators: Keep {{search-string}}  as it is, without translation
-#: includes/widgets/search-results.php:67
-msgid "Use {{search-string}} to show the search string"
-msgstr "Usa {{search-string}} para mostrar la cadena buscada"
-
-#: includes/widgets/search-results.php:74
-msgid "Only one result"
-msgstr "Un solo resultado"
-
-#. translators: Keep {{search-string}}  as it is, without translation
-#: includes/widgets/search-results.php:78
-msgid "Here is the unique post containing {{search-string}}"
-msgstr "Esta es la única  entrada que contiene {{search-string}}"
-
-#: includes/widgets/search-results.php:80
-msgid "Shown when a single entry is found"
-msgstr "Se muestra cuando se encuentra una sola entrada"
-
-#: includes/widgets/search-results.php:86
-msgid "No results found"
-msgstr "Sin resultados"
-
-#. translators: Keep {{search-string}}  as it is, without translation
-#: includes/widgets/search-results.php:90
-msgid "There are no posts containing {{search-string}}"
-msgstr "No hay entradas que contengan {{search-string}}"
-
-#: includes/widgets/search-results.php:92
-msgid "Shown when there are no posts found"
-msgstr "Se muestra cuando no se encuentran entradas"
-
-#: includes/widgets/search-results.php:132
-msgid "Results message"
-msgstr "Mensaje de resultados"
-
-#: includes/widgets/search-results.php:212
+#: includes/widgets/search-results.php:54
 msgid ""
 "This setting will have no effect if the font size is set in the typography "
 "control"
@@ -126,28 +98,100 @@ msgstr ""
 "Este ajuste no tendrá ningún efecto si se especifica el tamaño de la fuente "
 "en el control de tipografía"
 
-#: includes/widgets/search-results.php:264
+#: includes/widgets/search-results.php:71
+#: includes/widgets/search-results.php:232
+msgid "Multiple results"
+msgstr "Varios resultados"
+
+#. translators: Keep {{result-number}} and {{search-string}}  as they are, without translation
+#: includes/widgets/search-results.php:75
+msgid "Here are the {{result-number}} posts containing {{search-string}}"
+msgstr ""
+"Aquí están las {{result-number}} entradas que contienen {{search-string}}"
+
+#: includes/widgets/search-results.php:77
+msgid "Shown when there are more than one post found"
+msgstr "Se muestra cuando se encuentra más de una entrada"
+
+#. translators: Keep {{result-number}} as it is, without translation
+#: includes/widgets/search-results.php:79
+msgid "Use {{result-number}} to show the post found number"
+msgstr "Usa {{result-number}} para mostrar el número de entradas encontradas"
+
+#. translators: Keep {{search-string}}  as it is, without translation
+#: includes/widgets/search-results.php:81
+msgid "Use {{search-string}} to show the search string"
+msgstr "Usa {{search-string}} para mostrar la cadena buscada"
+
+#: includes/widgets/search-results.php:88
+#: includes/widgets/search-results.php:235
+msgid "Only one result"
+msgstr "Un solo resultado"
+
+#. translators: Keep {{search-string}}  as it is, without translation
+#: includes/widgets/search-results.php:92
+msgid "Here is the unique post containing {{search-string}}"
+msgstr "Esta es la única  entrada que contiene {{search-string}}"
+
+#: includes/widgets/search-results.php:94
+msgid "Shown when a single entry is found"
+msgstr "Se muestra cuando se encuentra una sola entrada"
+
+#: includes/widgets/search-results.php:100
+#: includes/widgets/search-results.php:238
+msgid "No results found"
+msgstr "Sin resultados"
+
+#. translators: Keep {{search-string}}  as it is, without translation
+#: includes/widgets/search-results.php:104
+msgid "There are no posts containing {{search-string}}"
+msgstr "No hay entradas que contengan {{search-string}}"
+
+#: includes/widgets/search-results.php:106
+msgid "Shown when there are no posts found"
+msgstr "Se muestra cuando no se encuentran entradas"
+
+#: includes/widgets/search-results.php:118
+msgid "Searched string"
+msgstr "Cadena buscada"
+
+#: includes/widgets/search-results.php:128
+msgid "Post count"
+msgstr "Contador de entradas"
+
+#: includes/widgets/search-results.php:150
 msgid "Search string highlighting"
 msgstr "Destacar la cadena de búsqueda"
 
-#: includes/widgets/search-results.php:348
+#: includes/widgets/search-results.php:228
+msgid "This widget needs to have some text to show"
+msgstr "Este widget necesita tener algún texto que mostrar"
+
+#: includes/widgets/search-results.php:229
+msgid "In the content area, fill in the fields for:"
+msgstr "En el área de contenido, rellena los campos para:"
+
+#: includes/widgets/search-results.php:270
 msgid "This widget only works on the search results page"
 msgstr "Este widget solo funciona en la página de resultados de búsqueda"
 
 #. translators: %s : Preview Settings
-#: includes/widgets/search-results.php:352
+#: includes/widgets/search-results.php:274
 msgid "Go to \"%s\""
 msgstr "Ve a «%s»"
 
 #. translators: 1: 'Preview Dynamic Content as', 2: 'Search Results' 3: 'Search Term'
-#: includes/widgets/search-results.php:357
+#: includes/widgets/search-results.php:279
 msgid "Set \"%1$s\" \"%2$s\" and fill the \"%3$s\""
 msgstr "Establece «%1$s» «%2$s» y rellena el «%3$s»"
 
 #. translators: 1: 'Display Conditions' 2: flow icon 3: 'Search Results'
-#: includes/widgets/search-results.php:364
+#: includes/widgets/search-results.php:286
 msgid "Adjust the \"%1$s\" %2$s to \"%3$s\""
 msgstr "Ajusta las «%1$s» %2$s a «%3$s»"
+
+#~ msgid "Results message"
+#~ msgstr "Mensaje de resultados"
 
 #~ msgid "Color"
 #~ msgstr "Color"
