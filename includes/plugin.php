@@ -89,9 +89,9 @@ final class Plugin {
 		if ( $this->is_compatible() ) {
 			add_action( 'elementor/init', [ $this, 'init' ] );
 		}
-
 	}
-    /**
+
+	/**
      * Check if a plugin is installed
      *
      * @since 1.0.0
@@ -106,7 +106,6 @@ final class Plugin {
 
         return isset($installed_plugins[$basename]);
     }
-
 
    /**
      * Check if a plugin is active
@@ -135,10 +134,7 @@ final class Plugin {
 	 * @access public
 	 */
 	public function is_compatible() {
-
-
         add_action( 'admin_enqueue_scripts', [ $this, 'elm_admin_styles' ] );
-
 
 		// Check if Elementor is installed
 		if ( !$this->is_plugin_installed ( 'elementor/elementor.php' ) ) {
@@ -170,15 +166,12 @@ final class Plugin {
 			add_action( 'admin_notices', [ $this, 'admin_notice_minimum_elementor_pro_version' ] );
 			return false;
 		}
-
 		// Check for required PHP version
 		if ( version_compare( PHP_VERSION, self::MINIMUM_PHP_VERSION, '<' ) ) {
 			add_action( 'admin_notices', [ $this, 'admin_notice_minimum_php_version' ] );
 			return false;
 		}
-
 		return true;
-
 	}
 
 	/**
@@ -232,7 +225,6 @@ final class Plugin {
 			'<strong>' . esc_html__( 'Elementor', 'elemendas-addons' ) . '</strong>'
 		);
         printf('<div class="error elemendas-error">%1$s%2$s</div>', __($message), $button);
-
 	}
 
 	/**
@@ -253,9 +245,7 @@ final class Plugin {
 			'<strong>' . esc_html__( 'Elementor', 'elemendas-addons' ) . '</strong>',
 			 self::MINIMUM_ELEMENTOR_VERSION
 		);
-
 		printf( '<div class="notice notice-warning is-dismissible"><p>%1$s</p></div>', $message );
-
 	}
 
 	/**
@@ -327,9 +317,7 @@ final class Plugin {
 			'<strong>' . esc_html__( 'Elementor Pro', 'elemendas-addons' ) . '</strong>',
 			 self::MINIMUM_ELEMENTOR_PRO_VERSION
 		);
-
 		printf( '<div class="notice notice-warning is-dismissible"><p>%1$s</p></div>', $message );
-
 	}
 
 	/**
@@ -351,40 +339,8 @@ final class Plugin {
 			'<strong>' . esc_html__( 'PHP', 'elemendas-addons' ) . '</strong>',
 			 self::MINIMUM_PHP_VERSION
 		);
-
 		printf( '<div class="notice notice-warning is-dismissible"><p>%1$s</p></div>', $message );
-
 	}
-
-
-	    public function elementor_not_loaded()
-    {
-        if (!current_user_can('activate_plugins')) {
-            return;
-        }
-
-        $elementor = 'elementor/elementor.php';
-
-        if ($this->is_plugin_installed($elementor)) {
-            $activation_url = wp_nonce_url('plugins.php?action=activate&amp;plugin=' . $elementor . '&amp;plugin_status=all&amp;paged=1&amp;s', 'activate-plugin_' . $elementor);
-
-            $message = sprintf(__('%1$sEssential Addons for Elementor%2$s requires %1$sElementor%2$s plugin to be active. Please activate Elementor to continue.', 'essential-addons-for-elementor-lite'), "<strong>", "</strong>");
-
-            $button_text = __('Activate Elementor', 'essential-addons-for-elementor-lite');
-        } else {
-            $activation_url = wp_nonce_url(self_admin_url('update.php?action=install-plugin&plugin=elementor'), 'install-plugin_elementor');
-
-            $message = sprintf(__('%1$sEssential Addons for Elementor%2$s requires %1$sElementor%2$s plugin to be installed and activated. Please install Elementor to continue.', 'essential-addons-for-elementor-lite'), '<strong>', '</strong>');
-            $button_text = __('Install Elementor', 'essential-addons-for-elementor-lite');
-        }
-
-        $button = '<p><a href="' . esc_url( $activation_url ) . '" class="button-primary">' . esc_html( $button_text ) . '</a></p>';
-
-        printf('<div class="error"><p>%1$s</p>%2$s</div>', __($message), $button);
-    }
-
-
-
 
 	/**
 	 * Initialize
@@ -397,10 +353,8 @@ final class Plugin {
 	 * @access public
 	 */
 	public function init() {
-
 		add_action( 'elementor/widgets/register', [ $this, 'register_widgets' ] );
 		add_action( 'elementor/controls/register', [ $this, 'register_controls' ] );
-
 	}
 
 	/**
@@ -414,7 +368,7 @@ final class Plugin {
 	 */
 	public function register_widgets( $widgets_manager ) {
 		require_once( __DIR__ . '/widgets/search-results.php' );
-		$widgets_manager->register( new \Elemendas_Addons\Search_Results() );
+		$widgets_manager->register( new Search_Results() );
 	}
 
 	/**
