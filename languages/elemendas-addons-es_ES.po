@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: Elemendas Addon 1.0.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/elemendas-"
 "addons\n"
-"POT-Creation-Date: 2022-03-29T11:09:55+02:00\n"
-"PO-Revision-Date: 2022-03-29 11:13+0200\n"
+"POT-Creation-Date: 2022-03-29T16:27:57+02:00\n"
+"PO-Revision-Date: 2022-03-29 16:29+0200\n"
 "Last-Translator: Santiago Becerra <santi@wpcombo.com>\n"
 "Language-Team: \n"
 "Language: es_ES\n"
@@ -18,8 +18,8 @@ msgstr ""
 "X-Domain: elemendas-addon\n"
 
 #. Plugin Name of the plugin
-#: includes/plugin.php:204 includes/plugin.php:231 includes/plugin.php:252
-#: includes/plugin.php:280 includes/plugin.php:306 includes/plugin.php:326
+#: includes/plugin.php:197 includes/plugin.php:224 includes/plugin.php:244
+#: includes/plugin.php:270 includes/plugin.php:296 includes/plugin.php:316
 msgid "Elemendas Addons"
 msgstr "Elemendas Addons"
 
@@ -39,50 +39,50 @@ msgstr "Elemendas"
 msgid "https://elemendas.com/"
 msgstr "https://elemendas.com/"
 
-#: includes/plugin.php:198
+#: includes/plugin.php:191
 msgid "Install Elementor"
 msgstr "Instalar Elementor"
 
 #. translators: 1: Plugin name 2: Elementor
-#: includes/plugin.php:203 includes/plugin.php:279
+#: includes/plugin.php:196 includes/plugin.php:269
 msgid "\"%1$s\" requires \"%2$s\" to be installed and activated."
 msgstr "\"%1$s\" necesita que \"%2$s\" esté instalado y activado."
 
 #. translators: %s: Elementor/Elementor Pro
-#: includes/plugin.php:205 includes/plugin.php:225 includes/plugin.php:232
-#: includes/plugin.php:253
+#: includes/plugin.php:198 includes/plugin.php:218 includes/plugin.php:225
+#: includes/plugin.php:245
 msgid "Elementor"
 msgstr "Elementor"
 
 #. translators: %s: Elementor/Elementor Pro
-#: includes/plugin.php:225 includes/plugin.php:301
+#: includes/plugin.php:218 includes/plugin.php:291
 msgid "Activate %s"
 msgstr "Activar %s"
 
 #. translators: 1: Plugin name 2: Elementor/Elementor Pro
-#: includes/plugin.php:230 includes/plugin.php:305
+#: includes/plugin.php:223 includes/plugin.php:295
 msgid "\"%1$s\" requires \"%2$s\" to be activated."
 msgstr "\"%1$s\" necesita que \"%2$s\" esté instalado y activado."
 
 #. translators: 1: Plugin name 2: Elementor/PHP 3: Required Elementor/PHP version
-#: includes/plugin.php:251 includes/plugin.php:325 includes/plugin.php:349
+#: includes/plugin.php:243 includes/plugin.php:315 includes/plugin.php:337
 msgid "\"%1$s\" requires \"%2$s\" version %3$s or greater."
 msgstr "\"%1$s\" necesita la version %3$s o superior de \"%2$s\"."
 
-#: includes/plugin.php:275
+#: includes/plugin.php:265
 msgid "Install Elementor Pro"
 msgstr "Instalar Elementor Pro"
 
-#: includes/plugin.php:281 includes/plugin.php:301 includes/plugin.php:307
-#: includes/plugin.php:327
+#: includes/plugin.php:271 includes/plugin.php:291 includes/plugin.php:297
+#: includes/plugin.php:317
 msgid "Elementor Pro"
 msgstr "Elementor Pro"
 
-#: includes/plugin.php:350
+#: includes/plugin.php:338
 msgid "Elemendas Addon"
 msgstr "Elemendas Addon"
 
-#: includes/plugin.php:351
+#: includes/plugin.php:339
 msgid "PHP"
 msgstr "PHP"
 
