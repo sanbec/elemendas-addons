@@ -188,7 +188,9 @@ final class Plugin {
 
         $activation_url = wp_nonce_url(self_admin_url('update.php?action=install-plugin&plugin=elementor'), 'install-plugin_elementor');
 
-		$button_text = __('Install Elementor', 'elemendas-addons');
+		/* translators: %s: Elementor/Elementor Pro */
+		$button_text = sprintf(__('Install %s', 'elemendas-addons'),
+							   __( 'Elementor', 'elemendas-addons' ));
         $button = '<a href="' . esc_url( $activation_url ) . '" class="button-primary">' . esc_html( $button_text ) . '</a>';
 
 		$message = sprintf(
@@ -262,7 +264,8 @@ final class Plugin {
 
         $install_url = 'https://trk.elementor.com/24242';
 
-		$button_text = __('Install Elementor Pro', 'elemendas-addons');
+		$button_text = sprintf(__('Install %s', 'elemendas-addons'),
+							   __( 'Elementor Pro', 'elemendas-addons' ));
         $button = '<a href="' . esc_url( $install_url ) . '" class="button-primary" target="_blank">' . esc_html( $button_text ) . '</a>';
 
 		$message = sprintf(
@@ -288,7 +291,8 @@ final class Plugin {
 		$plugin = 'elementor-pro/elementor-pro.php';
         $activation_url = wp_nonce_url('plugins.php?action=activate&amp;plugin=' . $plugin . '&amp;plugin_status=all&amp;paged=1&amp;s', 'activate-plugin_' . $plugin);
 
-		$button_text = sprintf(__('Activate %s', 'elemendas-addons'),__( 'Elementor Pro', 'elemendas-addons' ));
+		$button_text = sprintf(__('Activate %s', 'elemendas-addons'),
+							   __( 'Elementor Pro', 'elemendas-addons' ));
         $button = '<a href="' . esc_url( $activation_url ) . '" class="button-primary">' . esc_html( $button_text ) . '</a>';
 
 		$message = sprintf(
@@ -296,7 +300,7 @@ final class Plugin {
 			'<strong>' . esc_html__( 'Elemendas Addons', 'elemendas-addons' ) . '</strong>',
 			'<strong>' . esc_html__( 'Elementor Pro', 'elemendas-addons' ) . '</strong>'
 		);
-        printf('<div class="error elemendas-error">%1$s%2$s</div>', __($message), $button);
+        printf('<div class="error elemendas-error">%1$s%2$s</div>', $message, $button);
 	}
 
 	/**
