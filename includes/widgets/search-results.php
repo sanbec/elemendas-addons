@@ -12,7 +12,7 @@ class Search_Results extends \Elementor\Widget_Heading {
 	}
 
 	public function get_title() {
-		return esc_html__( 'Search Results', 'elemendas-addons' );
+		return esc_html_x( 'Search Results', 'Widget Name', 'elemendas-addons' );
 	}
 
 	public function get_icon() {
@@ -51,6 +51,7 @@ class Search_Results extends \Elementor\Widget_Heading {
 		$this->start_controls_section(
 			'content_section_title',
 			[
+				//translators: Don't worry about this string, it will actually take it from Elementor's translation file for consistency.
 				'label' => esc_html__( 'Content', 'elementor' ),
 				'tab' => Controls_Manager::TAB_CONTENT,
 			]
@@ -169,7 +170,7 @@ class Search_Results extends \Elementor\Widget_Heading {
 		$this->add_control(
 			'search_string_highlighter',
 			[
-				'label' => esc_html__( 'Highligter color', 'elemendas-addons' ),
+				'label' => esc_html__( 'Highligter Color', 'elemendas-addons' ),
 				'type' => Controls_Manager::COLOR,
 				'default' => '#0f07',
 				'selectors' => [
@@ -181,7 +182,7 @@ class Search_Results extends \Elementor\Widget_Heading {
 		$this->add_control(
 			'quotation_marks',
 			[
-				'label' => esc_html__( 'Quotation marks', 'elemendas-addons' ),
+				'label' => esc_html__( 'Quotation Marks', 'elemendas-addons' ),
 				'type' => 'quotation-marks',
 				'selectors' => [
 					'{{WRAPPER}} .elemendas-search-terms:before' => 'content:"{{OPENQUOTE}}";',
@@ -310,15 +311,20 @@ class Search_Results extends \Elementor\Widget_Heading {
 						<li><?php
 							//translators: 1: 'Preview Dynamic Content as', 2: 'Search Results' 3: 'Search Term'
 							printf( esc_html__('Set "%1$s" "%2$s" and fill the "%3$s"', 'elemendas-addons'),
+										//translators: Don't worry about this string, it will actually take it from Elementor's translation file for consistency.
 										esc_html__( 'Preview Dynamic Content as', 'elementor-pro' ),
+										//translators: Don't worry about this string, it will actually take it from Elementor's translation file for consistency.
 										esc_html__( 'Search Results', 'elementor-pro' ),
+										//translators: Don't worry about this string, it will actually take it from Elementor's translation file for consistency.
 										esc_html__( 'Search Term', 'elementor-pro' ) )?>.
 						</li>
 						<li><?php
 							//translators: 1: 'Display Conditions' 2: flow icon 3: 'Search Results'
-							printf( esc_html__('Adjust the "%1$s" %2$s to "%3$s"', 'elemendas-addons'),
+							printf( esc_html__'Adjust the "%1$s" %2$s to "%3$s"', 'elemendas-addons'),
+									//translators: Don't worry about this string, it will actually take it from Elementor's translation file for consistency.
 									esc_html__( 'Display Conditions', 'elementor-pro' ),
 									'<i class="eicon-flow" aria-hidden="true"></i>',
+									//translators: Don't worry about this string, it will actually take it from Elementor's translation file for consistency.
 									esc_html__( 'Search Results', 'elementor-pro' )) ?>.
 						</li>
 					</ol>
