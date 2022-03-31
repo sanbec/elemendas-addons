@@ -4,12 +4,12 @@
  * Description: Improving the search results archive page for Elementor.
  * Plugin URI:  https://elementor.com/
  * Text Domain: elemendas-addons
- * Version:     1.0.0
+ * Version: 1.3.0
  * Elementor tested up to: 3.5.6
  * Elementor Pro tested up to: 3.6.3
  * Author:      Elemendas
  * Author URI:  https://elemendas.com/
- * 
+ * Requires at least and Requires PHP tags are declared at readme.txt and verified by a built-in function at /includes/plugin.php
  */
 
 if ( ! defined( 'ABSPATH' ) ) {

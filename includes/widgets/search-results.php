@@ -203,7 +203,6 @@ class Search_Results extends \Elementor\Widget_Heading {
 					'{{WRAPPER}} .elemendas-search-terms:before' => 'content:"{{OPENQUOTE}}";',
 					'{{WRAPPER}} .elemendas-search-terms:after' => 'content:"{{CLOSEQUOTE}}";',
 				],
-				'separator' => 'before',
 			]
 		);
 
