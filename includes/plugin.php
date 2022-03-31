@@ -39,14 +39,6 @@ final class Plugin {
 	const MINIMUM_ELEMENTOR_PRO_VERSION = '3.6.0';
 
 	/**
-	 * Minimum PHP Version
-	 *
-	 * @since 1.0.0
-	 * @var string Minimum PHP version required to run the addon.
-	 */
-	const MINIMUM_PHP_VERSION = '7.3';
-
-	/**
 	 * Instance
 	 *
 	 * @since 1.0.0
@@ -166,11 +158,6 @@ final class Plugin {
 			add_action( 'admin_notices', [ $this, 'admin_notice_minimum_elementor_pro_version' ] );
 			return false;
 		}
-		// Check for required PHP version
-		if ( version_compare( PHP_VERSION, self::MINIMUM_PHP_VERSION, '<' ) ) {
-			add_action( 'admin_notices', [ $this, 'admin_notice_minimum_php_version' ] );
-			return false;
-		}
 		return true;
 	}
 
@@ -188,7 +175,9 @@ final class Plugin {
 
         $activation_url = wp_nonce_url(self_admin_url('update.php?action=install-plugin&plugin=elementor'), 'install-plugin_elementor');
 
-		$button_text = __('Install Elementor', 'elemendas-addons');
+		/* translators: %s: Elementor/Elementor Pro */
+		$button_text = sprintf(__('Install %s', 'elemendas-addons'),
+							   __( 'Elementor', 'elemendas-addons' ));
         $button = '<a href="' . esc_url( $activation_url ) . '" class="button-primary">' . esc_html( $button_text ) . '</a>';
 
 		$message = sprintf(
@@ -239,7 +228,7 @@ final class Plugin {
 
 		if ( isset( $_GET['activate'] ) ) unset( $_GET['activate'] );
 		$message = sprintf(
-			/* translators: 1: Plugin name 2: Elementor/PHP 3: Required Elementor/PHP version */
+			/* translators: 1: Plugin name 2: Elementor 3: Required Elementor version */
 			esc_html__( '"%1$s" requires "%2$s" version %3$s or greater.', 'elemendas-addons' ),
 			'<strong>' . esc_html__( 'Elemendas Addons', 'elemendas-addons' ) . '</strong>',
 			'<strong>' . esc_html__( 'Elementor', 'elemendas-addons' ) . '</strong>',
@@ -262,7 +251,8 @@ final class Plugin {
 
         $install_url = 'https://trk.elementor.com/24242';
 
-		$button_text = __('Install Elementor Pro', 'elemendas-addons');
+		$button_text = sprintf(__('Install %s', 'elemendas-addons'),
+							   __( 'Elementor Pro', 'elemendas-addons' ));
         $button = '<a href="' . esc_url( $install_url ) . '" class="button-primary" target="_blank">' . esc_html( $button_text ) . '</a>';
 
 		$message = sprintf(
@@ -288,7 +278,8 @@ final class Plugin {
 		$plugin = 'elementor-pro/elementor-pro.php';
         $activation_url = wp_nonce_url('plugins.php?action=activate&amp;plugin=' . $plugin . '&amp;plugin_status=all&amp;paged=1&amp;s', 'activate-plugin_' . $plugin);
 
-		$button_text = sprintf(__('Activate %s', 'elemendas-addons'),__( 'Elementor Pro', 'elemendas-addons' ));
+		$button_text = sprintf(__('Activate %s', 'elemendas-addons'),
+							   __( 'Elementor Pro', 'elemendas-addons' ));
         $button = '<a href="' . esc_url( $activation_url ) . '" class="button-primary">' . esc_html( $button_text ) . '</a>';
 
 		$message = sprintf(
@@ -296,7 +287,7 @@ final class Plugin {
 			'<strong>' . esc_html__( 'Elemendas Addons', 'elemendas-addons' ) . '</strong>',
 			'<strong>' . esc_html__( 'Elementor Pro', 'elemendas-addons' ) . '</strong>'
 		);
-        printf('<div class="error elemendas-error">%1$s%2$s</div>', __($message), $button);
+        printf('<div class="error elemendas-error">%1$s%2$s</div>', $message, $button);
 	}
 
 	/**
@@ -311,33 +302,11 @@ final class Plugin {
 
 		if ( isset( $_GET['activate'] ) ) unset( $_GET['activate'] );
 		$message = sprintf(
-			/* translators: 1: Plugin name 2: Elementor/PHP 3: Required Elementor/PHP version */
+			/* translators: 1: Plugin name 2: Elementor 3: Required Elementor version */
 			esc_html__( '"%1$s" requires "%2$s" version %3$s or greater.', 'elemendas-addons' ),
 			'<strong>' . esc_html__( 'Elemendas Addons', 'elemendas-addons' ) . '</strong>',
 			'<strong>' . esc_html__( 'Elementor Pro', 'elemendas-addons' ) . '</strong>',
 			 self::MINIMUM_ELEMENTOR_PRO_VERSION
-		);
-		printf( '<div class="notice notice-warning is-dismissible"><p>%1$s</p></div>', $message );
-	}
-
-	/**
-	 * Admin notice
-	 *
-	 * Warning when the site doesn't have a minimum required PHP version.
-	 *
-	 * @since 1.0.0
-	 * @access public
-	 */
-	public function admin_notice_minimum_php_version() {
-
-		if ( isset( $_GET['activate'] ) ) unset( $_GET['activate'] );
-
-		$message = sprintf(
-			/* translators: 1: Plugin name 2: Elementor/PHP 3: Required Elementor/PHP version */
-			esc_html__( '"%1$s" requires "%2$s" version %3$s or greater.', 'elemendas-addons' ),
-			'<strong>' . esc_html__( 'Elemendas Addon', 'elemendas-addons' ) . '</strong>',
-			'<strong>' . esc_html__( 'PHP', 'elemendas-addons' ) . '</strong>',
-			 self::MINIMUM_PHP_VERSION
 		);
 		printf( '<div class="notice notice-warning is-dismissible"><p>%1$s</p></div>', $message );
 	}
@@ -381,7 +350,11 @@ final class Plugin {
 	 * @param \Elementor\Controls_Manager $controls_manager Elementor controls manager.
 	 */
 	public function register_controls( $controls_manager ) {
+		require_once( __DIR__ . '/controls/quotation-marks.php' );
+		$controls_manager->register( new Elemendas_Quotation_Control() );
 
+		require_once( __DIR__ . '/controls/highlighter.php' );
+		$controls_manager->register( new Elemendas_Highlighter_Control() );
+//		$controls_manager->register( new Group_Control_Highlighter() );
 	}
-
 }

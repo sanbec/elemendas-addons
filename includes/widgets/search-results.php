@@ -12,7 +12,7 @@ class Search_Results extends \Elementor\Widget_Heading {
 	}
 
 	public function get_title() {
-		return esc_html__( 'Search Results', 'elemendas-addons' );
+		return esc_html_x( 'Search Results', 'Widget Name', 'elemendas-addons' );
 	}
 
 	public function get_icon() {
@@ -43,23 +43,14 @@ class Search_Results extends \Elementor\Widget_Heading {
 
 	protected function register_controls() {
 
-		parent::register_controls();
-
-
-		$this->remove_control ('title');
-		$this->remove_control ('link');
-		$this->update_control(
-			'size',
-			[
-				'description' =>  __('This setting will have no effect if the font size is set in the typography control', 'elemendas-addons'),
-			]
-		);
-
-
+/*********************
+ * Content Tab Start *
+ *********************/
 
 		$this->start_controls_section(
 			'content_section_title',
 			[
+				//translators: Don't worry about this string, it will actually take it from Elementor's translation file for consistency.
 				'label' => esc_html__( 'Content', 'elementor' ),
 				'tab' => Controls_Manager::TAB_CONTENT,
 			]
@@ -94,6 +85,7 @@ class Search_Results extends \Elementor\Widget_Heading {
 				'description' =>  __('Shown when a single entry is found', 'elemendas-addons'),
 			]
 		);
+
 		$this->add_control(
 			'show_results_none',
 			[
@@ -107,6 +99,8 @@ class Search_Results extends \Elementor\Widget_Heading {
 			]
 		);
 
+
+		// The following hidden controls are used to store the search string and the number of found results
 		$search_query = get_search_query();
 		if (is_null($search_query) || $search_query == '') {
 			$this->remove_control('search_query');
@@ -132,11 +126,9 @@ class Search_Results extends \Elementor\Widget_Heading {
 			);
 		}
 
-
-
 		$this->end_controls_section();
-
-		// Content Tab End
+		// Content Tab End. Note that this section will be followed by the content title section inherited from the heading widget.
+		// inherited from the heading widget. (See the end of this function)
 
 /*******************
  * Style Tab Start *
@@ -155,23 +147,78 @@ class Search_Results extends \Elementor\Widget_Heading {
 		$this->add_control(
 			'search_string_color',
 			[
-				'label' => esc_html__( 'Color', 'elementor' ),
+				'label' => esc_html__( 'Text Color', 'elementor' ),
 				'type' => Controls_Manager::COLOR,
-				'global' => [
-					'default' => Global_Colors::COLOR_ACCENT,
-				],
-
 				'selectors' => [
 					'{{WRAPPER}} .elemendas-search-terms' => 'color: {{VALUE}};',
 				],
 			]
 		);
 
+		$this->add_control(
+			'search_string_bgcolor',
+			[
+				'label' => esc_html__( 'Background Color', 'elementor' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .elemendas-search-terms' => 'background-color: {{VALUE}};',
+				],
+			]
+		);
+
+		$this->add_control(
+			'popover-toggle',
+			[
+				'type' => \Elementor\Controls_Manager::POPOVER_TOGGLE,
+				'label' => esc_html__( 'Highlighter', 'elemendas-addons' ),
+			]
+		);
+
+		$this->start_popover();
+
+		$this->add_control(
+			'search_string_highlighter',
+			[
+				'label' => esc_html__( 'Highlighter', 'elemendas-addons' ),
+				'type' => 'highlighter',
+				'default' => ['color' => '#0f07', 'thickness' => '12'],
+				'selectors' => [
+					'{{WRAPPER}} .elemendas-search-terms' => 'box-shadow: inset 0px -{{THICKNESS}}px {{COLOR}};',
+				],
+				'condition' => [
+					'popover-toggle' => 'yes', // by adding condition to popover switch, we are limiting this settings effect only when the popover is active.
+				],
+			]
+		);
+
+		$this->end_popover();
+
+		$this->add_control(
+			'quotation_marks',
+			[
+				'label' => esc_html__( 'Quotation Marks', 'elemendas-addons' ),
+				'type' => 'quotation-marks',
+				'selectors' => [
+					'{{WRAPPER}} .elemendas-search-terms:before' => 'content:"{{OPENQUOTE}}";',
+					'{{WRAPPER}} .elemendas-search-terms:after' => 'content:"{{CLOSEQUOTE}}";',
+				],
+			]
+		);
+
 		$this->end_controls_section();
+		// Style Tab End. Note that this section will be followed by the style title section inherited from the heading widget.
 
-		// Style Tab End
+		parent::register_controls();
 
-	}
+		$this->remove_control ('title');
+		$this->remove_control ('link');
+		$this->update_control(
+			'size',
+			[
+				'description' =>  __('This setting will have no effect if the font size is set in the typography control', 'elemendas-addons'),
+			]
+		);
+	} // END protected function register_controls
 
 	protected function render() {
 		$settings = $this->get_settings_for_display();
@@ -216,7 +263,7 @@ class Search_Results extends \Elementor\Widget_Heading {
 
 		// PHPCS - the variable $render_text holds safe data. Can't be escaped with esc_html as it must deliver html code.
 		echo $render_text; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-	}
+	}  // END protected function render
 
 	protected function content_template() {
 		?>
@@ -277,15 +324,20 @@ class Search_Results extends \Elementor\Widget_Heading {
 						<li><?php
 							//translators: 1: 'Preview Dynamic Content as', 2: 'Search Results' 3: 'Search Term'
 							printf( esc_html__('Set "%1$s" "%2$s" and fill the "%3$s"', 'elemendas-addons'),
+										//translators: Don't worry about this string, it will actually take it from Elementor's translation file for consistency.
 										esc_html__( 'Preview Dynamic Content as', 'elementor-pro' ),
+										//translators: Don't worry about this string, it will actually take it from Elementor's translation file for consistency.
 										esc_html__( 'Search Results', 'elementor-pro' ),
+										//translators: Don't worry about this string, it will actually take it from Elementor's translation file for consistency.
 										esc_html__( 'Search Term', 'elementor-pro' ) )?>.
 						</li>
 						<li><?php
 							//translators: 1: 'Display Conditions' 2: flow icon 3: 'Search Results'
 							printf( esc_html__('Adjust the "%1$s" %2$s to "%3$s"', 'elemendas-addons'),
+									//translators: Don't worry about this string, it will actually take it from Elementor's translation file for consistency.
 									esc_html__( 'Display Conditions', 'elementor-pro' ),
 									'<i class="eicon-flow" aria-hidden="true"></i>',
+									//translators: Don't worry about this string, it will actually take it from Elementor's translation file for consistency.
 									esc_html__( 'Search Results', 'elementor-pro' )) ?>.
 						</li>
 					</ol>
@@ -296,6 +348,6 @@ class Search_Results extends \Elementor\Widget_Heading {
 		#>
 		<?php
 		return;
-	}
+	}  //END protected function content_template
 
 } //END class Search_Results
