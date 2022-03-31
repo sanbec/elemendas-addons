@@ -54,12 +54,12 @@ class Elemendas_Quotation_Control extends \Elementor\Control_Base_Multiple {
 	 */
 	public static function get_quotation_marks() {
 		return [
-			'angular double' => ['«','»'],
-			'angular single' => ['‹','›'],
-			'english double' => ['“','”'],
-			'english single' => ['‘','’'],
-			'german double' => ['„','“'],
-			'german single' => ['‚','‘'],
+			esc_html_x('angular double', 'Quotation Marks Dropdown Selector', 'elemendas-addons' ) => ['«','»'],
+			esc_html_x('angular single', 'Quotation Marks Dropdown Selector', 'elemendas-addons' ) => ['‹','›'],
+			esc_html_x('english double', 'Quotation Marks Dropdown Selector', 'elemendas-addons' ) => ['“','”'],
+			esc_html_x('english single', 'Quotation Marks Dropdown Selector', 'elemendas-addons' ) => ['‘','’'],
+			esc_html_x('german double' , 'Quotation Marks Dropdown Selector', 'elemendas-addons' ) => ['„','“'],
+			esc_html_x('german single' , 'Quotation Marks Dropdown Selector', 'elemendas-addons' ) => ['‚','‘'],
 		];
 	}
 

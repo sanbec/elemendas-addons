@@ -147,6 +147,7 @@ class Search_Results extends \Elementor\Widget_Heading {
 		$this->add_control(
 			'search_string_color',
 			[
+				//translators: Don't worry about this string, it will actually take it from Elementor's translation file for consistency.
 				'label' => esc_html__( 'Text Color', 'elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
@@ -158,6 +159,7 @@ class Search_Results extends \Elementor\Widget_Heading {
 		$this->add_control(
 			'search_string_bgcolor',
 			[
+				//translators: Don't worry about this string, it will actually take it from Elementor's translation file for consistency.
 				'label' => esc_html__( 'Background Color', 'elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
@@ -318,7 +320,9 @@ class Search_Results extends \Elementor\Widget_Heading {
 					<ol>
 						<li><?php
 							//translators: %s : Preview Settings
-							printf( esc_html__('Go to "%s"', 'elemendas-addons'), esc_html__( 'Preview Settings', 'elementor-pro' ))?>
+							printf( esc_html__('Go to "%s"', 'elemendas-addons'),
+									//translators: Don't worry about this string, it will actually take it from Elementor's translation file for consistency.
+									esc_html__( 'Preview Settings', 'elementor-pro' ))?>
 							<i class="eicon-cog" aria-hidden="true"></i>.
 						</li>
 						<li><?php

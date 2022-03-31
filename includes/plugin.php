@@ -176,15 +176,14 @@ final class Plugin {
         $activation_url = wp_nonce_url(self_admin_url('update.php?action=install-plugin&plugin=elementor'), 'install-plugin_elementor');
 
 		/* translators: %s: Elementor/Elementor Pro */
-		$button_text = sprintf(__('Install %s', 'elemendas-addons'),
-							   __( 'Elementor', 'elemendas-addons' ));
+		$button_text = sprintf(__('Install %s', 'elemendas-addons'), 'Elementor');
         $button = '<a href="' . esc_url( $activation_url ) . '" class="button-primary">' . esc_html( $button_text ) . '</a>';
 
 		$message = sprintf(
-			/* translators: 1: Plugin name 2: Elementor */
+			/* translators: 1: Plugin name 2: Elementor/Elementor Pro */
 			esc_html__( '"%1$s" requires "%2$s" to be installed and activated.', 'elemendas-addons' ),
 			'<strong>' . esc_html__( 'Elemendas Addons', 'elemendas-addons' ) . '</strong>',
-			'<strong>' . esc_html__( 'Elementor', 'elemendas-addons' ) . '</strong>'
+			'<strong>' . 'Elementor' . '</strong>'
 		);
 		printf('<div class="error elemendas-error">%1$s%2$s</div>', __($message), $button);
 	}
@@ -204,14 +203,14 @@ final class Plugin {
 		$plugin = 'elementor/elementor.php';
         $activation_url = wp_nonce_url('plugins.php?action=activate&amp;plugin=' . $plugin . '&amp;plugin_status=all&amp;paged=1&amp;s', 'activate-plugin_' . $plugin);
 		/* translators: %s: Elementor/Elementor Pro */
-		$button_text = sprintf(__('Activate %s', 'elemendas-addons'),__( 'Elementor', 'elemendas-addons' ));
+		$button_text = sprintf(__('Activate %s', 'elemendas-addons'), 'Elementor');
         $button = '<a href="' . esc_url( $activation_url ) . '" class="button-primary">' . esc_html( $button_text ) . '</a>';
 
 		$message = sprintf(
 		/* translators: 1: Plugin name 2: Elementor/Elementor Pro */
 			esc_html__( '"%1$s" requires "%2$s" to be activated.', 'elemendas-addons' ),
 			'<strong>' . esc_html__( 'Elemendas Addons', 'elemendas-addons' ) . '</strong>',
-			'<strong>' . esc_html__( 'Elementor', 'elemendas-addons' ) . '</strong>'
+			'<strong>' .  'Elementor' . '</strong>'
 		);
         printf('<div class="error elemendas-error">%1$s%2$s</div>', __($message), $button);
 	}
@@ -228,10 +227,10 @@ final class Plugin {
 
 		if ( isset( $_GET['activate'] ) ) unset( $_GET['activate'] );
 		$message = sprintf(
-			/* translators: 1: Plugin name 2: Elementor 3: Required Elementor version */
+			/* translators: 1: Plugin name 2: Elementor/Elementor Pro 3: Required Elementor version */
 			esc_html__( '"%1$s" requires "%2$s" version %3$s or greater.', 'elemendas-addons' ),
 			'<strong>' . esc_html__( 'Elemendas Addons', 'elemendas-addons' ) . '</strong>',
-			'<strong>' . esc_html__( 'Elementor', 'elemendas-addons' ) . '</strong>',
+			'<strong>' . 'Elementor' . '</strong>',
 			 self::MINIMUM_ELEMENTOR_VERSION
 		);
 		printf( '<div class="notice notice-warning is-dismissible"><p>%1$s</p></div>', $message );
@@ -251,14 +250,13 @@ final class Plugin {
 
         $install_url = 'https://trk.elementor.com/24242';
 
-		$button_text = sprintf(__('Install %s', 'elemendas-addons'),
-							   __( 'Elementor Pro', 'elemendas-addons' ));
+		$button_text = sprintf(__('Install %s', 'elemendas-addons'), 'Elementor Pro');
         $button = '<a href="' . esc_url( $install_url ) . '" class="button-primary" target="_blank">' . esc_html( $button_text ) . '</a>';
 
 		$message = sprintf(
 			esc_html__( '"%1$s" requires "%2$s" to be installed and activated.', 'elemendas-addons' ),
 			'<strong>' . esc_html__( 'Elemendas Addons', 'elemendas-addons' ) . '</strong>',
-			'<strong>' . esc_html__( 'Elementor Pro', 'elemendas-addons' ) . '</strong>'
+			'<strong>' . 'Elementor Pro' . '</strong>'
 		);
 		printf('<div class="error elemendas-error">%1$s%2$s</div>', __($message), $button);
 	}
@@ -278,14 +276,13 @@ final class Plugin {
 		$plugin = 'elementor-pro/elementor-pro.php';
         $activation_url = wp_nonce_url('plugins.php?action=activate&amp;plugin=' . $plugin . '&amp;plugin_status=all&amp;paged=1&amp;s', 'activate-plugin_' . $plugin);
 
-		$button_text = sprintf(__('Activate %s', 'elemendas-addons'),
-							   __( 'Elementor Pro', 'elemendas-addons' ));
+		$button_text = sprintf(__('Activate %s', 'elemendas-addons'), 'Elementor Pro');
         $button = '<a href="' . esc_url( $activation_url ) . '" class="button-primary">' . esc_html( $button_text ) . '</a>';
 
 		$message = sprintf(
 			esc_html__( '"%1$s" requires "%2$s" to be activated.', 'elemendas-addons' ),
 			'<strong>' . esc_html__( 'Elemendas Addons', 'elemendas-addons' ) . '</strong>',
-			'<strong>' . esc_html__( 'Elementor Pro', 'elemendas-addons' ) . '</strong>'
+			'<strong>' . 'Elementor Pro' . '</strong>'
 		);
         printf('<div class="error elemendas-error">%1$s%2$s</div>', $message, $button);
 	}
@@ -302,10 +299,9 @@ final class Plugin {
 
 		if ( isset( $_GET['activate'] ) ) unset( $_GET['activate'] );
 		$message = sprintf(
-			/* translators: 1: Plugin name 2: Elementor 3: Required Elementor version */
 			esc_html__( '"%1$s" requires "%2$s" version %3$s or greater.', 'elemendas-addons' ),
 			'<strong>' . esc_html__( 'Elemendas Addons', 'elemendas-addons' ) . '</strong>',
-			'<strong>' . esc_html__( 'Elementor Pro', 'elemendas-addons' ) . '</strong>',
+			'<strong>' . 'Elementor Pro' . '</strong>',
 			 self::MINIMUM_ELEMENTOR_PRO_VERSION
 		);
 		printf( '<div class="notice notice-warning is-dismissible"><p>%1$s</p></div>', $message );
