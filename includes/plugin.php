@@ -388,7 +388,8 @@ final class Plugin {
 		require_once( __DIR__ . '/controls/quotation-marks.php' );
 		$controls_manager->register( new Elemendas_Quotation_Control() );
 
-//		require_once( __DIR__ . '/controls/highlighter.php' );
+		require_once( __DIR__ . '/controls/highlighter.php' );
+		$controls_manager->register( new Elemendas_Highlighter_Control() );
 //		$controls_manager->register( new Group_Control_Highlighter() );
 
 	}

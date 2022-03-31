@@ -168,16 +168,31 @@ class Search_Results extends \Elementor\Widget_Heading {
 		);
 
 		$this->add_control(
+			'popover-toggle',
+			[
+				'type' => \Elementor\Controls_Manager::POPOVER_TOGGLE,
+				'label' => esc_html__( 'Highlighter', 'elemendas-addons' ),
+			]
+		);
+
+		$this->start_popover();
+
+		$this->add_control(
 			'search_string_highlighter',
 			[
-				'label' => esc_html__( 'Highligter Color', 'elemendas-addons' ),
-				'type' => Controls_Manager::COLOR,
-				'default' => '#0f07',
+				'label' => esc_html__( 'Highlighter', 'elemendas-addons' ),
+				'type' => 'highlighter',
+				'default' => ['color' => '#0f07', 'thickness' => '12'],
 				'selectors' => [
-					'{{WRAPPER}} .elemendas-search-terms' => 'box-shadow: inset 0 -12px {{VALUE}};',
+					'{{WRAPPER}} .elemendas-search-terms' => 'box-shadow: inset 0px -{{THICKNESS}}px {{COLOR}};',
+				],
+				'condition' => [
+					'popover-toggle' => 'yes', // by adding condition to popover switch, we are limiting this settings effect only when the popover is active.
 				],
 			]
 		);
+
+		$this->end_popover();
 
 		$this->add_control(
 			'quotation_marks',
@@ -320,7 +335,7 @@ class Search_Results extends \Elementor\Widget_Heading {
 						</li>
 						<li><?php
 							//translators: 1: 'Display Conditions' 2: flow icon 3: 'Search Results'
-							printf( esc_html__'Adjust the "%1$s" %2$s to "%3$s"', 'elemendas-addons'),
+							printf( esc_html__('Adjust the "%1$s" %2$s to "%3$s"', 'elemendas-addons'),
 									//translators: Don't worry about this string, it will actually take it from Elementor's translation file for consistency.
 									esc_html__( 'Display Conditions', 'elementor-pro' ),
 									'<i class="eicon-flow" aria-hidden="true"></i>',

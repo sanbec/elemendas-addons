@@ -1,0 +1,8 @@
+.elemendas-highlighter .elementor-color-picker-wrapper .elementor-control-title {
+  -webkit-box-flex: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+}
+.elemendas-highlighter .elementor-shadow-slider {
+  margin-top: 10px;
+}

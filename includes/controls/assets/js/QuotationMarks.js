@@ -3,8 +3,7 @@
   jQuery(window).on("elementor:init", function () {
     var ControlBaseMultipleItemView = elementor.modules.controls.BaseMultiple;
 
-    var ControlMultiUnitItemView = elementor.modules.controls.BaseMultiple.extend(
-      {
+    var ControlMultiUnitItemView = elementor.modules.controls.BaseMultiple.extend({
         ui: function () {
           var ui = ControlBaseMultipleItemView.prototype.ui.apply(
             this,
@@ -122,8 +121,7 @@
           }
           this.updateInputs();
         },
-      }
-    );
+    });
 
     elementor.addControlView(
       "quotation-marks",
