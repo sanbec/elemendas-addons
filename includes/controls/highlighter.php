@@ -94,7 +94,6 @@ class Elemendas_Highlighter_Control extends \Elementor\Control_Base_Multiple {
 		?>
 		<div class="elemendas-highlighter">
 			<div class="elementor-control-field elementor-color-picker-wrapper">
-				//translators: Don't worry about this string, it will actually take it from Elementor's translation file for consistency.
 				<label class="elementor-control-title"><?php echo esc_html__( 'Color', 'elementor' ); ?></label>
 				<div class="elementor-control-input-wrapper elementor-control-unit-1">
 					<div class="elementor-color-picker-placeholder"></div>

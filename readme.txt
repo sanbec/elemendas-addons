@@ -5,7 +5,7 @@ Tags: elementor,elementor addon,elementor addons,elementor widgets,elementor ext
 Requires at least: 5.0
 Tested up to: 5.9
 Requires PHP: 5.6
-Stable tag: 1.3.0
+Stable tag: 1.3.1
 License: GPL 3.0 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -77,6 +77,9 @@ Relax! If you don't follow the steps correctly, you will get a note with instruc
 9. Search terms highlighter highlight
 10. Search terms quotation marks highlight
 == Changelog ==
+
+= 1.3.1 =
+* Fix color label text
 
 = 1.3.0 =
 * Added highlighter control for search terms highlight
