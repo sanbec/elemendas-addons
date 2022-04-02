@@ -223,7 +223,7 @@ class Search_Results extends \Elementor\Widget_Heading {
 					'default' => Global_Colors::COLOR_ACCENT,
 				],
 				'selectors' => [
-					'{{WRAPPER}} .elemendas-search-terms' => 'text-decoration: underline {{VALUE}};',
+					'{{WRAPPER}} .elemendas-search-terms' => 'text-decoration: underline {{VALUE}};text-decoration-skip-ink: none;',
 				],
 				'condition' => [
 					'underline-toggle' => 'yes', // by adding condition to popover switch, we are limiting this settings effect only when the popover is active.
@@ -259,7 +259,7 @@ class Search_Results extends \Elementor\Widget_Heading {
 		$this->add_control(
 			'search_string_underline_style',
 			[
-				'type' => Controls_Manager::SELECT,
+				'type' => Controls_Manager::SELECT2,
 				'label' => esc_html__( 'Style', 'elemendas-addons' ),
 				'options' => [
 					'solid' => esc_html__( 'Solid', 'elemendas-addons' ),
@@ -278,6 +278,24 @@ class Search_Results extends \Elementor\Widget_Heading {
 			]
 		);
 
+		$this->add_control(
+			'search_string_underline_skip_ink',
+			[
+				'label' => esc_html__( 'Skip Ink', 'elemendas-addons' ),
+				'type' => \Elementor\Controls_Manager::SWITCHER,
+				'label_on' => esc_html__( 'Yes', 'elemendas-addons' ),
+				'label_off' => esc_html__( 'No', 'elemendas-addons' ),
+				'return_value' => 'all',
+				'default' => 'all',
+				'description' =>  __('Specifies how underline is drawn when it pass over glyph descenders.', 'elemendas-addons'),
+				'selectors' => [
+					'{{WRAPPER}} .elemendas-search-terms' => 'text-decoration-skip-ink: {{VALUE}};',
+				],
+				'condition' => [
+					'underline-toggle' => 'yes', // by adding condition to popover switch, we are limiting this settings effect only when the popover is active.
+				],
+			]
+		);
 
 		$this->end_popover();
 		// Underline popover end
