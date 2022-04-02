@@ -169,50 +169,79 @@ final class Plugin {
 	 * @since 1.0.0
 	 * @access public
 	 */
-	public function admin_notice_missing_main_plugin() {
+	public function compatibility_admin_notice( $item, $action, $action_url = "", $min_version = "" ) {
 
 		if ( isset( $_GET['activate'] ) ) unset( $_GET['activate'] );
+		$itemName = ucwords(str_replace("-"," ",$item));
 
-        $activation_url = wp_nonce_url(self_admin_url('update.php?action=install-plugin&plugin=elementor'), 'install-plugin_elementor');
+		switch ($action) {
+			case "install":
+				if ("" === $action_url) $action_url = wp_nonce_url(self_admin_url('update.php?action=install-plugin&plugin='.$item), 'install-plugin_'.$item);
+				/* translators: 1: Plugin name 2: Elementor/Elementor Pro */
+				$message_text = esc_html__( '"%1$s" requires "%2$s" to be installed and activated.', 'elemendas-addons' );
+				/* translators: %s: Elementor/Elementor Pro */
+				$button_text = sprintf(__('Install %s', 'elemendas-addons'), $itemName );
+				break;
+			case "activate":
+				$plugin = $item.'/'.$item.'.php';
+				if ("" === $action_url) $action_url = wp_nonce_url('plugins.php?action=activate&amp;plugin=' . $plugin . '&amp;plugin_status=all&amp;paged=1&amp;s', 'activate-plugin_' . $plugin);
+				/* translators: %s: Elementor/Elementor Pro */
+				$message_text = esc_html__( '"%1$s" requires "%2$s" to be activated.', 'elemendas-addons' );
+				$button_text = sprintf(__('Activate %s', 'elemendas-addons'), $itemName );
+				break;
+			case "update":
+				$plugin = $item.'/'.$item.'.php';
+				if ("" === $action_url) $action_url = wp_nonce_url(self_admin_url('update.php?action=upgrade-plugin&plugin='.$plugin), 'upgrade-plugin_'.$plugin);
+				/* translators: 1: Plugin name 2: Elementor/Elementor Pro 3: Required Elementor version */
+				$message_text = esc_html__( '"%1$s" requires "%2$s" version %3$s or greater.', 'elemendas-addons' );
+				$button_text = sprintf(__('Update %s', 'elemendas-addons'), $itemName );
+				break;
+		}
 
-		/* translators: %s: Elementor/Elementor Pro */
-		$button_text = sprintf(__('Install %s', 'elemendas-addons'), 'Elementor');
-        $button = '<a href="' . esc_url( $activation_url ) . '" class="button-primary">' . esc_html( $button_text ) . '</a>';
+		switch ($action) {
+			case "install":
+			case "activate":
+				$message = sprintf(
+					$message_text,
+					'<strong>' . esc_html__( 'Elemendas Addons', 'elemendas-addons' ) . '</strong>',
+					'<strong>' . $itemName . '</strong>'
+				);
+				break;
+			case "update":
+				$message = sprintf(
+					$message_text,
+						'<strong>' . esc_html__( 'Elemendas Addons', 'elemendas-addons' ) . '</strong>',
+					'<strong>' . 'Elementor' . '</strong>',
+					$min_version
+				);
+		}
 
-		$message = sprintf(
-			/* translators: 1: Plugin name 2: Elementor/Elementor Pro */
-			esc_html__( '"%1$s" requires "%2$s" to be installed and activated.', 'elemendas-addons' ),
-			'<strong>' . esc_html__( 'Elemendas Addons', 'elemendas-addons' ) . '</strong>',
-			'<strong>' . 'Elementor' . '</strong>'
-		);
+
+        $button = '<a href="' . esc_url( $action_url ) . '" class="button-primary">' . esc_html( $button_text ) . '</a>';
+
 		printf('<div class="error elemendas-error">%1$s%2$s</div>', __($message), $button);
 	}
 
 	/**
 	 * Admin notice
 	 *
-	 * Warning when the site doesn't have Elementor activated.
+	 * Warning when the site doesn't have Elementor installed or activated.
+	 *
+	 * @since 1.0.0
+	 * @access public
+	 */
+	public function admin_notice_missing_main_plugin() {
+		$this->compatibility_admin_notice( 'elementor','install');
+	}
+
+	/**
+	 * Admin notice warning when the site doesn't have Elementor activated.
 	 *
 	 * @since 1.0.0
 	 * @access public
 	 */
 	public function admin_notice_disabled_main_plugin() {
-
-		if ( isset( $_GET['activate'] ) ) unset( $_GET['activate'] );
-
-		$plugin = 'elementor/elementor.php';
-        $activation_url = wp_nonce_url('plugins.php?action=activate&amp;plugin=' . $plugin . '&amp;plugin_status=all&amp;paged=1&amp;s', 'activate-plugin_' . $plugin);
-		/* translators: %s: Elementor/Elementor Pro */
-		$button_text = sprintf(__('Activate %s', 'elemendas-addons'), 'Elementor');
-        $button = '<a href="' . esc_url( $activation_url ) . '" class="button-primary">' . esc_html( $button_text ) . '</a>';
-
-		$message = sprintf(
-		/* translators: 1: Plugin name 2: Elementor/Elementor Pro */
-			esc_html__( '"%1$s" requires "%2$s" to be activated.', 'elemendas-addons' ),
-			'<strong>' . esc_html__( 'Elemendas Addons', 'elemendas-addons' ) . '</strong>',
-			'<strong>' .  'Elementor' . '</strong>'
-		);
-        printf('<div class="error elemendas-error">%1$s%2$s</div>', __($message), $button);
+		$this->compatibility_admin_notice( 'elementor','activate');
 	}
 
 	/**
@@ -224,87 +253,37 @@ final class Plugin {
 	 * @access public
 	 */
 	public function admin_notice_minimum_elementor_version() {
-
-		if ( isset( $_GET['activate'] ) ) unset( $_GET['activate'] );
-		$message = sprintf(
-			/* translators: 1: Plugin name 2: Elementor/Elementor Pro 3: Required Elementor version */
-			esc_html__( '"%1$s" requires "%2$s" version %3$s or greater.', 'elemendas-addons' ),
-			'<strong>' . esc_html__( 'Elemendas Addons', 'elemendas-addons' ) . '</strong>',
-			'<strong>' . 'Elementor' . '</strong>',
-			 self::MINIMUM_ELEMENTOR_VERSION
-		);
-		printf( '<div class="notice notice-warning is-dismissible"><p>%1$s</p></div>', $message );
+		$this->compatibility_admin_notice( 'elementor','update', '' , self::MINIMUM_ELEMENTOR_VERSION);
 	}
 
 	/**
-	 * Admin notice
-	 *
-	 * Warning when the site doesn't have Elementor Pro installed or activated.
+	 * Admin notice warning when the site doesn't have Elementor Pro installed.
 	 *
 	 * @since 1.0.0
 	 * @access public
 	 */
 	public function admin_notice_missing_pro_plugin() {
-
-		if ( isset( $_GET['activate'] ) ) unset( $_GET['activate'] );
-
-        $install_url = 'https://trk.elementor.com/24242';
-
-		$button_text = sprintf(__('Install %s', 'elemendas-addons'), 'Elementor Pro');
-        $button = '<a href="' . esc_url( $install_url ) . '" class="button-primary" target="_blank">' . esc_html( $button_text ) . '</a>';
-
-		$message = sprintf(
-			esc_html__( '"%1$s" requires "%2$s" to be installed and activated.', 'elemendas-addons' ),
-			'<strong>' . esc_html__( 'Elemendas Addons', 'elemendas-addons' ) . '</strong>',
-			'<strong>' . 'Elementor Pro' . '</strong>'
-		);
-		printf('<div class="error elemendas-error">%1$s%2$s</div>', __($message), $button);
+		$this->compatibility_admin_notice( 'elementor-pro','install', 'https://trk.elementor.com/24242' );
 	}
 
 	/**
-	 * Admin notice
-	 *
-	 * Warning when the site doesn't have Elementor Pro installed or activated.
+	 * Admin notice warning when the site doesn't have Elementor Pro activated.
 	 *
 	 * @since 1.0.0
 	 * @access public
 	 */
 	public function admin_notice_disabled_pro_plugin() {
-
-		if ( isset( $_GET['activate'] ) ) unset( $_GET['activate'] );
-
-		$plugin = 'elementor-pro/elementor-pro.php';
-        $activation_url = wp_nonce_url('plugins.php?action=activate&amp;plugin=' . $plugin . '&amp;plugin_status=all&amp;paged=1&amp;s', 'activate-plugin_' . $plugin);
-
-		$button_text = sprintf(__('Activate %s', 'elemendas-addons'), 'Elementor Pro');
-        $button = '<a href="' . esc_url( $activation_url ) . '" class="button-primary">' . esc_html( $button_text ) . '</a>';
-
-		$message = sprintf(
-			esc_html__( '"%1$s" requires "%2$s" to be activated.', 'elemendas-addons' ),
-			'<strong>' . esc_html__( 'Elemendas Addons', 'elemendas-addons' ) . '</strong>',
-			'<strong>' . 'Elementor Pro' . '</strong>'
-		);
-        printf('<div class="error elemendas-error">%1$s%2$s</div>', $message, $button);
+		$this->compatibility_admin_notice( 'elementor-pro','activate');
 	}
 
 	/**
-	 * Admin notice
-	 *
-	 * Warning when the site doesn't have a minimum required Elementor version.
+	 * Admin notice warning when the site doesn't have a minimum required Elementor Pro version.
 	 *
 	 * @since 1.0.0
 	 * @access public
 	 */
 	public function admin_notice_minimum_elementor_pro_version() {
-
-		if ( isset( $_GET['activate'] ) ) unset( $_GET['activate'] );
-		$message = sprintf(
-			esc_html__( '"%1$s" requires "%2$s" version %3$s or greater.', 'elemendas-addons' ),
-			'<strong>' . esc_html__( 'Elemendas Addons', 'elemendas-addons' ) . '</strong>',
-			'<strong>' . 'Elementor Pro' . '</strong>',
-			 self::MINIMUM_ELEMENTOR_PRO_VERSION
-		);
-		printf( '<div class="notice notice-warning is-dismissible"><p>%1$s</p></div>', $message );
+		$this->compatibility_admin_notice( 'elementor-pro','update', '' , self::MINIMUM_ELEMENTOR_PRO_VERSION);
 	}
 
 	/**
