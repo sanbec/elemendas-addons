@@ -110,7 +110,7 @@ class Search_Results extends \Elementor\Widget_Heading {
 				'search_query',
 				[
 					'label' => esc_html__( 'Searched string', 'elemendas-addons' ),
-					'type' => \Elementor\Controls_Manager::HIDDEN,
+					'type' => Controls_Manager::HIDDEN,
 					'default' => $search_query,
 				]
 			);
@@ -120,7 +120,7 @@ class Search_Results extends \Elementor\Widget_Heading {
 				'post_count',
 				[
 					'label' => esc_html__( 'Post count', 'elemendas-addons' ),
-					'type' => \Elementor\Controls_Manager::HIDDEN,
+					'type' => Controls_Manager::HIDDEN,
 					'default' => $post_count,
 				]
 			);
@@ -144,6 +144,8 @@ class Search_Results extends \Elementor\Widget_Heading {
 			]
 		);
 
+		// Text Color
+
 		$this->add_control(
 			'search_string_color',
 			[
@@ -155,6 +157,8 @@ class Search_Results extends \Elementor\Widget_Heading {
 				],
 			]
 		);
+
+		// Background Color
 
 		$this->add_control(
 			'search_string_bgcolor',
@@ -168,10 +172,12 @@ class Search_Results extends \Elementor\Widget_Heading {
 			]
 		);
 
+		// Highlighter popover begin
+
 		$this->add_control(
-			'popover-toggle',
+			'highlighter-toggle',
 			[
-				'type' => \Elementor\Controls_Manager::POPOVER_TOGGLE,
+				'type' => Controls_Manager::POPOVER_TOGGLE,
 				'label' => esc_html__( 'Highlighter', 'elemendas-addons' ),
 			]
 		);
@@ -188,12 +194,94 @@ class Search_Results extends \Elementor\Widget_Heading {
 					'{{WRAPPER}} .elemendas-search-terms' => 'box-shadow: inset 0px -{{THICKNESS}}px {{COLOR}};',
 				],
 				'condition' => [
-					'popover-toggle' => 'yes', // by adding condition to popover switch, we are limiting this settings effect only when the popover is active.
+					'highlighter-toggle' => 'yes', // by adding condition to popover switch, we are limiting this settings effect only when the popover is active.
 				],
 			]
 		);
 
 		$this->end_popover();
+		// Highlighter popover end
+
+		// Underline popover begin
+
+		$this->add_control(
+			'underline-toggle',
+			[
+				'type' => Controls_Manager::POPOVER_TOGGLE,
+				'label' => esc_html__( 'Underline', 'elemendas-addons' ),
+			]
+		);
+
+		$this->start_popover();
+
+		$this->add_control(
+			'search_string_underline_color',
+			[
+				'label' => esc_html__( 'Color', 'elemendas-addons' ),
+				'type' => Controls_Manager::COLOR,
+				'global' => [
+					'default' => Global_Colors::COLOR_ACCENT,
+				],
+				'selectors' => [
+					'{{WRAPPER}} .elemendas-search-terms' => 'text-decoration: underline {{VALUE}};',
+				],
+				'condition' => [
+					'underline-toggle' => 'yes', // by adding condition to popover switch, we are limiting this settings effect only when the popover is active.
+				],
+			]
+		);
+
+		$this->add_control(
+			'search_string_underline_thickness',
+			[
+				'type' => Controls_Manager::SLIDER,
+				'label' => esc_html__( 'Thickness (px)', 'elemendas-addons' ),
+   				'size_units' => ['px'],
+				'range' => [
+					'px' => [
+						'min' => 1,
+						'max' => 25,
+					],
+				],
+				'default' => [
+					'unit' => 'px',
+					'size' => 3,
+				],
+				'selectors' => [
+					'{{WRAPPER}} .elemendas-search-terms' => 'text-decoration-thickness: {{SIZE}}{{UNIT}};',
+				],
+				'condition' => [
+					'underline-toggle' => 'yes', // by adding condition to popover switch, we are limiting this settings effect only when the popover is active.
+				],
+			]
+		);
+
+		$this->add_control(
+			'search_string_underline_style',
+			[
+				'type' => Controls_Manager::SELECT,
+				'label' => esc_html__( 'Style', 'elemendas-addons' ),
+				'options' => [
+					'solid' => esc_html__( 'Solid', 'elemendas-addons' ),
+					'double' => esc_html__( 'Double', 'elemendas-addons' ),
+					'dotted' => esc_html__( 'Dotted', 'elemendas-addons' ),
+					'dashed' => esc_html__( 'Dashed', 'elemendas-addons' ),
+					'wavy' => esc_html__( 'Wavy', 'elemendas-addons' ),
+				],
+				'default' => 'solid',
+				'selectors' => [
+					'{{WRAPPER}} .elemendas-search-terms' => 'text-decoration-style: {{VALUE}};',
+				],
+				'condition' => [
+					'underline-toggle' => 'yes', // by adding condition to popover switch, we are limiting this settings effect only when the popover is active.
+				],
+			]
+		);
+
+
+		$this->end_popover();
+		// Underline popover end
+
 
 		$this->add_control(
 			'quotation_marks',
