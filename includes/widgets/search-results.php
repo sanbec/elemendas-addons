@@ -2,6 +2,9 @@
 namespace Elemendas_Addons;
 
 use Elementor\Controls_Manager;
+use Elementor\Group_Control_Typography;
+use Elementor\Group_Control_Text_Stroke;
+use Elementor\Group_Control_Text_Shadow;
 use Elementor\Core\Kits\Documents\Tabs\Global_Colors;
 use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
 
@@ -41,10 +44,11 @@ class Search_Results extends \Elementor\Widget_Heading {
 
 	}
 
+	// BEGIN register_controls
 	protected function register_controls() {
 
 /*********************
- * Content Tab Start *
+ * BEGIN Content Tab *
  *********************/
 
 		$this->start_controls_section(
@@ -99,7 +103,6 @@ class Search_Results extends \Elementor\Widget_Heading {
 			]
 		);
 
-
 		// The following hidden controls are used to store the search string and the number of found results
 		$search_query = get_search_query();
 		if (is_null($search_query) || $search_query == '') {
@@ -127,14 +130,14 @@ class Search_Results extends \Elementor\Widget_Heading {
 		}
 
 		$this->end_controls_section();
-		// Content Tab End. Note that this section will be followed by the content title section inherited from the heading widget.
+		// END Content Tab. Note that this section will be followed by the content title section
 		// inherited from the heading widget. (See the end of this function)
 
 /*******************
- * Style Tab Start *
+ * BEGIN Style Tab *
  *******************/
 
-		// Style section for the searched string
+		// BEGIN Style section for the searched string
 
 		$this->start_controls_section(
 			'section_search_string_style',
@@ -144,35 +147,17 @@ class Search_Results extends \Elementor\Widget_Heading {
 			]
 		);
 
-		// Text Color
+		// BEGIN Highlight Elements Controls
 
 		$this->add_control(
-			'search_string_color',
+			'highlight-elements',
 			[
-				//translators: Don't worry about this string, it will actually take it from Elementor's translation file for consistency.
-				'label' => esc_html__( 'Text Color', 'elementor' ),
-				'type' => Controls_Manager::COLOR,
-				'selectors' => [
-					'{{WRAPPER}} .elemendas-search-terms' => 'color: {{VALUE}};',
-				],
+				'label' => esc_html__( 'Highlight elements', 'elemendas-addons' ),
+				'type' => Controls_Manager::HEADING,
 			]
 		);
 
-		// Background Color
-
-		$this->add_control(
-			'search_string_bgcolor',
-			[
-				//translators: Don't worry about this string, it will actually take it from Elementor's translation file for consistency.
-				'label' => esc_html__( 'Background Color', 'elementor' ),
-				'type' => Controls_Manager::COLOR,
-				'selectors' => [
-					'{{WRAPPER}} .elemendas-search-terms' => 'background-color: {{VALUE}};',
-				],
-			]
-		);
-
-		// Highlighter popover begin
+		//  Highlighter popover BEGIN
 
 		$this->add_control(
 			'highlighter-toggle',
@@ -200,15 +185,18 @@ class Search_Results extends \Elementor\Widget_Heading {
 		);
 
 		$this->end_popover();
-		// Highlighter popover end
+		// Highlighter popover END
 
-		// Underline popover begin
+		// Underline popover BEGIN
 
 		$this->add_control(
 			'underline-toggle',
 			[
 				'type' => Controls_Manager::POPOVER_TOGGLE,
 				'label' => esc_html__( 'Underline', 'elemendas-addons' ),
+				'selectors' => [
+					'{{WRAPPER}} .elemendas-search-terms' => 'text-decoration-skip-ink: none;text-decoration-line: underline;',
+				]
 			]
 		);
 
@@ -223,14 +211,26 @@ class Search_Results extends \Elementor\Widget_Heading {
 					'default' => Global_Colors::COLOR_ACCENT,
 				],
 				'selectors' => [
-					'{{WRAPPER}} .elemendas-search-terms' => 'text-decoration: underline {{VALUE}};text-decoration-skip-ink: none;',
+					'{{WRAPPER}} .elemendas-search-terms' => 'text-decoration: underline {{VALUE}};',
 				],
 				'condition' => [
 					'underline-toggle' => 'yes', // by adding condition to popover switch, we are limiting this settings effect only when the popover is active.
 				],
 			]
 		);
+/*
+		$this->add_control(
+			'search_string_underline_defaults',
+			[
+				'type' => Controls_Manager::HIDDEN,
+				'selectors' => [
+					'{{WRAPPER}} .elemendas-search-terms' => 'text-decoration: underline;',
+				]
+			]
+		);
 
+
+*/
 		$this->add_control(
 			'search_string_underline_thickness',
 			[
@@ -298,9 +298,9 @@ class Search_Results extends \Elementor\Widget_Heading {
 		);
 
 		$this->end_popover();
-		// Underline popover end
+		// Underline popover END
 
-
+		// Quotation marks
 		$this->add_control(
 			'quotation_marks',
 			[
@@ -312,9 +312,78 @@ class Search_Results extends \Elementor\Widget_Heading {
 				],
 			]
 		);
+		// END Highlight Elements Controls
+
+
+		// BEGIN Text Style Search Results Controls
+
+		$this->add_control(
+			'text-style',
+			[
+				'label' => esc_html__( 'Text style', 'elemendas-addons' ),
+				'type' => Controls_Manager::HEADING,
+				'separator' => 'before',
+			]
+		);
+
+		// Text Color
+
+		$this->add_control(
+			'search_string_color',
+			[
+				//translators: Don't worry about this string, it will actually take it from Elementor's translation file for consistency.
+				'label' => esc_html__( 'Text Color', 'elementor' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .elemendas-search-terms' => 'color: {{VALUE}};',
+				],
+			]
+		);
+
+		// Background Color
+
+		$this->add_control(
+			'search_string_bgcolor',
+			[
+				//translators: Don't worry about this string, it will actually take it from Elementor's translation file for consistency.
+				'label' => esc_html__( 'Background Color', 'elementor' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .elemendas-search-terms' => 'background-color: {{VALUE}};',
+				],
+			]
+		);
+
+		$this->add_group_control(
+			Group_Control_Typography::get_type(),
+			[
+				'name' => 'search_string_typography',
+				'global' => [
+					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
+				],
+				'selector' => '{{WRAPPER}} .elemendas-search-terms',
+			]
+		);
+
+		$this->add_group_control(
+			Group_Control_Text_Stroke::get_type(),
+			[
+				'name' => 'search_string_text_stroke',
+				'selector' => '{{WRAPPER}} .elemendas-search-terms',
+			]
+		);
+
+		$this->add_group_control(
+			Group_Control_Text_Shadow::get_type(),
+			[
+				'name' => 'search_string_text_shadow',
+				'selector' => '{{WRAPPER}} .elemendas-search-terms',
+			]
+		);
+		// END Text Style Search Results Controls
 
 		$this->end_controls_section();
-		// Style Tab End. Note that this section will be followed by the style title section inherited from the heading widget.
+		// END Style Tab. Note that this section will be followed by the style title section inherited from the heading widget.
 
 		parent::register_controls();
 
@@ -326,6 +395,7 @@ class Search_Results extends \Elementor\Widget_Heading {
 				'description' =>  __('This setting will have no effect if the font size is set in the typography control', 'elemendas-addons'),
 			]
 		);
+	// END Style section
 	} // END protected function register_controls
 
 	protected function render() {
@@ -367,11 +437,14 @@ class Search_Results extends \Elementor\Widget_Heading {
 		$render_text = sanitize_text_field( $settings['show_results'] );
 		$render_text = str_replace ("{{search-string}}",'<span class="elemendas-search-terms elemendas-search-result">'.$search_query.'</span>',$render_text);
 		$render_text = str_replace ("{{result-number}}",$post_count,$render_text);
-		$render_text = sprintf( '<%1$s %2$s>%3$s</%1$s>', \Elementor\Utils::validate_html_tag( $settings['header_size'] ), $this->get_render_attribute_string( 'show_results' ), $render_text );
+		$render_text = sprintf( '<%1$s %2$s>%3$s</%1$s>',
+								\Elementor\Utils::validate_html_tag( $settings['header_size'] ),
+								$this->get_render_attribute_string( 'show_results' ),
+								$render_text );
 
 		// PHPCS - the variable $render_text holds safe data. Can't be escaped with esc_html as it must deliver html code.
 		echo $render_text; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-	}  // END protected function render
+	}  // protected function render
 
 	protected function content_template() {
 		?>
