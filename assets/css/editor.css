@@ -4,3 +4,9 @@
 [class*="underline_toggle"] label.elementor-control-title {
   text-decoration: underline blue wavy;
 }
+[class*="elementor-control-quotation_marks"] label.elementor-control-title::before {
+  content: "«";
+}
+[class*="elementor-control-quotation_marks"] label.elementor-control-title::after {
+  content: "»";
+}
