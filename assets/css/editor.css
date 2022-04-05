@@ -1,0 +1,6 @@
+[class*="highlighter_toggle"] label.elementor-control-title {
+  box-shadow: inset 0px -5px #0f07;
+}
+[class*="underline_toggle"] label.elementor-control-title {
+  text-decoration: underline blue wavy;
+}

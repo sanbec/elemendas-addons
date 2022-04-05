@@ -7,7 +7,7 @@
  * Version: 1.3.1
  * Elementor tested up to: 3.5.6
  * Elementor Pro tested up to: 3.6.3
- * Author:      Elemendas
+ * Author:      Elemendas, Santiago Becerra
  * Author URI:  https://elemendas.com/
  * Requires at least and Requires PHP tags are declared at readme.txt and verified by a built-in function at /includes/plugin.php
  */

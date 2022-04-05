@@ -8,18 +8,18 @@ use Elementor\Group_Control_Text_Shadow;
 use Elementor\Core\Kits\Documents\Tabs\Global_Colors;
 use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
 
-class Search_Results extends \Elementor\Widget_Heading {
+class Search_Results_Title extends \Elementor\Widget_Heading {
 
 	public function get_name() {
-		return 'search-results';
+		return 'search-results-title';
 	}
 
 	public function get_title() {
-		return esc_html_x( 'Search Results', 'Widget Name', 'elemendas-addons' );
+		return esc_html_x( 'Search Results Title', 'Widget Name', 'elemendas-addons' );
 	}
 
 	public function get_icon() {
-		return 'eicon-search-results';
+		return 'fas fa-search';
 	}
 	
 	public function get_custom_help_url() {
@@ -34,14 +34,20 @@ class Search_Results extends \Elementor\Widget_Heading {
 		return [ 'Search', 'Results' ];
 	}
 
-	
 	public function get_style_depends() {
-
-		wp_register_style( 'search-results-style', plugins_url( 'assets/css/search-results.css', __FILE__ ) );
-		return [
-			'search-results-style',
-		];
-
+		if (wp_style_is('search-results-common-style','registered')) {
+			wp_register_style( 'search-results-title-style', plugins_url( 'assets/css/search-results-title.css', __FILE__ ) );
+			return [
+				'search-results-title-style',
+			];
+		} else {
+			wp_register_style( 'search-results-common-style', plugins_url( 'assets/css/search-results-common.css', __FILE__ ) );
+			wp_register_style( 'search-results-title-style', plugins_url( 'assets/css/search-results-title.css', __FILE__ ) );
+			return [
+				'search-results-common-style',
+				'search-results-title-style',
+			];
+		}
 	}
 
 	// BEGIN register_controls
@@ -150,7 +156,7 @@ class Search_Results extends \Elementor\Widget_Heading {
 		// BEGIN Highlight Elements Controls
 
 		$this->add_control(
-			'highlight-elements',
+			'highlight_elements',
 			[
 				'label' => esc_html__( 'Highlight elements', 'elemendas-addons' ),
 				'type' => Controls_Manager::HEADING,
@@ -160,7 +166,7 @@ class Search_Results extends \Elementor\Widget_Heading {
 		//  Highlighter popover BEGIN
 
 		$this->add_control(
-			'highlighter-toggle',
+			'highlighter_toggle',
 			[
 				'type' => Controls_Manager::POPOVER_TOGGLE,
 				'label' => esc_html__( 'Highlighter', 'elemendas-addons' ),
@@ -179,7 +185,7 @@ class Search_Results extends \Elementor\Widget_Heading {
 					'{{WRAPPER}} .elemendas-search-terms' => 'box-shadow: inset 0px -{{THICKNESS}}px {{COLOR}};',
 				],
 				'condition' => [
-					'highlighter-toggle' => 'yes', // by adding condition to popover switch, we are limiting this settings effect only when the popover is active.
+					'highlighter_toggle' => 'yes', // by adding condition to popover switch, we are limiting this settings effect only when the popover is active.
 				],
 			]
 		);
@@ -190,7 +196,7 @@ class Search_Results extends \Elementor\Widget_Heading {
 		// Underline popover BEGIN
 
 		$this->add_control(
-			'underline-toggle',
+			'underline_toggle',
 			[
 				'type' => Controls_Manager::POPOVER_TOGGLE,
 				'label' => esc_html__( 'Underline', 'elemendas-addons' ),
@@ -214,23 +220,11 @@ class Search_Results extends \Elementor\Widget_Heading {
 					'{{WRAPPER}} .elemendas-search-terms' => 'text-decoration: underline {{VALUE}};',
 				],
 				'condition' => [
-					'underline-toggle' => 'yes', // by adding condition to popover switch, we are limiting this settings effect only when the popover is active.
+					'underline_toggle' => 'yes', // by adding condition to popover switch, we are limiting this settings effect only when the popover is active.
 				],
 			]
 		);
-/*
-		$this->add_control(
-			'search_string_underline_defaults',
-			[
-				'type' => Controls_Manager::HIDDEN,
-				'selectors' => [
-					'{{WRAPPER}} .elemendas-search-terms' => 'text-decoration: underline;',
-				]
-			]
-		);
 
-
-*/
 		$this->add_control(
 			'search_string_underline_thickness',
 			[
@@ -251,7 +245,7 @@ class Search_Results extends \Elementor\Widget_Heading {
 					'{{WRAPPER}} .elemendas-search-terms' => 'text-decoration-thickness: {{SIZE}}{{UNIT}};',
 				],
 				'condition' => [
-					'underline-toggle' => 'yes', // by adding condition to popover switch, we are limiting this settings effect only when the popover is active.
+					'underline_toggle' => 'yes', // by adding condition to popover switch, we are limiting this settings effect only when the popover is active.
 				],
 			]
 		);
@@ -273,7 +267,7 @@ class Search_Results extends \Elementor\Widget_Heading {
 					'{{WRAPPER}} .elemendas-search-terms' => 'text-decoration-style: {{VALUE}};',
 				],
 				'condition' => [
-					'underline-toggle' => 'yes', // by adding condition to popover switch, we are limiting this settings effect only when the popover is active.
+					'underline_toggle' => 'yes', // by adding condition to popover switch, we are limiting this settings effect only when the popover is active.
 				],
 			]
 		);
@@ -292,7 +286,7 @@ class Search_Results extends \Elementor\Widget_Heading {
 					'{{WRAPPER}} .elemendas-search-terms' => 'text-decoration-skip-ink: {{VALUE}};',
 				],
 				'condition' => [
-					'underline-toggle' => 'yes', // by adding condition to popover switch, we are limiting this settings effect only when the popover is active.
+					'underline_toggle' => 'yes', // by adding condition to popover switch, we are limiting this settings effect only when the popover is active.
 				],
 			]
 		);
@@ -318,7 +312,7 @@ class Search_Results extends \Elementor\Widget_Heading {
 		// BEGIN Text Style Search Results Controls
 
 		$this->add_control(
-			'text-style',
+			'text_style',
 			[
 				'label' => esc_html__( 'Text style', 'elemendas-addons' ),
 				'type' => Controls_Manager::HEADING,
@@ -451,7 +445,7 @@ class Search_Results extends \Elementor\Widget_Heading {
 		<#
 		if ('' === settings.show_results_plural || '' === settings.show_results_single || '' === settings.show_results_none) {
 		#>
-			<div class="elemendas-warning">
+				<div class="elementor-panel-alert elementor-panel-alert-warning elemendas-warning elemendas-warning">
 				<i aria-hidden="true" class="fas fa-exclamation-circle"></i>
 				<h4><?php echo esc_html__('This widget needs to have some text to show', 'elemendas-addons')?></h4>
 				<?php echo esc_html__('In the content area, fill in the fields for:', 'elemendas-addons')?>
@@ -493,7 +487,7 @@ class Search_Results extends \Elementor\Widget_Heading {
 			<#
 			} else {
 			#>
-				<div class="elemendas-warning">
+				<div class="elementor-panel-alert elementor-panel-alert-warning elemendas-warning elemendas-warning">
 					<i aria-hidden="true" class="fas fa-exclamation-circle"></i>
 					<h4><?php echo esc_html__('This widget only works on the search results page', 'elemendas-addons')?></h4>
 					<ol>

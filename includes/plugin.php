@@ -114,8 +114,16 @@ final class Plugin {
     }
 
 	public function elm_admin_styles() {
-		wp_enqueue_style( 'elm-admin-css', ELM_PLUGIN_URL . 'assets/css/admin.css', false, ELEMENDAS_ADDONS_VERSION );
+		wp_enqueue_style( 'elm-admin', ELM_PLUGIN_URL . 'assets/css/admin.css', false, ELEMENDAS_ADDONS_VERSION );
 	}
+
+	public function elm_editor_styles() {
+		wp_enqueue_style( 'elm-editor-fa', '/wp-content/plugins/elementor/assets/lib/font-awesome/css/all.min.css');
+		wp_enqueue_style( 'elm-editor', ELM_PLUGIN_URL . 'assets/css/editor.css', false, ELEMENDAS_ADDONS_VERSION );
+	}
+
+
+
 
 	/**
 	 * Compatibility Checks
@@ -299,6 +307,8 @@ final class Plugin {
 	public function init() {
 		add_action( 'elementor/widgets/register', [ $this, 'register_widgets' ] );
 		add_action( 'elementor/controls/register', [ $this, 'register_controls' ] );
+        add_action( 'elementor/editor/after_enqueue_styles', [ $this, 'elm_editor_styles' ] );
+
 	}
 
 	/**
@@ -311,8 +321,11 @@ final class Plugin {
 	 * @param \Elementor\Widgets_Manager $widgets_manager Elementor widgets manager.
 	 */
 	public function register_widgets( $widgets_manager ) {
-		require_once( __DIR__ . '/widgets/search-results.php' );
-		$widgets_manager->register( new Search_Results() );
+		require_once( __DIR__ . '/widgets/search-results-title.php' );
+		$widgets_manager->register( new Search_Results_Title() );
+
+		require_once( __DIR__ . '/widgets/search-results-highlighted.php' );
+		$widgets_manager->register( new Search_Results_Highlighted() );
 	}
 
 	/**

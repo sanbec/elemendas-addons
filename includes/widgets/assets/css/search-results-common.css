@@ -1,0 +1,19 @@
+.elementor-panel-alert.elementor-panel-alert-warning.elemendas-warning {
+    font-size: 15px;
+}
+.elemendas-warning h4 {
+    color: #fcb92c;
+    margin-top: .5rem;
+    margin-bottom: 1rem;
+    font-size: 19px;
+}
+.elemendas-warning ol,.elemendas-warning  ul {
+    list-style-position: inside;
+    margin: 0;
+}
+.elemendas-warning i.fas {
+    color: #fcb92c;
+    float: left;
+    font-size: 120px;
+    margin-right: 1rem;
+}
