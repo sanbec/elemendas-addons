@@ -36,13 +36,13 @@ class Search_Results_Highlighted extends \Elementor\Widget_Heading {
 
 	public function get_style_depends() {
 		if (wp_style_is('search-results-common-style','registered')) {
-			wp_register_style( 'search-results-highlighted-style', plugins_url( 'assets/css/search-results-highlighted.css', __FILE__ ) );
+			wp_register_style( 'search-results-highlighted-style', plugins_url( 'assets/css/search-results-highlighted.css', __FILE__ ), false, ELEMENDAS_ADDONS_VERSION );
 			return [
 				'search-results-highlighted-style',
 			];
 		} else {
-			wp_register_style( 'search-results-common-style', plugins_url( 'assets/css/search-results-common.css', __FILE__ ) );
-			wp_register_style( 'search-results-highlighted-style', plugins_url( 'assets/css/search-results-highlighted	', __FILE__ ) );
+			wp_register_style( 'search-results-common-style', plugins_url( 'assets/css/search-results-common.css', __FILE__ ), false, ELEMENDAS_ADDONS_VERSION );
+			wp_register_style( 'search-results-highlighted-style', plugins_url( 'assets/css/search-results-highlighted	', __FILE__ ), false, ELEMENDAS_ADDONS_VERSION );
 			return [
 				'search-results-common-style',
 				'search-results-highlighted-style',

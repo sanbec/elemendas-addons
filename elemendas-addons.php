@@ -4,7 +4,7 @@
  * Description: Improving the search results archive page for Elementor.
  * Plugin URI:  https://elementor.com/
  * Text Domain: elemendas-addons
- * Version: 1.3.1
+ * Version: 2.0.0
  * Elementor tested up to: 3.5.6
  * Elementor Pro tested up to: 3.6.3
  * Author:      Elemendas, Santiago Becerra
@@ -16,7 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
-define('ELEMENDAS_ADDONS_VERSION', '1.0' );
+define('ELEMENDAS_ADDONS_VERSION', '2.0.0' );
 define('ELM_PLUGIN_URL', trailingslashit(plugins_url('/', __FILE__)));
 
 

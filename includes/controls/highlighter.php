@@ -37,8 +37,8 @@ class Elemendas_Highlighter_Control extends \Elementor\Control_Base_Multiple {
 	 *
 	 */
 	public function enqueue() {
-		wp_enqueue_script( 'highlighter', plugins_url( 'assets/js/highlighter.js', __FILE__ ) );
-		wp_enqueue_style( 'highlighter', plugins_url( 'assets/css/highlighter.css', __FILE__ ) );
+		wp_enqueue_script( 'highlighter', plugins_url( 'assets/js/highlighter.js', __FILE__ ), false, ELEMENDAS_ADDONS_VERSION );
+		wp_enqueue_style( 'highlighter', plugins_url( 'assets/css/highlighter.css', __FILE__ ), false, ELEMENDAS_ADDONS_VERSION );
 	}
 
 	/**
