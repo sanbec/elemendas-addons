@@ -22,6 +22,7 @@ You can customize the message according to the number of results obtained:
 * for more than one result.
 
 You can choose many alternatives to highlight the search string:
+
 * Quotation marks
 * Highlighter
 * Underline

@@ -94,10 +94,9 @@ $this->start_controls_section(
 			[
 				'type' => Controls_Manager::RAW_HTML,
 				'raw' => sprintf(
-					/* translators: 1: strong open tag, 2: strong closing tag. */
-					esc_html__( '%1$sNote:%2$s You can only add the Search Results Highlighted widget once.', 'elemendas-addons' ),
-					'<strong>',
-					'</strong>'
+					/* translators: 1: strong open tag, 2: strong closing tag. 3: Widget name */
+					esc_html__( '%1$sNote:%2$s You can only add the %3$s widget once.', 'elemendas-addons' ),
+					'<strong>',	'</strong>', esc_html_x( 'Search Results Highlighted', 'Widget Name', 'elemendas-addons' )
 				),
 				'content_classes' => 'elementor-panel-alert elementor-panel-alert-info',
 			]
@@ -568,8 +567,11 @@ $this->start_controls_section(
 			#>
 				<div class="elementor-panel-alert elementor-panel-alert-info elemendas-notice">
 					<i aria-hidden="true" class="fas fa-highlighter"></i>
-					<span><?php printf( esc_html__('%s widget. You won\'t see this while previewing your site.', 'elemendas-addons'),
-										     esc_html_x( 'Search Results Highlighted', 'Widget Name', 'elemendas-addons' ));?></span>
+					<span><?php
+						// translators: %s: widget name
+						printf( esc_html__('%s widget. You won\'t see this while previewing your site.', 'elemendas-addons'),
+								esc_html_x( 'Search Results Highlighted', 'Widget Name', 'elemendas-addons' ));?>
+					</span>
 				</div>
 			<#
 			} else {

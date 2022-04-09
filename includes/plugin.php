@@ -193,8 +193,9 @@ final class Plugin {
 			case "activate":
 				$plugin = $item.'/'.$item.'.php';
 				if ("" === $action_url) $action_url = wp_nonce_url('plugins.php?action=activate&amp;plugin=' . $plugin . '&amp;plugin_status=all&amp;paged=1&amp;s', 'activate-plugin_' . $plugin);
-				/* translators: %s: Elementor/Elementor Pro */
+				/* translators: 1: Plugin name 2: Elementor/Elementor Pro */
 				$message_text = esc_html__( '"%1$s" requires "%2$s" to be activated.', 'elemendas-addons' );
+				/* translators: %s: Elementor/Elementor Pro */
 				$button_text = sprintf(__('Activate %s', 'elemendas-addons'), $itemName );
 				break;
 			case "update":
@@ -202,6 +203,7 @@ final class Plugin {
 				if ("" === $action_url) $action_url = wp_nonce_url(self_admin_url('update.php?action=upgrade-plugin&plugin='.$plugin), 'upgrade-plugin_'.$plugin);
 				/* translators: 1: Plugin name 2: Elementor/Elementor Pro 3: Required Elementor version */
 				$message_text = esc_html__( '"%1$s" requires "%2$s" version %3$s or greater.', 'elemendas-addons' );
+				/* translators: %s: Elementor/Elementor Pro */
 				$button_text = sprintf(__('Update %s', 'elemendas-addons'), $itemName );
 				break;
 		}
