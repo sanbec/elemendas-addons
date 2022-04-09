@@ -310,6 +310,9 @@ final class Plugin {
 		add_action( 'elementor/widgets/register', [ $this, 'register_widgets' ] );
 		add_action( 'elementor/controls/register', [ $this, 'register_controls' ] );
         add_action( 'elementor/editor/after_enqueue_styles', [ $this, 'elm_editor_styles' ] );
+		// init extensions
+		self::elemendas_init_extensions();
+
 
 	}
 
@@ -323,10 +326,10 @@ final class Plugin {
 	 * @param \Elementor\Widgets_Manager $widgets_manager Elementor widgets manager.
 	 */
 	public function register_widgets( $widgets_manager ) {
-		require_once( __DIR__ . '/widgets/search-results-title.php' );
+		require_once( __DIR__ . '/widgets/added/search-results-title.php' );
 		$widgets_manager->register( new Search_Results_Title() );
 
-		require_once( __DIR__ . '/widgets/search-results-highlighted.php' );
+		require_once( __DIR__ . '/widgets/added/search-results-highlighted.php' );
 		$widgets_manager->register( new Search_Results_Highlighted() );
 	}
 
@@ -346,5 +349,18 @@ final class Plugin {
 		require_once( __DIR__ . '/controls/highlighter.php' );
 		$controls_manager->register( new Elemendas_Highlighter_Control() );
 //		$controls_manager->register( new Group_Control_Highlighter() );
+	}
+	
+	
+		public function elemendas_init_extensions(  ) {
+
+		// Include extension classes
+		require_once( __DIR__ . '/widgets/extended/search-results-archive-title.php' );
+ 
+		$extensions_array = [ 'Search_Results_Archive_Title' ];
+		Search_Results_Archive_Title::init();
+//		foreach( $extensions_array as $extension_class) {
+//				$extension_class::init();
+//		}
 	}
 }
