@@ -3,7 +3,7 @@ Widgets and Extensions to improve Elementor
 
 ## Description
 
-This plugin is an addon for Elementor Pro. It adds the __Search Results Title__ and the __Search Results Highlight__ widget to the Search Results Archive. This widgets allows you to show the number of posts containing the search query, and to highlight the search query string within the results.
+This plugin is an addon for Elementor Pro. It modifies the __Archive Title__ and adds the __Search Results Highlight__ widget to the Search Results Archive. This widgets allows you to show the number of posts containing the search query, and to highlight the search query string within the results.
 
 You can customize the message according to the number of results obtained:
 
@@ -67,7 +67,7 @@ Then go to your Plugins screen and click __Activate__.
 2. Go to Preview Settings.
 3. Set __Preview Dynamic Content as__ "__Search Results__" and fill the __Search Term__.
 4. Adjust the __Display Conditions__ to __Search Results__.
-5. Drag and drop the __Search Results Title__ widget to customize the title adding the results number and highlighting the search string.
+5. Drag and drop the __Archive Title__ widget to customize the title adding the results number and highlighting the search string.
 6. Drag and drop the __Search Results Highlight__ widget to highlight the search string within the search results.
 
 Relax! If you don't follow the steps correctly, you will get a note with instructions in the editor when you add the widget.
@@ -79,6 +79,10 @@ __Remember__: these widgets will only appear in archive templates.
 * Built by [Santiago Becerra](https://elemendas.com/)
 
 ## Changelog
+
+
+### 2.1.0
+* The functionality that was in the "Search Results Title" widget becomes an extension of the "Archive Title" widget.
 
 ### 2.0.0
 * New "Search Results Highlight" widget to highlight the search string within the search results

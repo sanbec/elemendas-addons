@@ -34,7 +34,7 @@ final class Plugin {
 	 * Minimum Elementor Pro Version
 	 *
 	 * @since 1.0.0
-	 * @var string Minimum Elementor Pr0 version required to run the addon.
+	 * @var string Minimum Elementor Pro version required to run the addon.
 	 */
 	const MINIMUM_ELEMENTOR_PRO_VERSION = '3.6.0';
 
@@ -59,12 +59,10 @@ final class Plugin {
 	 * @return \Elemendas_Addon\Plugin An instance of the class.
 	 */
 	public static function instance() {
-
 		if ( is_null( self::$_instance ) ) {
 			self::$_instance = new self();
 		}
 		return self::$_instance;
-
 	}
 
 	/**
@@ -77,7 +75,6 @@ final class Plugin {
 	 * @access public
 	 */
 	public function __construct() {
-
 		if ( $this->is_compatible() ) {
 			add_action( 'elementor/init', [ $this, 'init' ] );
 		}
@@ -88,14 +85,11 @@ final class Plugin {
      *
      * @since 1.0.0
      */
-    public function is_plugin_installed($basename)
-    {
+    public function is_plugin_installed($basename) {
         if (!function_exists('get_plugins')) {
             include_once ABSPATH . '/wp-admin/includes/plugin.php';
         }
-
         $installed_plugins = get_plugins();
-
         return isset($installed_plugins[$basename]);
     }
 
@@ -104,26 +98,25 @@ final class Plugin {
      *
      * @since 1.0.0
      */
-    public function is_plugin_active($basename)
-    {
+    public function is_plugin_active($basename) {
         if (!function_exists('is_plugin_active')) {
 			include_once ABSPATH . 'wp-admin/includes/plugin.php';
 		}
-
-        return is_plugin_active($basename);
-    }
-
-	public function elm_admin_styles() {
-		wp_enqueue_style( 'elm-admin', ELM_PLUGIN_URL . 'assets/css/admin.css', false, ELEMENDAS_ADDONS_VERSION );
+		return is_plugin_active($basename);
 	}
 
-	public function elm_editor_styles() {
-		wp_enqueue_style( 'elm-editor-fa', '/wp-content/plugins/elementor/assets/lib/font-awesome/css/all.min.css');
-		wp_enqueue_style( 'elm-editor', ELM_PLUGIN_URL . 'assets/css/editor.css', false, ELEMENDAS_ADDONS_VERSION );
+	public function elemendas_admin_styles() {
+		wp_enqueue_style( 'elemendas-admin', ELM_PLUGIN_URL . 'assets/css/admin.css', false, ELEMENDAS_ADDONS_VERSION );
 	}
 
+	public function elemendas_editor_styles() {
+		wp_enqueue_style( 'elemendas-editor-fa', '/wp-content/plugins/elementor/assets/lib/font-awesome/css/all.min.css');
+		wp_enqueue_style( 'elemendas-editor', ELM_PLUGIN_URL . 'assets/css/editor.css', false, ELEMENDAS_ADDONS_VERSION );
+	}
 
-
+	public function elemendas_preview_styles() {
+		wp_enqueue_style( 'elemendas-preview', ELM_PLUGIN_URL . 'assets/css/preview.css', false, ELEMENDAS_ADDONS_VERSION );
+	}
 
 	/**
 	 * Compatibility Checks
@@ -134,7 +127,7 @@ final class Plugin {
 	 * @access public
 	 */
 	public function is_compatible() {
-        add_action( 'admin_enqueue_scripts', [ $this, 'elm_admin_styles' ] );
+        add_action( 'admin_enqueue_scripts', [ $this, 'elemendas_admin_styles' ] );
 
 		// Check if Elementor is installed
 		if ( !$this->is_plugin_installed ( 'elementor/elementor.php' ) ) {
@@ -312,7 +305,9 @@ final class Plugin {
 		// Add controls
 		add_action( 'elementor/controls/register', [ $this, 'register_controls' ] );
 		// Enqueue styles for he Elementor editor bar
-        add_action( 'elementor/editor/after_enqueue_styles', [ $this, 'elm_editor_styles' ] );
+        add_action( 'elementor/editor/after_enqueue_styles', [ $this, 'elemendas_editor_styles' ] );
+		// Enqueue styles for he Elementor editor preview
+        add_action( 'elementor/preview/enqueue_styles', [ $this, 'elemendas_preview_styles' ] );
 		// Initiate extensions to existing elements
 		self::elemendas_init_extensions();
 	}
@@ -327,9 +322,6 @@ final class Plugin {
 	 * @param \Elementor\Widgets_Manager $widgets_manager Elementor widgets manager.
 	 */
 	public function register_widgets( $widgets_manager ) {
-		require_once( __DIR__ . '/widgets/added/search-results-title.php' );
-		$widgets_manager->register( new Search_Results_Title() );
-
 		require_once( __DIR__ . '/widgets/added/search-results-highlighted.php' );
 		$widgets_manager->register( new Search_Results_Highlighted() );
 	}
@@ -349,19 +341,12 @@ final class Plugin {
 
 		require_once( __DIR__ . '/controls/highlighter.php' );
 		$controls_manager->register( new Elemendas_Highlighter_Control() );
-//		$controls_manager->register( new Group_Control_Highlighter() );
 	}
 	
-	
-		public function elemendas_init_extensions(  ) {
-
+	public function elemendas_init_extensions(  ) {
 		// Include extension classes
 		require_once( __DIR__ . '/widgets/extended/search-results-archive-title.php' );
- 
 		$extensions_array = [ 'Search_Results_Archive_Title' ];
 		Search_Results_Archive_Title::init();
-//		foreach( $extensions_array as $extension_class) {
-//				$extension_class::init();
-//		}
 	}
 }

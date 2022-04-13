@@ -18,3 +18,13 @@
     font-size: 120px;
     margin-right: 1rem;
 }
+.elemendas-notice i.fas {
+    color: #71d7f7;
+    font-size: 25px;
+    margin-right: 1rem;
+}
+.elementor-panel-alert.elemendas-notice {
+    font-size: 15px;
+    color: black;
+}
+

@@ -5,7 +5,7 @@ Tags: elementor,elementor addon,elementor addons,elementor widgets,elementor ext
 Requires at least: 5.0
 Tested up to: 5.9
 Requires PHP: 5.6
-Stable tag: 2.0.0
+Stable tag: 2.1.0
 License: GPL 3.0 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -72,7 +72,7 @@ To install Elemendas Addons, follow the steps below:
 2. Go to **Preview Settings**.
 3. Set **Preview Dynamic Content as** "**Search Results**" and fill the **Search Term**.
 4. Adjust the **Display Conditions** to **Search Results**.
-5. Drag and drop the **Search Results Title** widget to customize the title adding the results number and highlighting the search string.
+5. Drag and drop the **Archive Title** widget to customize the title adding the results number and highlighting the search string.
 6. Drag and drop the **Search Results Highlight** widget to highlight the search string within the search results.
 
 Relax! If you don't follow the steps correctly, you will get a note with instructions in the editor when you add the widget
@@ -92,6 +92,9 @@ Relax! If you don't follow the steps correctly, you will get a note with instruc
 10. Highlight the search terms in the title with quotation marks.
 
 == Changelog ==
+
+= 2.1.0 =
+* The functionality that was in the "Search Results Title" widget becomes an extension of the "Archive Title" widget.
 
 = 2.0.0 =
 * New "Search Results Highlight" widget to highlight the search string within the search results

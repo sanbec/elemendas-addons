@@ -35,19 +35,10 @@ class Search_Results_Highlighted extends \Elementor\Widget_Heading {
 	}
 
 	public function get_style_depends() {
-		if (wp_style_is('search-results-common-style','registered')) {
-			wp_register_style( 'search-results-highlighted-style', plugins_url( 'assets/css/search-results-highlighted.css', __FILE__ ), false, ELEMENDAS_ADDONS_VERSION );
-			return [
-				'search-results-highlighted-style',
-			];
-		} else {
-			wp_register_style( 'search-results-common-style', plugins_url( 'assets/css/search-results-common.css', __FILE__ ), false, ELEMENDAS_ADDONS_VERSION );
-			wp_register_style( 'search-results-highlighted-style', plugins_url( 'assets/css/search-results-highlighted	', __FILE__ ), false, ELEMENDAS_ADDONS_VERSION );
-			return [
-				'search-results-common-style',
-				'search-results-highlighted-style',
-			];
-		}
+		wp_register_style( 'search-results-highlighted-style', plugins_url( 'assets/css/search-results-highlighted.css', __FILE__ ), false, ELEMENDAS_ADDONS_VERSION );
+		return [
+			'search-results-highlighted-style',
+		];
 	}
 	/**
 	 * Widget constructor.
@@ -581,7 +572,7 @@ $this->start_controls_section(
 					<h4><?php echo esc_html__('This widget only works on the search results page', 'elemendas-addons')?></h4>
 					<ol>
 						<li><?php
-							//translators: %s : Preview Settings
+							//translators: %s: Preview Settings
 							printf( esc_html__('Go to "%s"', 'elemendas-addons'),
 									//translators: Don't worry about this string, it will actually take it from Elementor's translation file for consistency.
 									esc_html__( 'Preview Settings', 'elementor-pro' ))?>
