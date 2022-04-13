@@ -1,3 +1,5 @@
+/* CSS used to customize controls styles at the editor bar */ 
+
 [class*="highlighter_toggle"] label.elementor-control-title {
   box-shadow: inset 0px -5px #0f07;
 }
@@ -9,4 +11,13 @@
 }
 [class*="elementor-control-quotation_marks"] label.elementor-control-title::after {
   content: "»";
+}
+
+.elementor-control-raw-html.elementor-panel-alert.elementor-panel-alert-warning.elemendas-warning {
+  font-style: normal;
+  color: black;
+}
+.elementor-control-raw-html.elementor-panel-alert.elementor-panel-alert-warning.elemendas-warning > ol > li {
+  list-style-type: decimal;
+  margin-left: 1em;
 }

@@ -307,13 +307,14 @@ final class Plugin {
 	 * @access public
 	 */
 	public function init() {
+		// Add widgets
 		add_action( 'elementor/widgets/register', [ $this, 'register_widgets' ] );
+		// Add controls
 		add_action( 'elementor/controls/register', [ $this, 'register_controls' ] );
+		// Enqueue styles for he Elementor editor bar
         add_action( 'elementor/editor/after_enqueue_styles', [ $this, 'elm_editor_styles' ] );
-		// init extensions
+		// Initiate extensions to existing elements
 		self::elemendas_init_extensions();
-
-
 	}
 
 	/**

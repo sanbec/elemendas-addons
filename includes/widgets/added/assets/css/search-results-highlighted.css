@@ -1,6 +1,9 @@
+/* CSS for the fontend */
 .elemendas-highlight {
     text-decoration-color: var( --e-global-color-accent );
 }
+
+/* CSS for the editor preview */
 .elemendas-notice i.fas {
     color: #71d7f7;
     font-size: 25px;
