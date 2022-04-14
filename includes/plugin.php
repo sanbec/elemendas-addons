@@ -324,6 +324,9 @@ final class Plugin {
 	public function register_widgets( $widgets_manager ) {
 		require_once( __DIR__ . '/widgets/added/search-results-highlighted.php' );
 		$widgets_manager->register( new Search_Results_Highlighted() );
+
+		require_once( __DIR__ . '/widgets/added/leaveslist.php' );
+		$widgets_manager->register( new Leaves_List() );
 	}
 
 	/**

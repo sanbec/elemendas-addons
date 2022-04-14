@@ -1,0 +1,106 @@
+/* CSS for the frontend */
+/* ul-plant layout */
+.ul-plant {
+  --leaf-length: 6rem; /* 5-15rem 80-250px */
+  --stem-width: 0.4rem; /* 4-15px */
+  --col-gap: 1rem;/* 1-15rem 20-200px */
+  --row-gap: calc(var(--col-gap) / 2);
+  --leaf-color: #2c3;
+  --leaf-width: 70%; /* 50-100% */
+  display: grid;
+  grid-template-columns: repeat(2, var(--leaf-length));
+  gap: var(--row-gap) var(--col-gap);
+  position: relative;
+}
+/* leaf */ /*default right*/
+.ul-plant li {
+  grid-row: span 2;
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+  position: relative;
+  border-radius: var(--leaf-width) 0 var(--leaf-width) 0;
+  grid-column: var(--gc, 2);
+  background-color: var(--leaf-color, green);
+  color: white;
+  padding: 1rem;
+  background-image: linear-gradient(
+    var(--leaf-gr-dir, to bottom right),
+    transparent,
+    rgb(0 0 0 / 0.2) calc(50% - var(--stem-width) / 2),
+    rgba(0 0 0 /0.5) calc(50% + var(--stem-width) / 2),
+    transparent);
+  box-shadow:
+    inset 2px 2px 4px rgb(255 255 255 / .25),
+    inset -2px -2px 4px rgb(0 0 0 / .25);
+}
+ .ul-plant > li > span {
+     transform: rotate(-45deg);
+     max-width: calc(var(--leaf-length)*0.67);
+     white-space: nowrap;
+}
+ .ul-plant > li:nth-child(odd) > span {transform: rotate(45deg);}
+
+/* leaf */ /*override left*/
+.ul-plant li:nth-child(odd) {
+  --leaf-gr-dir: to bottom left;
+  --gc: 1;
+  border-radius: 0 var(--leaf-width) 0 var(--leaf-width);
+  text-align: end;
+}
+/* leaf position second */
+.ul-plant li:nth-child(2) { grid-row: 2/4 }
+
+/* stems gradient */
+.ul-plant li::before, .ul-plant > li::after{
+  background-image: linear-gradient(var(--stem-gr-dir), rgba(0 0 0 / 0.5), transparent);
+}
+/* diagonal stem */ /*default right*/
+.ul-plant li::after{
+  content: "";
+  position: absolute;
+  width: calc(50% + (var(--col-gap) / 2));
+  height: var(--stem-width);
+  top: calc(50% - var(--stem-width) / 2));
+  background-color: var(--leaf-color);
+  --stem-gr-dir: to top;
+  transform-origin: top var(--to, right);
+  transform: skewY(var(--sk, -45deg));
+  left: var(--pl, auto);
+  right: 50%;
+  z-index: -1;
+  border-radius: 5rem;
+}
+/* diagonal stem */ /*override left*/
+.ul-plant li:nth-child(odd)::after { --to: left; --sk: 45deg; --pl: 50% }
+
+/* vertical stem */ /*default right*/
+.ul-plant li::before{
+  content: "";
+  position: absolute;
+  width: var(--stem-width);
+  height: calc(50% + var(--row-gap) / 2 + var(--stem-width));
+  background-color: var(--leaf-color);
+  top: calc(100% + var(--row-gap) - var(--stem-width));
+  z-index:-1;
+  --x-pos: calc(100% + var(--col-gap) / 2 - var(--stem-width) / 2);
+  --stem-gr-dir: to right;
+  left: auto;
+  right: var(--x-pos);
+  --clip-gradient: linear-gradient(to top, rgba(0, 0, 0, 1) calc(100% - var(--stem-width)), rgba(0, 0, 0, 0));
+  -webkit-mask-image: var(--clip-gradient);
+  mask-image: var(--clip-gradient);
+}
+/* vertical stem */ /*override left*/
+.ul-plant li:nth-child(odd)::before{
+  left: var(--x-pos);
+  right: auto;
+}
+/* first vertical stem override */
+.ul-plant li:first-of-type::before{
+  -webkit-mask-image: unset;
+  border-radius: var(--stem-width) var(--stem-width) 0 0;
+}
+/* last vertical stem override */
+.ul-plant li:last-of-type::before{ height: 100% }
+

@@ -65,7 +65,7 @@ class Search_Results_Highlighted extends \Elementor\Widget_Heading {
  *********************/
 
 $this->start_controls_section(
-			'section',
+			'section_search_results_content',
 			[
 				'label' => esc_html_x( 'Search Results Highlighted', 'Widget Name', 'elemendas-addons' ),
 			]
