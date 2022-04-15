@@ -8,6 +8,10 @@ use Elementor\Group_Control_Text_Shadow;
 use Elementor\Core\Kits\Documents\Tabs\Global_Colors;
 use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 class Leaves_List extends \Elementor\Widget_Base {
 
 	public function get_name() {
@@ -39,21 +43,6 @@ class Leaves_List extends \Elementor\Widget_Base {
 			'leaveslist-style',
 		];
 	}
-	/**
-	 * Widget constructor.
-	 *
-	 * Initializing the widget class.
-	 *
-	 * @since 1.0.0
-	 * @access public
-	 *
-	 * @throws \Exception If arguments are missing when initializing a full widget
-	 *                   instance.
-	 *
-	 * @param array      $data Widget data. Default is an empty array.
-	 * @param array|null $args Optional. Widget default arguments. Default is null.
-	 */
-
 
 	// BEGIN register_controls
 	protected function register_controls() {

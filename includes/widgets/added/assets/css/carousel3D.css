@@ -1,0 +1,40 @@
+/* CSS for the frontend */
+
+.elmadd-carousel3D {
+  --z-translation: 400px;
+  margin: 0 auto;
+  height: 500px;
+  width: 90%;
+  perspective: 2000px;
+  overflow: hidden;
+}
+
+.elmadd-3Dcards-div {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  transform-style: preserve-3d;
+  animation: move 10s infinite linear;
+}
+
+.elmadd-3Dcard {
+  height: 300px;
+  width: 300px;
+  position: absolute;
+  background-size: cover;
+  background-position: center;
+  -webkit-box-reflect: below 10px
+    linear-gradient(rgba(255, 255, 255, 0.226), rgba(255, 255, 255, 0.151));
+    border: 1px solid;
+}
+
+
+@keyframes move {
+  to {
+    transform: rotateY(360deg);
+  }
+}
+

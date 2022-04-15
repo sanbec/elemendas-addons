@@ -327,6 +327,10 @@ final class Plugin {
 
 		require_once( __DIR__ . '/widgets/added/leaveslist.php' );
 		$widgets_manager->register( new Leaves_List() );
+
+		require_once( __DIR__ . '/widgets/added/carousel3D.php' );
+		$widgets_manager->register( new Carousel_3D() );
+
 	}
 
 	/**
