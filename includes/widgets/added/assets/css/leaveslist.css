@@ -1,17 +1,21 @@
 /* CSS for the frontend */
 /* ul-plant layout */
 .ul-plant {
-  --leaf-length: 6rem; /* 5-15rem 80-250px */
-  --stem-width: 0.4rem; /* 4-15px */
-  --col-gap: 1rem;/* 1-15rem 20-200px */
+  --leaf-length: 100px;
+  --stem-width: 8px;
+  --col-gap: 20px;
   --row-gap: calc(var(--col-gap) / 2);
   --leaf-color: #2c3;
-  --leaf-width: 70%; /* 50-100% */
+  --leaf-width: 70%;
   display: grid;
   grid-template-columns: repeat(2, var(--leaf-length));
   gap: var(--row-gap) var(--col-gap);
   position: relative;
+  width: max-content;
+  margin: auto;
+  padding: 0;
 }
+
 /* leaf */ /*default right*/
 .ul-plant li {
   grid-row: span 2;
@@ -34,12 +38,12 @@
     inset 2px 2px 4px rgb(255 255 255 / .25),
     inset -2px -2px 4px rgb(0 0 0 / .25);
 }
- .ul-plant > li > span {
+ .ul-plant > li > span,  .ul-plant > li > a {
      transform: rotate(-45deg);
      max-width: calc(var(--leaf-length)*0.67);
      white-space: nowrap;
 }
- .ul-plant > li:nth-child(odd) > span {transform: rotate(45deg);}
+ .ul-plant > li:nth-child(odd) > span, .ul-plant > li:nth-child(odd) > a {transform: rotate(45deg);}
 
 /* leaf */ /*override left*/
 .ul-plant li:nth-child(odd) {
@@ -103,4 +107,5 @@
 }
 /* last vertical stem override */
 .ul-plant li:last-of-type::before{ height: 100% }
+.ul-plant li:last-of-type { margin-bottom: 100% }
 

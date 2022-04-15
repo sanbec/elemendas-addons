@@ -19,7 +19,7 @@ class Leaves_List extends \Elementor\Widget_Base {
 	}
 
 	public function get_icon() {
-		return 'fab fa-envira';
+		return 'elm elm-plant';
 	}
 	public function get_custom_help_url() {
 		return 'https://elemendas.com/widgets-y-extensiones/';
@@ -66,42 +66,73 @@ class Leaves_List extends \Elementor\Widget_Base {
         $this->start_controls_section(
 			'section_leaveslist_content',
 			[
-				'label' => esc_html_x( 'Leaves List', 'Widget Name', 'elemendas-addons' ),
+				'label' => esc_html_x( 'Leaves List', 'Editor content section title', 'elemendas-addons' ),
                 'tab' => Controls_Manager::TAB_CONTENT,
 			]
 		);
-        $this->add_control(
+
+		$leaf = new \Elementor\Repeater();
+		$leaf->add_control(
+			'leaf_text',
+			[
+				'label' => esc_html__( 'Text', 'elemendas-addons' ),
+				'type' => Controls_Manager::TEXT,
+				'placeholder' => esc_html__( 'Leaf', 'elemendas-addons' ),
+				'default' => esc_html__( 'Leaf', 'elemendas-addons' ),
+			]
+		);
+		$leaf->add_control(
+			'leaf_link',
+			[
+				'label' => esc_html__( 'Link', 'elemendas-addons' ),
+				'type' => Controls_Manager::URL,
+				'placeholder' => esc_html__( 'https://your-link.com', 'elemendas-addons' ),
+			]
+		);
+		$this->add_control(
 			'leaves',
 			[
-				'label' => esc_html__( 'Leaves List', 'elemendas-addons' ),
-				'type' => \Elementor\Controls_Manager::REPEATER,
-				'fields' => [
-					[
-						'name' => 'text',
-						'label' => esc_html__( 'Text', 'elemendas-addons' ),
-						'type' => \Elementor\Controls_Manager::TEXT,
-						'placeholder' => esc_html__( 'Leaf', 'elemendas-addons' ),
-						'default' => esc_html__( 'Leaf', 'elemendas-addons' ),
-					],
-				],
+				'label' => esc_html__( 'Leaves', 'elemendas-addons' ),
+				'type' => Controls_Manager::REPEATER,
+				'fields' => $leaf->get_controls(),
 				'default' => [
 					[
-						'text' => esc_html__( 'Leaf #1', 'elemendas-addons' ),
+						'leaf_text' => esc_html__( 'Leaf #1', 'elemendas-addons' ),
 					],
 					[
-						'text' => esc_html__( 'Leaf #2', 'elemendas-addons' ),
+						'leaf_text' => esc_html__( 'Leaf #2', 'elemendas-addons' ),
 					],
 					[
-						'text' => esc_html__( 'Leaf #3', 'elemendas-addons' ),
+						'leaf_text' => esc_html__( 'Leaf #3', 'elemendas-addons' ),
 					],
-					[
-						'text' => esc_html__( 'Leaf #4', 'elemendas-addons' ),
+				],
+				'title_field' => '{{{ leaf_text }}}',
+			]
+		);
+		$this->add_responsive_control(
+			'align',
+			[
+				'label' => esc_html__( 'Alignment', 'elementor' ),
+				'type' => Controls_Manager::CHOOSE,
+				'options' => [
+					'margin-right' => [
+						'title' => esc_html__( 'Left', 'elementor' ),
+						'icon' => 'eicon-text-align-left',
 					],
-									[
-						'text' => esc_html__( 'Leaf #5', 'elemendas-addons' ),
+					'margin' => [
+						'title' => esc_html__( 'Center', 'elementor' ),
+						'icon' => 'eicon-text-align-center',
 					],
-],
-				'title_field' => '{{{ text }}}',
+					'margin-left' => [
+						'title' => esc_html__( 'Right', 'elementor' ),
+						'icon' => 'eicon-text-align-right',
+					],
+				],
+				'default' => 'margin',
+				'separator' => 'before',
+				'selectors' => [
+					'{{WRAPPER}} ul.ul-plant' => 'margin: unset; {{VALUE}}: auto;',
+				],
 			]
 		);
 
@@ -113,15 +144,183 @@ class Leaves_List extends \Elementor\Widget_Base {
 /*******************
  * BEGIN Style Tab *
  *******************/
+
 		$this->start_controls_section(
 			'section_leaveslist_style',
 			[
-				'label' => esc_html__( 'Search string highlighting', 'elemendas-addons' ),
+				'label' => esc_html__( 'Plant', 'elemendas-addons' ),
 				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
 
 		// BEGIN Leaveslist Controls
+
+		$this->add_control(
+			'leaf_length',
+			[
+				'type' => Controls_Manager::SLIDER,
+				'label' => esc_html__( 'Leaf length', 'elemendas-addons' ),
+   				'size_units' => ['px'],
+				'range' => [
+					'px' => [
+						'min' => 80,
+						'max' => 250,
+					],
+				],
+				'default' => [
+					'unit' => 'px',
+					'size' => 100,
+				],
+				'selectors' => [
+					'{{WRAPPER}} ul.ul-plant' => '--leaf-length: {{SIZE}}{{UNIT}};',
+				],
+			]
+		);
+
+		$this->add_control(
+			'leaf_width',
+			[
+				'type' => Controls_Manager::SLIDER,
+				'label' => esc_html__( 'Leaf width', 'elemendas-addons' ),
+   				'size_units' => ['%'],
+				'range' => [
+					'%' => [
+						'min' => 50,
+						'max' => 100,
+					],
+				],
+				'default' => [
+					'unit' => '%',
+					'size' => 70,
+				],
+				'selectors' => [
+					'{{WRAPPER}} ul.ul-plant' => '--leaf-width: {{SIZE}}{{UNIT}};',
+				],
+			]
+		);
+
+		$this->add_control(
+			'leaf_gap',
+			[
+				'type' => Controls_Manager::SLIDER,
+				'label' => esc_html__( 'Leaf gap', 'elemendas-addons' ),
+   				'size_units' => ['px'],
+				'range' => [
+					'px' => [
+						'min' => 20,
+						'max' => 200,
+					],
+				],
+				'default' => [
+					'unit' => 'px',
+					'size' => 20,
+				],
+				'selectors' => [
+					'{{WRAPPER}} ul.ul-plant' => '--col-gap: {{SIZE}}{{UNIT}};',
+				],
+			]
+		);
+
+
+		$this->add_control(
+			'stem_width',
+			[
+				'type' => Controls_Manager::SLIDER,
+				'label' => esc_html__( 'Stem width', 'elemendas-addons' ),
+   				'size_units' => ['px'],
+				'range' => [
+					'px' => [
+						'min' => 4,
+						'max' => 15,
+					],
+				],
+				'default' => [
+					'unit' => 'px',
+					'size' => 8,
+				],
+				'selectors' => [
+					'{{WRAPPER}} ul.ul-plant' => '--stem-width: {{SIZE}}{{UNIT}};',
+				],
+			]
+		);
+
+		$this->add_control(
+			'plant_color',
+			[
+				'label' => esc_html__( 'Plant color', 'elemendas-addons' ),
+				'type' => Controls_Manager::COLOR,
+				'default' => '#2c3',
+				'selectors' => [
+					'{{WRAPPER}} ul.ul-plant' => '--leaf-color: {{VALUE}};',
+				],
+			]
+		);
+		$this->end_controls_section();
+		// END Plant style section
+
+		// BEGIN Text style section
+		$this->start_controls_section(
+			'section_text_style',
+			[
+				'label' => esc_html__( 'Text', 'elementor' ),
+				'tab' => Controls_Manager::TAB_STYLE,
+			]
+		);
+
+		// Text Color
+
+		$this->add_control(
+			'leaves_text_color',
+			[
+				//translators: Don't worry about this string, it will actually take it from Elementor's translation file for consistency.
+				'label' => esc_html__( 'Text Color', 'elementor' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} ul.ul-plant > li span' => 'color: {{VALUE}};',
+				],
+			]
+		);
+
+		// Background Color
+
+		$this->add_control(
+			'leaves_text_bgcolor',
+			[
+				//translators: Don't worry about this string, it will actually take it from Elementor's translation file for consistency.
+				'label' => esc_html__( 'Background Color', 'elementor' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} ul.ul-plant > li span' => 'background-color: {{VALUE}};',
+				],
+			]
+		);
+
+		$this->add_group_control(
+			Group_Control_Typography::get_type(),
+			[
+				'name' => 'leaves_text_typography',
+				'selector' => '{{WRAPPER}} ul.ul-plant > li span',
+			]
+		);
+
+		$this->add_group_control(
+			Group_Control_Text_Stroke::get_type(),
+			[
+				'name' => 'leaves_text_stroke',
+				'selector' => '{{WRAPPER}} ul.ul-plant > li span',
+			]
+		);
+
+		$this->add_group_control(
+			Group_Control_Text_Shadow::get_type(),
+			[
+				'name' => 'leaves_text_shadow',
+				'selector' => '{{WRAPPER}} ul.ul-plant > li span',
+			]
+		);
+		// END Text Style Search Results Controls
+
+
 
 
 
@@ -132,13 +331,20 @@ class Leaves_List extends \Elementor\Widget_Base {
 	} // END protected function register_controls
 
 
+
 	protected function render() {
 		$settings = $this->get_settings_for_display();
         ?>
 		<ul class="ul-plant">
 		<?php foreach ( $settings['leaves'] as $index => $item ) : ?>
 			<li>
-                <span><?php echo $item['text'];?></span>
+				<?php
+				if ( ! $item['leaf_link']['url'] ) {
+					echo '<span>'.$item['leaf_text'].'</span>';
+				} else {
+					?><a href="<?php echo esc_url( $item['leaf_link']['url'] ); ?>"><span><?php echo $item['leaf_text']; ?></span></a><?php
+				}
+				?>
 			</li>
 		<?php endforeach; ?>
 		</ul>
@@ -153,7 +359,11 @@ class Leaves_List extends \Elementor\Widget_Base {
 			_.each( settings.leaves, function( item, index ) {
 			#>
 			<li>
-                <span>{{{ item.text }}}</span>
+				<# if ( item.leaf_link && item.leaf_link.url ) { #>
+					<a href="{{{ item.leaf_link.url }}}"><span>{{{ item.leaf_text }}}</span></a>
+				<# } else { #>
+				<span>{{{ item.leaf_text }}}</span>
+				<# } #>
 			</li>
 			<#
 			} );

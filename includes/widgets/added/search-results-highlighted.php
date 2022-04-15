@@ -19,7 +19,7 @@ class Search_Results_Highlighted extends \Elementor\Widget_Heading {
 	}
 
 	public function get_icon() {
-		return 'fas fa-highlighter';
+		return 'elm elm-highlighter';
 	}
 	
 	public function get_custom_help_url() {
