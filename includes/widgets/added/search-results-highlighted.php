@@ -140,7 +140,7 @@ $this->start_controls_section(
 			'search_string_highlight_separately',
 			[
 				'label' => esc_html__( 'Highlight each word separately', 'elemendas-addons' ),
-				'type' => \Elementor\Controls_Manager::SWITCHER,
+				'type' => Controls_Manager::SWITCHER,
 				'label_on' => esc_html__( 'Yes', 'elemendas-addons' ),
 				'label_off' => esc_html__( 'No', 'elemendas-addons' ),
 				'return_value' => 'yes',

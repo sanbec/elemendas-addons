@@ -5,7 +5,6 @@ use Elementor\Icons_Manager;
 use Elementor\Controls_Manager;
 use Elementor\Control_Media;
 use Elementor\Group_Control_Typography;
-use Elementor\Group_Control_Image_Size;
 use Elementor\Group_Control_Text_Shadow;
 use Elementor\Group_Control_Border;
 use Elementor\Core\Kits\Documents\Tabs\Global_Colors;
@@ -98,9 +97,9 @@ class Carousel_3D extends \Elementor\Widget_Base {
 	 */
 	protected function register_controls() {
 		$this->start_controls_section(
-			'section_image_carousel',
+			'section_carousel_images',
 			[
-				'label' => esc_html__( 'Image Carousel', 'elemendas-addons' ),
+				'label' => esc_html__( 'Carousel images', 'elemendas-addons' ),
 			]
 		);
 
@@ -109,7 +108,28 @@ class Carousel_3D extends \Elementor\Widget_Base {
 			[
 				'label' => esc_html__( 'Add Images', 'elementor' ),
 				'type' => Controls_Manager::GALLERY,
-				'default' => [],
+				'default' => [
+					[
+						'id' => 0,
+						'url' =>  plugins_url('elementor/assets/images/placeholder.png','elementor')
+					],
+					[
+						'id' => 0,
+						'url' =>  plugins_url('elementor/assets/images/placeholder.png','elementor')
+					],
+					[
+						'id' => 0,
+						'url' =>  plugins_url('elementor/assets/images/placeholder.png','elementor')
+					],
+					[
+						'id' => 0,
+						'url' =>  plugins_url('elementor/assets/images/placeholder.png','elementor')
+					],
+					[
+						'id' => 0,
+						'url' =>  plugins_url('elementor/assets/images/placeholder.png','elementor')
+					],
+				],
 				'show_label' => false,
 				'dynamic' => [
 					'active' => true,
@@ -117,122 +137,204 @@ class Carousel_3D extends \Elementor\Widget_Base {
 			]
 		);
 
-		$this->add_group_control(
-			Group_Control_Image_Size::get_type(),
+		$this->add_control(
+			'image_width',
 			[
-				'name' => 'thumbnail', // Usage: `{name}_size` and `{name}_custom_dimension`, in this case `thumbnail_size` and `thumbnail_custom_dimension`.
-				'separator' => 'none',
+				'label' => esc_html__( 'Width', 'elementor' ),
+				'type' => Controls_Manager::SLIDER,
+   				'size_units' => ['px'],
+				'range' => [
+					'px' => [
+						'min' => 100,
+						'max' => 400,
+					],
+				],
+				'default' => [
+					'unit' => 'px',
+					'size' => 300,
+				],
+				'selectors' => [
+					'{{WRAPPER}} .elmadd-3Dcard' => 'width: {{SIZE}}{{UNIT}};',
+				],
+			]
+		);
+
+		$this->add_control(
+			'image_height',
+			[
+				'label' => esc_html__( 'Height', 'elementor' ),
+				'type' => Controls_Manager::SLIDER,
+   				'size_units' => ['px'],
+				'range' => [
+					'px' => [
+						'min' => 100,
+						'max' => 400,
+					],
+				],
+				'default' => [
+					'unit' => 'px',
+					'size' => 300,
+				],
+				'selectors' => [
+					'{{WRAPPER}} .elmadd-3Dcard' => 'height: {{SIZE}}{{UNIT}};',
+				],
 			]
 		);
 
 		$this->end_controls_section();
 
 		$this->start_controls_section(
-			'section_additional_options',
+			'section_carousel_settings',
 			[
-				'label' => esc_html__( 'Additional Options', 'elementor' ),
+				'label' => esc_html__( 'Carousel Settings', 'elemendas-addons' ),
 			]
 		);
 
 
 		$this->add_control(
-			'autoplay',
+			'carousel_width',
 			[
-				'label' => esc_html__( 'Autoplay', 'elementor' ),
-				'type' => Controls_Manager::SELECT,
-				'default' => 'yes',
-				'options' => [
-					'yes' => esc_html__( 'Yes', 'elementor' ),
-					'no' => esc_html__( 'No', 'elementor' ),
+				'label' => esc_html__( 'Width', 'elementor' ),
+				'type' => Controls_Manager::SLIDER,
+   				'size_units' => ['%'],
+				'range' => [
+					'%' => [
+						'min' => 33,
+						'max' => 100,
+					],
 				],
-				'frontend_available' => true,
+				'default' => [
+					'unit' => '%',
+					'size' => 100,
+				],
+				'selectors' => [
+					'{{WRAPPER}} .elmadd-carousel3D' => 'width: {{SIZE}}{{UNIT}};',
+				],
 			]
 		);
+
+		$this->add_control(
+			'carousel_height',
+			[
+				'label' => esc_html__( 'Height', 'elementor' ),
+				'type' => Controls_Manager::SLIDER,
+   				'size_units' => ['vh'],
+				'range' => [
+					'vh' => [
+						'min' => 20,
+						'max' => 100,
+					],
+				],
+				'default' => [
+					'unit' => 'vh',
+					'size' => 50,
+				],
+				'selectors' => [
+					'{{WRAPPER}} .elmadd-carousel3D' => 'height: {{SIZE}}{{UNIT}};',
+				],
+			]
+		);
+
+
+		$this->add_control(
+			'radius',
+			[
+				'label' => esc_html__( 'Carousel Radius', 'elemendas-addons' ),
+				'type' => Controls_Manager::SLIDER,
+   				'size_units' => ['px'],
+				'range' => [
+					'px' => [
+						'min' => 100,
+						'max' => 400,
+					],
+				],
+				'default' => [
+					'unit' => 'px',
+					'size' => 300,
+				],
+				'selectors' => [
+					'{{WRAPPER}} .elmadd-carousel3D' => '--z-translation: {{SIZE}}{{UNIT}};',
+				],
+			]
+		);
+		$this->add_control(
+			'perspective',
+			[
+				'label' => esc_html__( 'Perspective', 'elemendas-addons' ),
+				'type' => Controls_Manager::SLIDER,
+   				'size_units' => ['vw'],
+				'range' => [
+					'vw' => [
+						'min' => 40,
+						'max' => 300,
+					],
+				],
+				'default' => [
+					'unit' => 'vw',
+					'size' => 100,
+				],
+				'selectors' => [
+					'{{WRAPPER}} .elmadd-carousel3D' => 'perspective: {{SIZE}}{{UNIT}};',
+				],
+			]
+		);
+
 
 		$this->add_control(
 			'pause_on_hover',
 			[
 				'label' => esc_html__( 'Pause on Hover', 'elementor' ),
-				'type' => Controls_Manager::SELECT,
-				'default' => 'yes',
-				'options' => [
-					'yes' => esc_html__( 'Yes', 'elementor' ),
-					'no' => esc_html__( 'No', 'elementor' ),
+				'type' => Controls_Manager::SWITCHER,
+				'default' => 'no',
+				'return_value' => 'paused',
+				'label_on' => esc_html__( 'Yes', 'elemendas-addons' ),
+				'label_off' => esc_html__( 'No', 'elemendas-addons' ),
+				'selectors' => [
+					'{{WRAPPER}} .elmadd-3Dcards-div:hover' => 'animation-play-state: {{VALUE}};',
 				],
-				'condition' => [
-					'autoplay' => 'yes',
-				],
-				'render_type' => 'none',
-				'frontend_available' => true,
-			]
-		);
-
-		$this->add_control(
-			'pause_on_interaction',
-			[
-				'label' => esc_html__( 'Pause on Interaction', 'elementor' ),
-				'type' => Controls_Manager::SELECT,
-				'default' => 'yes',
-				'options' => [
-					'yes' => esc_html__( 'Yes', 'elementor' ),
-					'no' => esc_html__( 'No', 'elementor' ),
-				],
-				'condition' => [
-					'autoplay' => 'yes',
-				],
-				'frontend_available' => true,
 			]
 		);
 
 		$this->add_control(
 			'autoplay_speed',
 			[
-				'label' => esc_html__( 'Autoplay Speed', 'elementor' ),
-				'type' => Controls_Manager::NUMBER,
-				'default' => 5000,
-				'condition' => [
-					'autoplay' => 'yes',
+				'label' => esc_html__( 'Rotation Speed (rpm)', 'elemendas-addons' ),
+				'type' => Controls_Manager::SLIDER,
+   				'size_units' => ['rpm'],
+				'range' => [
+					'rpm' => [
+						'min' => 3,
+						'max' => 15,
+					],
 				],
-				'render_type' => 'none',
-				'frontend_available' => true,
-			]
-		);
-
-		// Loop requires a re-render so no 'render_type = none'
-		$this->add_control(
-			'infinite',
-			[
-				'label' => esc_html__( 'Infinite Loop', 'elementor' ),
-				'type' => Controls_Manager::SELECT,
-				'default' => 'yes',
-				'options' => [
-					'yes' => esc_html__( 'Yes', 'elementor' ),
-					'no' => esc_html__( 'No', 'elementor' ),
+				'default' => [
+					'unit' => 'rpm',
+					'size' => 5,
 				],
-				'frontend_available' => true,
-			]
-		);
-
-		$this->add_control(
-			'speed',
-			[
-				'label' => esc_html__( 'Animation Speed', 'elementor' ),
-				'type' => Controls_Manager::NUMBER,
-				'default' => 500,
-				'render_type' => 'none',
-				'frontend_available' => true,
+				'selectors' => [
+					'{{WRAPPER}} .elmadd-carousel3D' => '--rpm: {{SIZE}};',
+				],
 			]
 		);
 
 		$this->add_control(
 			'direction',
 			[
-				'label' => esc_html__( 'Direction', 'elementor' ),
-				'type' => Controls_Manager::SELECT,
-				'default' => 'ltr',
+				'label' => esc_html__( 'Direction of rotation', 'elemendas-addons' ),
+				'type' => Controls_Manager::CHOOSE,
 				'options' => [
-					'ltr' => esc_html__( 'Left', 'elementor' ),
-					'rtl' => esc_html__( 'Right', 'elementor' ),
+					'reverse' => [
+						'title' => esc_html__( 'Left', 'elementor' ),
+						'icon' => ' eicon-arrow-left',
+					],
+					'normal' => [
+						'title' => esc_html__( 'Right', 'elementor' ),
+						'icon' => ' eicon-arrow-right',
+					],
+				],
+				'default' => 'normal',
+				'selectors' => [
+					'{{WRAPPER}} .elmadd-3Dcards-div' => 'animation-direction: {{VALUE}};',
 				],
 			]
 		);
@@ -247,72 +349,11 @@ class Carousel_3D extends \Elementor\Widget_Base {
 			]
 		);
 
-		$this->add_responsive_control(
-			'gallery_vertical_align',
-			[
-				'label' => esc_html__( 'Vertical Align', 'elementor' ),
-				'type' => Controls_Manager::CHOOSE,
-				'options' => [
-					'flex-start' => [
-						'title' => esc_html__( 'Start', 'elementor' ),
-						'icon' => 'eicon-v-align-top',
-					],
-					'center' => [
-						'title' => esc_html__( 'Center', 'elementor' ),
-						'icon' => 'eicon-v-align-middle',
-					],
-					'flex-end' => [
-						'title' => esc_html__( 'End', 'elementor' ),
-						'icon' => 'eicon-v-align-bottom',
-					],
-				],
-				'selectors' => [
-					'{{WRAPPER}} .swiper-wrapper' => 'display: flex; align-items: {{VALUE}};',
-				],
-			]
-		);
-
-		$this->add_control(
-			'image_spacing',
-			[
-				'label' => esc_html__( 'Spacing', 'elementor' ),
-				'type' => Controls_Manager::SELECT,
-				'options' => [
-					'' => esc_html__( 'Default', 'elementor' ),
-					'custom' => esc_html__( 'Custom', 'elementor' ),
-				],
-				'default' => '',
-			]
-		);
-
-		$this->add_control(
-			'image_spacing_custom',
-			[
-				'label' => esc_html__( 'Image Spacing', 'elementor' ),
-				'type' => Controls_Manager::SLIDER,
-				'range' => [
-					'px' => [
-						'max' => 100,
-					],
-				],
-				'default' => [
-					'size' => 20,
-				],
-				'show_label' => false,
-				'condition' => [
-					'image_spacing' => 'custom',
-				],
-				'frontend_available' => true,
-				'render_type' => 'none',
-				'separator' => 'after',
-			]
-		);
-
 		$this->add_group_control(
 			Group_Control_Border::get_type(),
 			[
 				'name' => 'image_border',
-				'selector' => '{{WRAPPER}} .elementor-image-carousel-wrapper .elementor-image-carousel .swiper-slide-image',
+				'selector' => '{{WRAPPER}} .elmadd-3Dcard',
 			]
 		);
 
@@ -323,7 +364,7 @@ class Carousel_3D extends \Elementor\Widget_Base {
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%' ],
 				'selectors' => [
-					'{{WRAPPER}} .elementor-image-carousel-wrapper .elementor-image-carousel .swiper-slide-image' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .elmadd-3Dcard' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 			]
 		);
@@ -352,14 +393,9 @@ class Carousel_3D extends \Elementor\Widget_Base {
 		$rotateInc = 360 / $slides_count;
 		$rotateY = 0;
 
-		foreach ( $settings['carousel'] as $index => $attachment ) {
-			$image_url = Group_Control_Image_Size::get_attachment_image_src( $attachment['id'], 'thumbnail', $settings );
-
-			if ( ! $image_url && isset( $attachment['url'] ) ) {
-				$image_url = $attachment['url'];
-			}
-
-			$image_html = '<div class="elmadd-3Dcard card1" style="background-image: url(\'' . esc_attr( $image_url ) . '\'); transform: rotateY('.$rotateY.'deg) translateZ(var(--z-translation));" /></div>';
+		foreach ( $settings['carousel'] as $image) {
+			$image_url = esc_attr( $image['url'] );
+			$image_html = '<div class="elmadd-3Dcard" style="background-image: url(\'' . esc_attr( $image_url ) . '\'); transform: rotateY('.$rotateY.'deg) translateZ(var(--z-translation));" /></div>';
 			$rotateY += $rotateInc;
 
 			$slides[] = $image_html;
@@ -373,14 +409,14 @@ class Carousel_3D extends \Elementor\Widget_Base {
 			'carousel' => [
 				'class' => 'elmadd-carousel3D',
 			],
-			'cards' => [
+			'cards-div' => [
 				'class' => 'elmadd-3Dcards-div',
 			],
 		] );
 
 		?>
 		<div <?php $this->print_render_attribute_string( 'carousel' ); ?>>
-			<div <?php $this->print_render_attribute_string( 'cards' ); ?>>
+			<div <?php $this->print_render_attribute_string( 'cards-div' ); ?>>
 				<?php // PHPCS - $slides contains the slides content, all the relevent content is escaped above. ?>
 				<?php echo implode( '', $slides ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 			</div>

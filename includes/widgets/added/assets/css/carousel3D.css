@@ -1,11 +1,12 @@
 /* CSS for the frontend */
 
 .elmadd-carousel3D {
-  --z-translation: 400px;
-  margin: 0 auto;
-  height: 500px;
-  width: 90%;
-  perspective: 2000px;
+  --z-translation: 400px;  /* Carousel radius */
+  --rpm: 5;                /* Rotation speed  */
+  margin: 0 auto;          /* Carousel align  */
+  height: 500px;           /* Carousel height */
+  width: 90%;              /* Carousel width  */
+  perspective: 100vw;      /* Perspective     */
   overflow: hidden;
 }
 
@@ -17,7 +18,8 @@
   align-items: center;
   position: relative;
   transform-style: preserve-3d;
-  animation: move 10s infinite linear;
+  animation: rotate 12s infinite linear;
+  animation-duration: calc(60s/var(--rpm));
 }
 
 .elmadd-3Dcard {
@@ -28,11 +30,10 @@
   background-position: center;
   -webkit-box-reflect: below 10px
     linear-gradient(rgba(255, 255, 255, 0.226), rgba(255, 255, 255, 0.151));
-    border: 1px solid;
 }
 
 
-@keyframes move {
+@keyframes rotate {
   to {
     transform: rotateY(360deg);
   }
