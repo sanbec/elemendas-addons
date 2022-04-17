@@ -1,18 +1,21 @@
 /* CSS used to customize controls styles at the editor bar */ 
 
+/* Styling the Highlighter Control Label*/
 [class*="highlighter_toggle"] label.elementor-control-title {
   box-shadow: inset 0px -5px #0f07;
 }
+/* Styling the Underline Control Label*/
 [class*="underline_toggle"] label.elementor-control-title {
   text-decoration: underline blue wavy;
 }
+/* Styling the Quotation Marks Control Label*/
 [class*="elementor-control-quotation_marks"] label.elementor-control-title::before {
   content: "«";
 }
 [class*="elementor-control-quotation_marks"] label.elementor-control-title::after {
   content: "»";
 }
-
+/* Styling the Elemendas Warning Alert*/
 .elementor-control-raw-html.elementor-panel-alert.elementor-panel-alert-warning.elemendas-warning {
   font-style: normal;
   color: black;
@@ -21,7 +24,9 @@
   list-style-type: decimal;
   margin-left: 1em;
 }
-
+/*************************************
+ * 'elemendas' font for editor icons *
+ *************************************/
 @font-face {
   font-family: 'elemendas';
   src:
@@ -32,6 +37,7 @@
   font-style: normal;
   font-display: block;
 }
+/* Hack to brand the Elemendas Addons Widgets */
 .elementor-panel .elementor-element .icon i.elm::after {
   position: absolute;
   top: 5px;
@@ -40,7 +46,8 @@
   font-size: 15px;
   opacity: .5;
 }
-.elementor-panel .elementor-element .icon i.elm {
+
+i.elm {
   /* use !important to prevent issues with browser extensions that change fonts */
   font-family: 'elemendas' !important;
   speak: never;
@@ -48,13 +55,12 @@
   font-weight: normal;
   font-variant: normal;
   text-transform: none;
-  line-height: 1;
+/*  line-height: 1;*/
 
   /* Better Font Rendering =========== */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
 .elm-elemendas:before {
   content: "\e900";
 }
@@ -66,4 +72,10 @@
 }
 .elm-plant:before {
   content: "\e903";
+}
+.elm-noborder:before {
+  content: "";
+}
+.elm-border:before {
+  content: "\e900";
 }

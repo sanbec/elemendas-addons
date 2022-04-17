@@ -13,7 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * @since 1.0.0
  */
-class Elemendas_Highlighter_Control extends \Elementor\Control_Base_Multiple {
+class Highlighter_Control extends \Elementor\Control_Base_Multiple {
 
 	/**
 	 * Get highlighter control type.

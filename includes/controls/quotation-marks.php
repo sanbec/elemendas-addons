@@ -13,7 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * @since 1.0.0
  */
-class Elemendas_Quotation_Control extends \Elementor\Control_Base_Multiple {
+class Quotation_Control extends \Elementor\Control_Base_Multiple {
 
 	/**
 	 * Get quotation marks control type.

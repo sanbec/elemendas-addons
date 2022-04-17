@@ -6,7 +6,6 @@ use Elementor\Controls_Manager;
 use Elementor\Control_Media;
 use Elementor\Group_Control_Typography;
 use Elementor\Group_Control_Text_Shadow;
-use Elementor\Group_Control_Border;
 use Elementor\Core\Kits\Documents\Tabs\Global_Colors;
 use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
 
@@ -344,28 +343,61 @@ class Carousel_3D extends \Elementor\Widget_Base {
 		$this->start_controls_section(
 			'section_style_image',
 			[
-				'label' => esc_html__( 'Image', 'elementor' ),
+				'label' => esc_html__( 'Image border', 'elemendas-addons' ),
 				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
 
-		$this->add_group_control(
-			Group_Control_Border::get_type(),
+		$this->add_control(
+			'border_style',
 			[
-				'name' => 'image_border',
-				'selector' => '{{WRAPPER}} .elmadd-3Dcard',
+				'label' => esc_html__( 'Style', 'elementor' ),
+				'type' => 'border-style',
+				'default' => '',
+				'selectors' => [
+					'{{WRAPPER}} .elmadd-3Dcard' => 'border-style: {{VALUE}};',
+				],
 			]
 		);
 
 		$this->add_control(
+			'image_border_width',
+			[
+				'label' => esc_html__( 'Width', 'elementor' ),
+				'type' => Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', '%' ],
+				'selectors' => [
+					'{{WRAPPER}} .elmadd-3Dcard' => 'border-width: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+				'condition' => [
+					'image_border_style!' => '',
+				],
+			]
+		);
+		$this->add_control(
+			'image_border_color',
+			[
+				//translators: Don't worry about this string, it will actually take it from Elementor's translation file for consistency.
+				'label' => esc_html__( 'Color', 'elementor' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .elmadd-3Dcard' => 'border-color: {{VALUE}};',
+				],
+				'condition' => [
+					'image_border_style!' => '',
+				],
+			]
+		);
+		$this->add_control(
 			'image_border_radius',
 			[
-				'label' => esc_html__( 'Border Radius', 'elementor' ),
+				'label' => esc_html__( 'Radius', 'elementor' ),
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%' ],
 				'selectors' => [
 					'{{WRAPPER}} .elmadd-3Dcard' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
+				'separator' => 'before',
 			]
 		);
 

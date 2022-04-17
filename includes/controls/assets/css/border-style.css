@@ -1,0 +1,51 @@
+/* CSS used to customize the border-style control style at the editor bar */
+
+.elementor-control-type-border-style .elementor-control-field {
+  flex-wrap: wrap;
+  row-gap: 0.5rem;
+  justify-content: center; /* Aligns choices to center */
+}
+.elementor-control-type-border-style label.elementor-control-title {
+  margin-right: auto; /* Aligns label title to left, and choices to right (superseedes choices alignement when in same row) */
+}
+.elementor-control-type-border-style .elementor-choices {
+  --e-elementor-control-lateral-padding: 20px;
+  --full-width-cell-size: calc((var(--e-editor-panel-width) - 2 * var(--e-elementor-control-lateral-padding)) / 5 );
+  --max-cell-size: 38px;
+  --cell-size: calc(min(var(--full-width-cell-size),var(--max-cell-size)));
+
+  height: var(--cell-size);
+  line-height: calc(var(--cell-size) - 2px);
+}
+.elementor-control-type-border-style .elementor-choices > .elementor-choices-label {
+  font-size: calc(var(--cell-size) * 0.7 - 6px);
+  width: var(--cell-size);
+}
+/* Special 'elemendas' icon font rules for border control */
+i.elm-border {
+  border-width:3px;
+  border-color:black;
+  color:transparent;
+}
+.elm-solid {
+  border-style: solid;
+}
+.elm-dashed {
+  border-style: dashed;
+}
+.elm-dotted {
+  border-style: dotted;
+}
+.elm-double {
+  border-style: double;
+}
+i.elm-border.elm-ridge {
+  border-style: ridge;
+  border-width: 6px;
+  font-size: calc(var(--cell-size) * 0.7 - 10px);
+}
+i.elm-border.elm-groove {
+  border-style: groove;
+  border-width: 6px;
+  font-size: calc(var(--cell-size) * 0.7 - 10px);
+}

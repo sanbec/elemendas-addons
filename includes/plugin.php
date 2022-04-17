@@ -344,10 +344,13 @@ final class Plugin {
 	 */
 	public function register_controls( $controls_manager ) {
 		require_once( __DIR__ . '/controls/quotation-marks.php' );
-		$controls_manager->register( new Elemendas_Quotation_Control() );
+		$controls_manager->register( new Quotation_Control() );
 
 		require_once( __DIR__ . '/controls/highlighter.php' );
-		$controls_manager->register( new Elemendas_Highlighter_Control() );
+		$controls_manager->register( new Highlighter_Control() );
+
+		require_once( __DIR__ . '/controls/border-style.php' );
+		$controls_manager->register( new Border_Style_Control() );
 	}
 	
 	public function elemendas_init_extensions(  ) {
