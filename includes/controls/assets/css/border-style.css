@@ -27,6 +27,12 @@ i.elm-border {
   border-color:black;
   color:transparent;
 }
+.elm-noborder:before {
+  content: "";
+}
+.elm-border:before {
+  content: "\e900";
+}
 .elm-solid {
   border-style: solid;
 }
@@ -39,13 +45,24 @@ i.elm-border {
 .elm-double {
   border-style: double;
 }
-i.elm-border.elm-ridge {
-  border-style: ridge;
-  border-width: 6px;
+i.elm-border-outdated {
+  border-width:6px;
+  border-color:black;
+  color:transparent;
   font-size: calc(var(--cell-size) * 0.7 - 10px);
 }
-i.elm-border.elm-groove {
+.elm-border-outdated:before {
+  content: "\e900";
+}
+.elm-ridge {
+  border-style: ridge;
+}
+.elm-groove {
   border-style: groove;
-  border-width: 6px;
-  font-size: calc(var(--cell-size) * 0.7 - 10px);
+}
+.elm-inset {
+  border-style: inset;
+}
+.elm-outset {
+  border-style: outset;
 }

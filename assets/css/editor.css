@@ -73,9 +73,3 @@ i.elm {
 .elm-plant:before {
   content: "\e903";
 }
-.elm-noborder:before {
-  content: "";
-}
-.elm-border:before {
-  content: "\e900";
-}

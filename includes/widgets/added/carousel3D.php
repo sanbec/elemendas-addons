@@ -349,7 +349,7 @@ class Carousel_3D extends \Elementor\Widget_Base {
 		);
 
 		$this->add_control(
-			'border_style',
+			'image_border_style',
 			[
 				'label' => esc_html__( 'Style', 'elementor' ),
 				'type' => 'border-style',
