@@ -93,13 +93,18 @@ class Border_Style_Control extends \Elementor\Base_Data_Control {
 			<label class="elementor-control-title">{{{ data.label }}}</label>
 			<div class="elementor-choices">
 			<#
-			var includedStyles = [];
+			var includedStyles;
 			if (_.isEmpty(data.include)) {
 				includedStyles = ['solid','double','dotted','dashed']; // default styles displayed
 			} else {
 				includedStyles = data.include;
 			}
-			var enabled_options = _.pick(data.options, includedStyles);
+			var enabled_options;
+			if ('all'==includedStyles) {
+				enabled_options = data.options;
+			} else {
+				enabled_options = _.pick(data.options, includedStyles);
+			}
 			_.each( enabled_options, function( options, value ) { #>
 				<input id="<?php $this->print_control_uid( $control_uid_input_type ); ?>" type="radio" name="elementor-choose-{{ data.name }}-{{ data._cid }}" value="{{ value }}">
 				<label class="elementor-choices-label tooltip-target" for="<?php $this->print_control_uid( $control_uid_input_type ); ?>" data-tooltip="{{ options.title }}" title="{{ options.title }}">
