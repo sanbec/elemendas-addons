@@ -28,8 +28,7 @@
   position: absolute;
   background-size: cover;
   background-position: center;
-  -webkit-box-reflect: below 10px
-    linear-gradient(rgba(255, 255, 255, 0.226), rgba(255, 255, 255, 0.151));
+  background-clip: padding-box;
 }
 
 

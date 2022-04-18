@@ -291,6 +291,7 @@ class Carousel_3D extends \Elementor\Widget_Base {
 				'selectors' => [
 					'{{WRAPPER}} .elmadd-3Dcards-div:hover' => 'animation-play-state: {{VALUE}};',
 				],
+				'separator' => 'before',
 			]
 		);
 
@@ -313,6 +314,7 @@ class Carousel_3D extends \Elementor\Widget_Base {
 				'selectors' => [
 					'{{WRAPPER}} .elmadd-carousel3D' => '--rpm: {{SIZE}};',
 				],
+				'separator' => 'before',
 			]
 		);
 
@@ -335,6 +337,23 @@ class Carousel_3D extends \Elementor\Widget_Base {
 				'selectors' => [
 					'{{WRAPPER}} .elmadd-3Dcards-div' => 'animation-direction: {{VALUE}};',
 				],
+			]
+		);
+
+		$this->add_control(
+			'show_reflect',
+			[
+				'label' => esc_html__( 'Show image reflect', 'elementor' ),
+				'type' => Controls_Manager::SWITCHER,
+				'return_value' => 'paused',
+				'label_on' => esc_html__( 'Yes', 'elemendas-addons' ),
+				'label_off' => esc_html__( 'No', 'elemendas-addons' ),
+				'selectors' => [
+					'{{WRAPPER}} .elmadd-3Dcard' => '  -webkit-box-reflect: below 10px linear-gradient(rgba(255, 255, 255, 0.226), rgba(255, 255, 255, 0.151));',
+				],
+				'separator' => 'before',
+				'description' =>  __('Note: This feature is not a CSS standard and will not work in all browsers.', 'elemendas-addons'),
+
 			]
 		);
 
