@@ -8,19 +8,35 @@
 .elementor-control-type-border-style label.elementor-control-title {
   margin-right: auto; /* Aligns label title to left, and choices to right (superseedes choices alignement when in same row) */
 }
-.elementor-control-type-border-style .elementor-choices {
-  --e-elementor-control-lateral-padding: 20px;
+
+.elementor-control-type-border-style label.elementor-choices-label:first-of-type:nth-last-of-type(6),
+.elementor-control-type-border-style label.elementor-choices-label:first-of-type:nth-last-of-type(6) ~ label {
+  --full-width-cell-size: calc((var(--e-editor-panel-width) - 2 * var(--e-elementor-control-lateral-padding)) / 6 );
+}
+.elementor-control-type-border-style label.elementor-choices-label:first-of-type:nth-last-of-type(7),
+.elementor-control-type-border-style label.elementor-choices-label:first-of-type:nth-last-of-type(7) ~ label {
+  --full-width-cell-size: calc((var(--e-editor-panel-width) - 2 * var(--e-elementor-control-lateral-padding)) / 7 );
+}
+.elementor-control-type-border-style label.elementor-choices-label:first-of-type:nth-last-of-type(8),
+.elementor-control-type-border-style label.elementor-choices-label:first-of-type:nth-last-of-type(8) ~ label {
+  --full-width-cell-size: calc((var(--e-editor-panel-width) - 2 * var(--e-elementor-control-lateral-padding)) / 8 );
+}
+.elementor-control-type-border-style label.elementor-choices-label {
   --full-width-cell-size: calc((var(--e-editor-panel-width) - 2 * var(--e-elementor-control-lateral-padding)) / 5 );
   --max-cell-size: 38px;
   --cell-size: calc(min(var(--full-width-cell-size),var(--max-cell-size)));
-
-  height: var(--cell-size);
-  line-height: calc(var(--cell-size) - 2px);
-}
-.elementor-control-type-border-style .elementor-choices > .elementor-choices-label {
   font-size: calc(var(--cell-size) * 0.7 - 6px);
   width: var(--cell-size);
+  height: var(--cell-size);
+  line-height: calc(var(--cell-size) - 2px);
+  transition: none;
 }
+
+.elementor-control-type-border-style .elementor-choices {
+  --e-elementor-control-lateral-padding: 20px;
+  height: auto;
+}
+
 /* Special 'elemendas' icon font rules for border control */
 i.elm-border {
   border-width:3px;
