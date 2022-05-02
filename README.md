@@ -79,7 +79,9 @@ __Remember__: these widgets will only appear in archive templates.
 * Built by [Santiago Becerra](https://elemendas.com/)
 
 ## Changelog
-
+### 2.2.0
+* Introducing Leaves list widget
+* Introducing Carousel 3D widget
 
 ### 2.1.0
 * The functionality that was in the "Search Results Title" widget becomes an extension of the "Archive Title" widget.
