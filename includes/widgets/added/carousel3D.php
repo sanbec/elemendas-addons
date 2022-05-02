@@ -102,6 +102,26 @@ class Carousel_3D extends \Elementor\Widget_Base {
 			]
 		);
 
+		function check_url($url) {
+			$headers = @get_headers( $url);
+			$headers = (is_array($headers)) ? implode( "\n ", $headers) : $headers;
+		return (bool)preg_match('#^HTTP/.*\s+[(200|301|302)]+\s#i', $headers);
+		}
+
+		$img_url[]='https://placekitten.com/400';
+		$img_url[]='https://placekitten.com/401';
+		$img_url[]='https://placekitten.com/402';
+		$img_url[]='https://placekitten.com/403';
+		$img_url[]='https://placekitten.com/404';
+
+
+		if (!check_url($img_url[0])) {
+			foreach ($img_url as $img) {
+				$img=plugins_url('elementor/assets/images/placeholder.png','elementor');
+			}
+		}
+
+
 		$this->add_control(
 			'carousel',
 			[
@@ -110,23 +130,23 @@ class Carousel_3D extends \Elementor\Widget_Base {
 				'default' => [
 					[
 						'id' => 0,
-						'url' =>  plugins_url('elementor/assets/images/placeholder.png','elementor')
+						'url' => $img_url[0]
 					],
 					[
 						'id' => 0,
-						'url' =>  plugins_url('elementor/assets/images/placeholder.png','elementor')
+						'url' => $img_url[1]
 					],
 					[
 						'id' => 0,
-						'url' =>  plugins_url('elementor/assets/images/placeholder.png','elementor')
+						'url' => $img_url[2]
 					],
 					[
 						'id' => 0,
-						'url' =>  plugins_url('elementor/assets/images/placeholder.png','elementor')
+						'url' => $img_url[3]
 					],
 					[
 						'id' => 0,
-						'url' =>  plugins_url('elementor/assets/images/placeholder.png','elementor')
+						'url' => $img_url[4]
 					],
 				],
 				'show_label' => false,
@@ -337,13 +357,14 @@ class Carousel_3D extends \Elementor\Widget_Base {
 				'selectors' => [
 					'{{WRAPPER}} .elmadd-3Dcards-div' => 'animation-direction: {{VALUE}};',
 				],
+				'toggle' => false,
 			]
 		);
 
 		$this->add_control(
 			'show_reflect',
 			[
-				'label' => esc_html__( 'Show image reflect', 'elementor' ),
+				'label' => esc_html__( 'Show image reflect', 'elemendas-addons' ),
 				'type' => Controls_Manager::SWITCHER,
 				'return_value' => 'paused',
 				'label_on' => esc_html__( 'Yes', 'elemendas-addons' ),
@@ -410,7 +431,7 @@ class Carousel_3D extends \Elementor\Widget_Base {
 		$this->add_control(
 			'image_border_radius',
 			[
-				'label' => esc_html__( 'Radius', 'elementor' ),
+				'label' => esc_html__( 'Radius', 'elemendas-addons' ),
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%' ],
 				'selectors' => [
