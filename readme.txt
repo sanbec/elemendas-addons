@@ -5,7 +5,7 @@ Tags: elementor,elementor addon,elementor addons,elementor widgets,elementor ext
 Requires at least: 5.0
 Tested up to: 5.9
 Requires PHP: 5.6
-Stable tag: 2.2.0
+Stable tag: 2.2.1
 License: GPL 3.0 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -92,6 +92,11 @@ Relax! If you don't follow the steps correctly, you will get a note with instruc
 10. Highlight the search terms in the title with quotation marks.
 
 == Changelog ==
+
+= 2.2.1 =
+* Improving plant look & feel
+* Fix z-index issue
+* Elementor Pro is no longer required but recommended
 
 = 2.2.0 =
 * Introducing Leaves list widget

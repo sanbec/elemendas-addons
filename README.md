@@ -79,6 +79,11 @@ __Remember__: these widgets will only appear in archive templates.
 * Built by [Santiago Becerra](https://elemendas.com/)
 
 ## Changelog
+### 2.2.1
+* Improving plant look & feel
+* Fix z-index issue
+* Elementor Pro is no longer required but recommended
+
 ### 2.2.0
 * Introducing Leaves list widget
 * Introducing Carousel 3D widget
