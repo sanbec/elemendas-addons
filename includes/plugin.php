@@ -147,17 +147,17 @@ final class Plugin {
 		// Check if Elementor Pro is installed
 		if ( !$this->is_plugin_installed ( 'elementor-pro/elementor-pro.php' ) ) {
 			add_action( 'admin_notices', [ $this, 'admin_notice_missing_pro_plugin' ] );
-			return false;
+			return true;
 		}
 		// Check if Elementor Pro is activated
 		if ( !$this->is_plugin_active ( 'elementor-pro/elementor-pro.php' ) ) {
 			add_action( 'admin_notices', [ $this, 'admin_notice_disabled_pro_plugin' ] );
-			return false;
+			return true;
 		}
 		// Check for required Elementor Pro version
 		if ( !version_compare( ELEMENTOR_PRO_VERSION, self::MINIMUM_ELEMENTOR_PRO_VERSION, '>=' ) ) {
 			add_action( 'admin_notices', [ $this, 'admin_notice_minimum_elementor_pro_version' ] );
-			return false;
+			return true;
 		}
 		return true;
 	}
@@ -170,7 +170,7 @@ final class Plugin {
 	 * @since 1.0.0
 	 * @access public
 	 */
-	public function compatibility_admin_notice( $item, $action, $action_url = "", $min_version = "" ) {
+	public function compatibility_admin_notice( $item, $action, $requirement, $action_url = "", $min_version = "" ) {
 
 		if ( isset( $_GET['activate'] ) ) unset( $_GET['activate'] );
 		$itemName = ucwords(str_replace("-"," ",$item));
@@ -178,16 +178,26 @@ final class Plugin {
 		switch ($action) {
 			case "install":
 				if ("" === $action_url) $action_url = wp_nonce_url(self_admin_url('update.php?action=install-plugin&plugin='.$item), 'install-plugin_'.$item);
-				/* translators: 1: Plugin name 2: Elementor/Elementor Pro */
-				$message_text = esc_html__( '"%1$s" requires "%2$s" to be installed and activated.', 'elemendas-addons' );
+				if ("requires" === $requirement) {
+					/* translators: 1: Plugin name 2: Elementor/Elementor Pro */
+					$message_text = esc_html__( '"%1$s" requires "%2$s" to be installed and activated.', 'elemendas-addons' );
+				} else {
+					/* translators: 1: Plugin name 2: Elementor/Elementor Pro */
+					$message_text = esc_html__( '"%1$s" recommends "%2$s" to be installed and activated.', 'elemendas-addons' );
+				}
 				/* translators: %s: Elementor/Elementor Pro */
 				$button_text = sprintf(__('Install %s', 'elemendas-addons'), $itemName );
 				break;
 			case "activate":
 				$plugin = $item.'/'.$item.'.php';
 				if ("" === $action_url) $action_url = wp_nonce_url('plugins.php?action=activate&amp;plugin=' . $plugin . '&amp;plugin_status=all&amp;paged=1&amp;s', 'activate-plugin_' . $plugin);
-				/* translators: 1: Plugin name 2: Elementor/Elementor Pro */
-				$message_text = esc_html__( '"%1$s" requires "%2$s" to be activated.', 'elemendas-addons' );
+				if ("requires" === $requirement) {
+					/* translators: 1: Plugin name 2: Elementor/Elementor Pro */
+					$message_text = esc_html__( '"%1$s" requires "%2$s" to be activated.', 'elemendas-addons' );
+				} else {
+					/* translators: 1: Plugin name 2: Elementor/Elementor Pro */
+					$message_text = esc_html__( '"%1$s" recommends "%2$s" to be activated.', 'elemendas-addons' );
+				}
 				/* translators: %s: Elementor/Elementor Pro */
 				$button_text = sprintf(__('Activate %s', 'elemendas-addons'), $itemName );
 				break;
@@ -221,8 +231,12 @@ final class Plugin {
 
 
         $button = '<a href="' . esc_url( $action_url ) . '" class="button-primary">' . esc_html( $button_text ) . '</a>';
+		if ("requires" === $requirement) {
+			printf('<div class="error elemendas-error">%1$s%2$s</div>', __($message), $button);
+		} else {
+			printf('<div class="notice notice-warning is-dismissible elemendas-error">%1$s%2$s</div>', __($message), $button);
+		}
 
-		printf('<div class="error elemendas-error">%1$s%2$s</div>', __($message), $button);
 	}
 
 	/**
@@ -234,7 +248,7 @@ final class Plugin {
 	 * @access public
 	 */
 	public function admin_notice_missing_main_plugin() {
-		$this->compatibility_admin_notice( 'elementor','install');
+		$this->compatibility_admin_notice( 'elementor','install','requires');
 	}
 
 	/**
@@ -244,7 +258,7 @@ final class Plugin {
 	 * @access public
 	 */
 	public function admin_notice_disabled_main_plugin() {
-		$this->compatibility_admin_notice( 'elementor','activate');
+		$this->compatibility_admin_notice( 'elementor','activate','requires');
 	}
 
 	/**
@@ -256,7 +270,7 @@ final class Plugin {
 	 * @access public
 	 */
 	public function admin_notice_minimum_elementor_version() {
-		$this->compatibility_admin_notice( 'elementor','update', '' , self::MINIMUM_ELEMENTOR_VERSION);
+		$this->compatibility_admin_notice( 'elementor','update','requires', '' , self::MINIMUM_ELEMENTOR_VERSION);
 	}
 
 	/**
@@ -266,7 +280,7 @@ final class Plugin {
 	 * @access public
 	 */
 	public function admin_notice_missing_pro_plugin() {
-		$this->compatibility_admin_notice( 'elementor-pro','install', 'https://trk.elementor.com/24242' );
+		$this->compatibility_admin_notice( 'elementor-pro','install','recommends', 'https://trk.elementor.com/24242' );
 	}
 
 	/**
@@ -276,7 +290,7 @@ final class Plugin {
 	 * @access public
 	 */
 	public function admin_notice_disabled_pro_plugin() {
-		$this->compatibility_admin_notice( 'elementor-pro','activate');
+		$this->compatibility_admin_notice( 'elementor-pro','activate','recommends');
 	}
 
 	/**
@@ -286,7 +300,7 @@ final class Plugin {
 	 * @access public
 	 */
 	public function admin_notice_minimum_elementor_pro_version() {
-		$this->compatibility_admin_notice( 'elementor-pro','update', '' , self::MINIMUM_ELEMENTOR_PRO_VERSION);
+		$this->compatibility_admin_notice( 'elementor-pro','update','requires', '' , self::MINIMUM_ELEMENTOR_PRO_VERSION);
 	}
 
 	/**
