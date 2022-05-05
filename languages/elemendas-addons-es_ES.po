@@ -3,10 +3,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Elemendas Addon 1.0.0\n"
-"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/elemendas-"
-"addons\n"
-"POT-Creation-Date: 2022-04-29T18:18:44+02:00\n"
-"PO-Revision-Date: 2022-04-29 18:29+0200\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/elemendas-addons\n"
+"POT-Creation-Date: 2022-05-06T00:59:57+02:00\n"
+"PO-Revision-Date: 2022-05-06 01:04+0200\n"
 "Last-Translator: Santiago Becerra <santi@wpcombo.com>\n"
 "Language-Team: \n"
 "Language: es_ES\n"
@@ -18,7 +17,7 @@ msgstr ""
 "X-Domain: elemendas-addon\n"
 
 #. Plugin Name of the plugin
-#: includes/plugin.php:209 includes/plugin.php:216
+#: includes/plugin.php:219 includes/plugin.php:226
 msgid "Elemendas Addons"
 msgstr "Elemendas Addons"
 
@@ -129,32 +128,42 @@ msgid "No quotation marks"
 msgstr "Sin entrecomillado"
 
 #. translators: 1: Plugin name 2: Elementor/Elementor Pro
-#: includes/plugin.php:182
+#: includes/plugin.php:183
 msgid "\"%1$s\" requires \"%2$s\" to be installed and activated."
 msgstr "\"%1$s\" necesita que \"%2$s\" esté instalado y activado."
 
+#. translators: 1: Plugin name 2: Elementor/Elementor Pro
+#: includes/plugin.php:186
+msgid "\"%1$s\" recommends \"%2$s\" to be installed and activated."
+msgstr "«%1$s» recomienda que «%2$s» esté instalado y activado."
+
 #. translators: %s: Elementor/Elementor Pro
-#: includes/plugin.php:184
+#: includes/plugin.php:189
 msgid "Install %s"
 msgstr "Instalar %s"
 
 #. translators: 1: Plugin name 2: Elementor/Elementor Pro
-#: includes/plugin.php:190
+#: includes/plugin.php:196
 msgid "\"%1$s\" requires \"%2$s\" to be activated."
-msgstr "\"%1$s\" necesita que \"%2$s\" esté instalado y activado."
+msgstr "«%1$s» necesita que «%2$s» esté activado."
+
+#. translators: 1: Plugin name 2: Elementor/Elementor Pro
+#: includes/plugin.php:199
+msgid "\"%1$s\" recommends \"%2$s\" to be activated."
+msgstr "«%1$s» recomienda que «%2$s» esté activado."
 
 #. translators: %s: Elementor/Elementor Pro
-#: includes/plugin.php:192
+#: includes/plugin.php:202
 msgid "Activate %s"
 msgstr "Activar %s"
 
 #. translators: 1: Plugin name 2: Elementor/Elementor Pro 3: Required Elementor version
-#: includes/plugin.php:198
+#: includes/plugin.php:208
 msgid "\"%1$s\" requires \"%2$s\" version %3$s or greater."
-msgstr "\"%1$s\" necesita la version %3$s o superior de \"%2$s\"."
+msgstr "«%1$s» necesita la version %3$s o superior de «%2$s»."
 
 #. translators: %s: Elementor/Elementor Pro
-#: includes/plugin.php:200
+#: includes/plugin.php:210
 msgid "Update %s"
 msgstr "Actualizar %s"
 
@@ -241,8 +250,8 @@ msgstr "Mostrar imagen reflejada"
 msgid ""
 "Note: This feature is not a CSS standard and will not work in all browsers."
 msgstr ""
-"Nota: Esta característica no es un estándar CSS y no funcionará en todos "
-"los navegadores."
+"Nota: Esta característica no es un estándar CSS y no funcionará en todos los "
+"navegadores."
 
 #: includes/widgets/added/carousel3D.php:386
 msgid "Image border"
@@ -270,7 +279,7 @@ msgid "Leaves List"
 msgstr "Lista de hojas"
 
 #: includes/widgets/added/leaveslist.php:67
-#: includes/widgets/added/leaveslist.php:254
+#: includes/widgets/added/leaveslist.php:267
 msgid "Text"
 msgstr "Texto"
 
@@ -332,18 +341,22 @@ msgid "Stem width"
 msgstr "Anchura del tallo"
 
 #: includes/widgets/added/leaveslist.php:239
-msgid "Plant color"
-msgstr "Color de la planta"
+msgid "Leaves color"
+msgstr "Color de las hojas"
+
+#: includes/widgets/added/leaveslist.php:251
+msgid "Stem color"
+msgstr "Color del tallo"
 
 #. translators: Don't worry about this string, it will actually take it from Elementor's translation file for consistency.
-#: includes/widgets/added/leaveslist.php:265
+#: includes/widgets/added/leaveslist.php:278
 #: includes/widgets/added/search-results-highlighted.php:466
 #: includes/widgets/extended/search-results-archive-title.php:376
 msgid "Text Color"
 msgstr "Color del texto"
 
 #. translators: Don't worry about this string, it will actually take it from Elementor's translation file for consistency.
-#: includes/widgets/added/leaveslist.php:279
+#: includes/widgets/added/leaveslist.php:292
 #: includes/widgets/added/search-results-highlighted.php:480
 #: includes/widgets/extended/search-results-archive-title.php:390
 msgid "Background Color"
