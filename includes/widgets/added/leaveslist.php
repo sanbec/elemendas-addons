@@ -234,9 +234,9 @@ class Leaves_List extends \Elementor\Widget_Base {
 		);
 
 		$this->add_control(
-			'plant_color',
+			'leaves_color',
 			[
-				'label' => esc_html__( 'Plant color', 'elemendas-addons' ),
+				'label' => esc_html__( 'Leaves color', 'elemendas-addons' ),
 				'type' => Controls_Manager::COLOR,
 				'default' => '#2c3',
 				'selectors' => [
@@ -244,6 +244,19 @@ class Leaves_List extends \Elementor\Widget_Base {
 				],
 			]
 		);
+
+		$this->add_control(
+			'stem_color',
+			[
+				'label' => esc_html__( 'Stem color', 'elemendas-addons' ),
+				'type' => Controls_Manager::COLOR,
+				'default' => '#d92',
+				'selectors' => [
+					'{{WRAPPER}} ul.ul-plant' => '--stem-color: {{VALUE}};',
+				],
+			]
+		);
+
 		$this->end_controls_section();
 		// END Plant style section
 

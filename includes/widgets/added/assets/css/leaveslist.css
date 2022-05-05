@@ -6,6 +6,7 @@
   --col-gap: 20px;
   --row-gap: calc(var(--col-gap) / 2);
   --leaf-color: #2c3;
+  --stem-color: #d92;
   --leaf-width: 70%;
   display: grid;
   grid-template-columns: repeat(2, var(--leaf-length));
@@ -14,6 +15,7 @@
   width: max-content;
   margin: auto;
   padding: 0;
+  z-index: 0;
 }
 
 /* leaf */ /*default right*/
@@ -63,10 +65,9 @@
 .ul-plant li::after{
   content: "";
   position: absolute;
-  width: calc(50% + (var(--col-gap) / 2));
+  width: calc(46% + (var(--col-gap) / 2));
   height: var(--stem-width);
-  top: calc(50% - var(--stem-width) / 2));
-  background-color: var(--leaf-color);
+  background-color: var(--stem-color);
   --stem-gr-dir: to top;
   transform-origin: top var(--to, right);
   transform: skewY(var(--sk, -45deg));
@@ -84,8 +85,8 @@
   position: absolute;
   width: var(--stem-width);
   height: calc(50% + var(--row-gap) / 2 + var(--stem-width));
-  background-color: var(--leaf-color);
-  top: calc(100% + var(--row-gap) - var(--stem-width));
+  background-color: var(--stem-color);
+  top: calc(95% + var(--row-gap) - var(--stem-width));
   z-index:-1;
   --x-pos: calc(100% + var(--col-gap) / 2 - var(--stem-width) / 2);
   --stem-gr-dir: to right;
@@ -94,9 +95,13 @@
   --clip-gradient: linear-gradient(to top, rgba(0, 0, 0, 1) calc(100% - var(--stem-width)), rgba(0, 0, 0, 0));
   -webkit-mask-image: var(--clip-gradient);
   mask-image: var(--clip-gradient);
+  transform: skewX(var(--skx, -4deg));
+
+
 }
 /* vertical stem */ /*override left*/
 .ul-plant li:nth-child(odd)::before{
+  --skx: 5deg;
   left: var(--x-pos);
   right: auto;
 }
@@ -106,6 +111,7 @@
   border-radius: var(--stem-width) var(--stem-width) 0 0;
 }
 /* last vertical stem override */
-.ul-plant li:last-of-type::before{ height: 100% }
+.ul-plant li:last-of-type::before{ height: 100%; --skx: -3deg;}
+.ul-plant li:last-of-type:nth-child(odd)::before{ --skx: 2deg;}
 .ul-plant li:last-of-type { margin-bottom: 100% }
 
