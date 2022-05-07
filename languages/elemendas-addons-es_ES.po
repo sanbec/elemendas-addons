@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Elemendas Addon 1.0.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/elemendas-addons\n"
-"POT-Creation-Date: 2022-05-06T00:59:57+02:00\n"
-"PO-Revision-Date: 2022-05-06 01:04+0200\n"
+"POT-Creation-Date: 2022-05-07T14:37:25+02:00\n"
+"PO-Revision-Date: 2022-05-07 14:40+0200\n"
 "Last-Translator: Santiago Becerra <santi@wpcombo.com>\n"
 "Language-Team: \n"
 "Language: es_ES\n"
@@ -86,7 +86,8 @@ msgstr "Grosor (px)"
 
 #. translators: Don't worry about this string, it will actually take it from Elementor's translation file for consistency.
 #: includes/controls/highlighter.php:97
-#: includes/widgets/added/carousel3D.php:421
+#: includes/widgets/added/carousel3D.php:464
+#: includes/widgets/added/carousel3D.php:543
 #: includes/widgets/added/search-results-highlighted.php:220
 #: includes/widgets/added/search-results-highlighted.php:360
 #: includes/widgets/extended/search-results-archive-title.php:261
@@ -171,43 +172,45 @@ msgstr "Actualizar %s"
 msgid "Carousel 3D"
 msgstr "Carrusel 3D"
 
-#: includes/widgets/added/carousel3D.php:101
+#: includes/widgets/added/carousel3D.php:105
 msgid "Carousel images"
 msgstr "Imágenes del carrusel"
 
-#: includes/widgets/added/carousel3D.php:128
+#: includes/widgets/added/carousel3D.php:132
 msgid "Add Images"
 msgstr "Añadir imágenes"
 
-#: includes/widgets/added/carousel3D.php:162
-#: includes/widgets/added/carousel3D.php:216
-#: includes/widgets/added/carousel3D.php:406
+#: includes/widgets/added/carousel3D.php:166
+#: includes/widgets/added/carousel3D.php:222
+#: includes/widgets/added/carousel3D.php:449
+#: includes/widgets/added/carousel3D.php:528
 msgid "Width"
 msgstr "Ancho"
 
-#: includes/widgets/added/carousel3D.php:184
-#: includes/widgets/added/carousel3D.php:238
+#: includes/widgets/added/carousel3D.php:188
+#: includes/widgets/added/carousel3D.php:244
 msgid "Height"
 msgstr "Alto"
 
-#: includes/widgets/added/carousel3D.php:208
+#: includes/widgets/added/carousel3D.php:214
 msgid "Carousel Settings"
 msgstr "Ajustes del carrusel"
 
-#: includes/widgets/added/carousel3D.php:261
+#: includes/widgets/added/carousel3D.php:267
 msgid "Carousel Radius"
 msgstr "Radio del carrusel"
 
-#: includes/widgets/added/carousel3D.php:282
+#: includes/widgets/added/carousel3D.php:288
 msgid "Perspective"
 msgstr "Perspectiva"
 
-#: includes/widgets/added/carousel3D.php:305
+#: includes/widgets/added/carousel3D.php:311
 msgid "Pause on Hover"
 msgstr "Pausar al pasar el cursor"
 
-#: includes/widgets/added/carousel3D.php:309
-#: includes/widgets/added/carousel3D.php:370
+#: includes/widgets/added/carousel3D.php:315
+#: includes/widgets/added/carousel3D.php:377
+#: includes/widgets/added/carousel3D.php:390
 #: includes/widgets/added/search-results-highlighted.php:144
 #: includes/widgets/added/search-results-highlighted.php:286
 #: includes/widgets/added/search-results-highlighted.php:426
@@ -215,8 +218,9 @@ msgstr "Pausar al pasar el cursor"
 msgid "Yes"
 msgstr "Sí"
 
-#: includes/widgets/added/carousel3D.php:310
-#: includes/widgets/added/carousel3D.php:371
+#: includes/widgets/added/carousel3D.php:316
+#: includes/widgets/added/carousel3D.php:378
+#: includes/widgets/added/carousel3D.php:391
 #: includes/widgets/added/search-results-highlighted.php:145
 #: includes/widgets/added/search-results-highlighted.php:287
 #: includes/widgets/added/search-results-highlighted.php:427
@@ -224,49 +228,86 @@ msgstr "Sí"
 msgid "No"
 msgstr "No"
 
-#: includes/widgets/added/carousel3D.php:321
+#: includes/widgets/added/carousel3D.php:327
 msgid "Rotation Speed (rpm)"
 msgstr "Velocidad de rotación (rpm)"
 
-#: includes/widgets/added/carousel3D.php:344
+#: includes/widgets/added/carousel3D.php:350
 msgid "Direction of rotation"
 msgstr "Dirección de rotación"
 
-#: includes/widgets/added/carousel3D.php:348
+#: includes/widgets/added/carousel3D.php:354
 #: includes/widgets/added/leaveslist.php:108
 msgid "Left"
 msgstr "Izquierda"
 
-#: includes/widgets/added/carousel3D.php:352
+#: includes/widgets/added/carousel3D.php:358
 #: includes/widgets/added/leaveslist.php:116
 msgid "Right"
 msgstr "Derecha"
 
-#: includes/widgets/added/carousel3D.php:367
+#: includes/widgets/added/carousel3D.php:373
+msgid "Lightbox"
+msgstr "Caja de luz"
+
+#: includes/widgets/added/carousel3D.php:380
+msgid ""
+"Note: The lightbox will not work with the default kitten images. You must "
+"select your images from the media library or upload new ones."
+msgstr ""
+"Nota: La caja de luz no funcionará con las imágenes predeterminadas de los "
+"gatitos. Debes seleccionar tus imágenes de la biblioteca de medios o subir "
+"otras nuevas."
+
+#: includes/widgets/added/carousel3D.php:387
 msgid "Show image reflect"
 msgstr "Mostrar imagen reflejada"
 
-#: includes/widgets/added/carousel3D.php:376
+#: includes/widgets/added/carousel3D.php:396
 msgid ""
 "Note: This feature is not a CSS standard and will not work in all browsers."
 msgstr ""
 "Nota: Esta característica no es un estándar CSS y no funcionará en todos los "
 "navegadores."
 
-#: includes/widgets/added/carousel3D.php:386
-msgid "Image border"
-msgstr "Borde de la imagen"
+#: includes/widgets/added/carousel3D.php:410
+msgid "Image"
+msgstr "Imagen"
 
-#: includes/widgets/added/carousel3D.php:394
+#: includes/widgets/added/carousel3D.php:422
+msgid "Normal"
+msgstr "Normal"
+
+#: includes/widgets/added/carousel3D.php:429
+#: includes/widgets/added/carousel3D.php:508
+msgid "Border"
+msgstr "Borde"
+
+#: includes/widgets/added/carousel3D.php:437
+#: includes/widgets/added/carousel3D.php:516
 #: includes/widgets/added/search-results-highlighted.php:263
 #: includes/widgets/added/search-results-highlighted.php:403
 #: includes/widgets/extended/search-results-archive-title.php:304
 msgid "Style"
 msgstr "Estilo"
 
-#: includes/widgets/added/carousel3D.php:434
+#: includes/widgets/added/carousel3D.php:477
+#: includes/widgets/added/carousel3D.php:556
 msgid "Radius"
 msgstr "Radio"
+
+#: includes/widgets/added/carousel3D.php:502
+msgid "Hover"
+msgstr "Al pasar el cursor"
+
+#: includes/widgets/added/carousel3D.php:577
+msgid "Animation"
+msgstr "Animación"
+
+#. translators: %s: widget name
+#: includes/widgets/added/carousel3D.php:713
+msgid "The carousel has no images, please select at least one"
+msgstr "El carrusel no tiene imágenes, por favor selecciona al menos una"
 
 #: includes/widgets/added/leaveslist.php:22
 msgctxt "Widget Name"
@@ -616,6 +657,9 @@ msgid ""
 msgstr ""
 "Este ajuste no tendrá ningún efecto si se especifica el tamaño de la fuente "
 "en el control de tipografía"
+
+#~ msgid "Image border"
+#~ msgstr "Borde de la imagen"
 
 #~ msgctxt "Widget Name"
 #~ msgid "Search Results Title"

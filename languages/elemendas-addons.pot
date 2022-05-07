@@ -2,14 +2,14 @@
 # This file is distributed under the same license as the Elemendas Addons plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: Elemendas Addons 2.2.1\n"
+"Project-Id-Version: Elemendas Addons 2.2.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/elemendas-addons\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2022-05-06T00:59:57+02:00\n"
+"POT-Creation-Date: 2022-05-07T14:37:25+02:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.6.0\n"
 
@@ -84,7 +84,8 @@ msgstr ""
 
 #. translators: Don't worry about this string, it will actually take it from Elementor's translation file for consistency.
 #: includes/controls/highlighter.php:97
-#: includes/widgets/added/carousel3D.php:421
+#: includes/widgets/added/carousel3D.php:464
+#: includes/widgets/added/carousel3D.php:543
 #: includes/widgets/added/search-results-highlighted.php:220
 #: includes/widgets/added/search-results-highlighted.php:360
 #: includes/widgets/extended/search-results-archive-title.php:261
@@ -169,43 +170,45 @@ msgstr ""
 msgid "Carousel 3D"
 msgstr ""
 
-#: includes/widgets/added/carousel3D.php:101
+#: includes/widgets/added/carousel3D.php:105
 msgid "Carousel images"
 msgstr ""
 
-#: includes/widgets/added/carousel3D.php:128
+#: includes/widgets/added/carousel3D.php:132
 msgid "Add Images"
 msgstr ""
 
-#: includes/widgets/added/carousel3D.php:162
-#: includes/widgets/added/carousel3D.php:216
-#: includes/widgets/added/carousel3D.php:406
+#: includes/widgets/added/carousel3D.php:166
+#: includes/widgets/added/carousel3D.php:222
+#: includes/widgets/added/carousel3D.php:449
+#: includes/widgets/added/carousel3D.php:528
 msgid "Width"
 msgstr ""
 
-#: includes/widgets/added/carousel3D.php:184
-#: includes/widgets/added/carousel3D.php:238
+#: includes/widgets/added/carousel3D.php:188
+#: includes/widgets/added/carousel3D.php:244
 msgid "Height"
 msgstr ""
 
-#: includes/widgets/added/carousel3D.php:208
+#: includes/widgets/added/carousel3D.php:214
 msgid "Carousel Settings"
 msgstr ""
 
-#: includes/widgets/added/carousel3D.php:261
+#: includes/widgets/added/carousel3D.php:267
 msgid "Carousel Radius"
 msgstr ""
 
-#: includes/widgets/added/carousel3D.php:282
+#: includes/widgets/added/carousel3D.php:288
 msgid "Perspective"
 msgstr ""
 
-#: includes/widgets/added/carousel3D.php:305
+#: includes/widgets/added/carousel3D.php:311
 msgid "Pause on Hover"
 msgstr ""
 
-#: includes/widgets/added/carousel3D.php:309
-#: includes/widgets/added/carousel3D.php:370
+#: includes/widgets/added/carousel3D.php:315
+#: includes/widgets/added/carousel3D.php:377
+#: includes/widgets/added/carousel3D.php:390
 #: includes/widgets/added/search-results-highlighted.php:144
 #: includes/widgets/added/search-results-highlighted.php:286
 #: includes/widgets/added/search-results-highlighted.php:426
@@ -213,8 +216,9 @@ msgstr ""
 msgid "Yes"
 msgstr ""
 
-#: includes/widgets/added/carousel3D.php:310
-#: includes/widgets/added/carousel3D.php:371
+#: includes/widgets/added/carousel3D.php:316
+#: includes/widgets/added/carousel3D.php:378
+#: includes/widgets/added/carousel3D.php:391
 #: includes/widgets/added/search-results-highlighted.php:145
 #: includes/widgets/added/search-results-highlighted.php:287
 #: includes/widgets/added/search-results-highlighted.php:427
@@ -222,45 +226,77 @@ msgstr ""
 msgid "No"
 msgstr ""
 
-#: includes/widgets/added/carousel3D.php:321
+#: includes/widgets/added/carousel3D.php:327
 msgid "Rotation Speed (rpm)"
 msgstr ""
 
-#: includes/widgets/added/carousel3D.php:344
+#: includes/widgets/added/carousel3D.php:350
 msgid "Direction of rotation"
 msgstr ""
 
-#: includes/widgets/added/carousel3D.php:348
+#: includes/widgets/added/carousel3D.php:354
 #: includes/widgets/added/leaveslist.php:108
 msgid "Left"
 msgstr ""
 
-#: includes/widgets/added/carousel3D.php:352
+#: includes/widgets/added/carousel3D.php:358
 #: includes/widgets/added/leaveslist.php:116
 msgid "Right"
 msgstr ""
 
-#: includes/widgets/added/carousel3D.php:367
+#: includes/widgets/added/carousel3D.php:373
+msgid "Lightbox"
+msgstr ""
+
+#: includes/widgets/added/carousel3D.php:380
+msgid "Note: The lightbox will not work with the default kitten images. You must select your images from the media library or upload new ones."
+msgstr ""
+
+#: includes/widgets/added/carousel3D.php:387
 msgid "Show image reflect"
 msgstr ""
 
-#: includes/widgets/added/carousel3D.php:376
+#: includes/widgets/added/carousel3D.php:396
 msgid "Note: This feature is not a CSS standard and will not work in all browsers."
 msgstr ""
 
-#: includes/widgets/added/carousel3D.php:386
-msgid "Image border"
+#: includes/widgets/added/carousel3D.php:410
+msgid "Image"
 msgstr ""
 
-#: includes/widgets/added/carousel3D.php:394
+#: includes/widgets/added/carousel3D.php:422
+msgid "Normal"
+msgstr ""
+
+#: includes/widgets/added/carousel3D.php:429
+#: includes/widgets/added/carousel3D.php:508
+msgid "Border"
+msgstr ""
+
+#: includes/widgets/added/carousel3D.php:437
+#: includes/widgets/added/carousel3D.php:516
 #: includes/widgets/added/search-results-highlighted.php:263
 #: includes/widgets/added/search-results-highlighted.php:403
 #: includes/widgets/extended/search-results-archive-title.php:304
 msgid "Style"
 msgstr ""
 
-#: includes/widgets/added/carousel3D.php:434
+#: includes/widgets/added/carousel3D.php:477
+#: includes/widgets/added/carousel3D.php:556
 msgid "Radius"
+msgstr ""
+
+#: includes/widgets/added/carousel3D.php:502
+msgid "Hover"
+msgstr ""
+
+#: includes/widgets/added/carousel3D.php:577
+msgid "Animation"
+msgstr ""
+
+#. translators: %s: widget name
+#: includes/widgets/added/carousel3D.php:713
+msgid "The carousel has no images, please select at least one"
 msgstr ""
 
 #: includes/widgets/added/leaveslist.php:22
