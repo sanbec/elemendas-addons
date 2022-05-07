@@ -18,7 +18,7 @@ You can choose many alternatives to highlight the search string:
 * and the typical color and typography controls
 
 ## Requirements
-* WordPress 5.0, tested up to 5.9
+* WordPress 5.0, tested up to 6.0
 
 ## Installation
 
@@ -79,6 +79,10 @@ __Remember__: these widgets will only appear in archive templates.
 * Built by [Santiago Becerra](https://elemendas.com/)
 
 ## Changelog
+
+### 2.2.2
+* Added lightbox, CSS filters and hover animations to the Carousel 3D widget.
+
 ### 2.2.1
 * Improving plant look & feel
 * Fix z-index issue

@@ -3,9 +3,9 @@ Contributors: sanbec, elemendas
 Donate link: https://paypal.me/sanbec
 Tags: elementor,elementor addon,elementor addons,elementor widgets,elementor extensions,search results
 Requires at least: 5.0
-Tested up to: 5.9
+Tested up to: 6.0
 Requires PHP: 5.6
-Stable tag: 2.2.1
+Stable tag: 2.2.2
 License: GPL 3.0 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -13,7 +13,9 @@ This addon for Elementor allows you to display the number of results of the sear
 
 == Description ==
 
-This plugin is an addon for Elementor Pro. It adds the ***Search Results Title*** and the ***Search Results Highlight*** widget to the Search Results Archive. This widgets allows you to show the number of posts containing the search query, and to highlight the search query string within the results.
+This plugin is an addon for Elementor.
+
+It adds the ***Search Results Title*** and the ***Search Results Highlight*** widget to the Search Results Archive. This widgets allows you to show the number of posts containing the search query, and to highlight the search query string within the results.
 
 You can customize the message according to the number of results obtained:
 
@@ -27,6 +29,14 @@ You can choose many alternatives to highlight the search string:
 * Highlighter
 * Underline
 * and the typical color and typography controls
+
+Note: The Search Results widgets need Elementor Pro, as they act on a page of the theme builder-
+
+In addition to the above widgets, this plugin is constantly expanding, and now has these other widgets:
+
+* Leaf List, a widget that transforms a simple list into a plant where each item is a leaf.
+* 3D Carousel, an image carousel that rotates in three dimensions, with lightbox and hover effects.
+
 
 == Installation ==
 
@@ -66,6 +76,8 @@ To install Elemendas Addons, follow the steps below:
 3. Press 'Install Now'.
 4. After installation, click 'Activate'.
 
+Check out the WordPress.org site for more information about [automatic plugin installation](https://wordpress.org/support/article/managing-plugins/#automatic-plugin-installation-1).
+
 **How do I use the Search Results Widgets?**
 
 1. Just create a search results archive at the Elementor's theme builder.
@@ -92,6 +104,9 @@ Relax! If you don't follow the steps correctly, you will get a note with instruc
 10. Highlight the search terms in the title with quotation marks.
 
 == Changelog ==
+
+= 2.2.2 =
+* Added lightbox, CSS filters and hover animations to the Carousel 3D widget.
 
 = 2.2.1 =
 * Improving plant look & feel
