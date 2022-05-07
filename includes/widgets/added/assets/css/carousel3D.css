@@ -22,6 +22,12 @@
   animation-duration: calc(60s/var(--rpm));
 }
 
+@keyframes rotate {
+  to {
+    transform: rotateY(360deg);
+  }
+}
+
 .elmadd-3Dcard {
   height: 300px;
   width: 300px;
@@ -31,10 +37,11 @@
   background-clip: padding-box;
 }
 
-
-@keyframes rotate {
-  to {
-    transform: rotateY(360deg);
-  }
+.elmadd-3Dimage, .elmadd-lightbox-link {
+  position: absolute;
+  width: 100%;
+  height: 100%;
 }
+
+
 

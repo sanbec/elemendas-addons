@@ -34,7 +34,7 @@ class Carousel_3D extends \Elementor\Widget_Base {
 	 * @return string Widget name.
 	 */
 	public function get_name() {
-		return 'elmendas-carousel3D';
+		return 'elemendas-carousel3D';
 	}
 
 	/**
@@ -95,6 +95,10 @@ class Carousel_3D extends \Elementor\Widget_Base {
 	 * @access protected
 	 */
 	protected function register_controls() {
+
+
+		// BEGIN TAB_CONTENT
+		// BEGIN TAB_CONTENT Carousel images section
 		$this->start_controls_section(
 			'section_carousel_images',
 			[
@@ -201,7 +205,9 @@ class Carousel_3D extends \Elementor\Widget_Base {
 		);
 
 		$this->end_controls_section();
+		// END TAB_CONTENT Carousel images section
 
+		// BEGIN TAB_CONTENT Carousel settings section
 		$this->start_controls_section(
 			'section_carousel_settings',
 			[
@@ -362,11 +368,25 @@ class Carousel_3D extends \Elementor\Widget_Base {
 		);
 
 		$this->add_control(
+			'open_lightbox',
+			[
+				'label' => esc_html__( 'Lightbox', 'elementor' ),
+				'type' => Controls_Manager::SWITCHER,
+				'default' => 'no',
+				'return_value' => 'yes',
+				'label_on' => esc_html__( 'Yes', 'elemendas-addons' ),
+				'label_off' => esc_html__( 'No', 'elemendas-addons' ),
+				'separator' => 'before',
+				'description' =>  __('Note: The lightbox will not work with the default kitten images. You must select your images from the media library or upload new ones.', 'elemendas-addons'),
+			]
+		);
+
+		$this->add_control(
 			'show_reflect',
 			[
 				'label' => esc_html__( 'Show image reflect', 'elemendas-addons' ),
 				'type' => Controls_Manager::SWITCHER,
-				'return_value' => 'paused',
+				'return_value' => 'yes',
 				'label_on' => esc_html__( 'Yes', 'elemendas-addons' ),
 				'label_off' => esc_html__( 'No', 'elemendas-addons' ),
 				'selectors' => [
@@ -379,12 +399,35 @@ class Carousel_3D extends \Elementor\Widget_Base {
 		);
 
 		$this->end_controls_section();
+		// END TAB_CONTENT Carousel settings section
+		// END TAB_CONTENT
 
+		// BEGIN TAB_STYLE
+		// BEGIN TAB_STYLE Image section
 		$this->start_controls_section(
 			'section_style_image',
 			[
-				'label' => esc_html__( 'Image border', 'elemendas-addons' ),
+				'label' => esc_html__( 'Image', 'elementor' ),
 				'tab' => Controls_Manager::TAB_STYLE,
+			]
+		);
+
+		// BEGIN TAB_STYLE Image Tabs
+		$this->start_controls_tabs( 'image_tabs' );
+
+		// BEGIN TAB_STYLE Image normal tab
+		$this->start_controls_tab(
+			'image_normal',
+			[
+				'label' => esc_html__( 'Normal', 'elementor' ),
+			]
+		);
+
+		$this->add_control(
+			'image_border',
+			[
+				'label' => esc_html__( 'Border', 'elemendas-addons' ),
+				'type' => \Elementor\Controls_Manager::HEADING,
 			]
 		);
 
@@ -395,7 +438,7 @@ class Carousel_3D extends \Elementor\Widget_Base {
 				'type' => 'border-style',
 				'default' => '',
 				'selectors' => [
-					'{{WRAPPER}} .elmadd-3Dcard' => 'border-style: {{VALUE}};',
+					'{{WRAPPER}} .elmadd-3Dimage' => 'border-style: {{VALUE}};',
 				],
 			]
 		);
@@ -407,7 +450,7 @@ class Carousel_3D extends \Elementor\Widget_Base {
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%' ],
 				'selectors' => [
-					'{{WRAPPER}} .elmadd-3Dcard' => 'border-width: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .elmadd-3Dimage' => 'border-width: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 				'condition' => [
 					'image_border_style!' => '',
@@ -421,7 +464,7 @@ class Carousel_3D extends \Elementor\Widget_Base {
 				'label' => esc_html__( 'Color', 'elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .elmadd-3Dcard' => 'border-color: {{VALUE}};',
+					'{{WRAPPER}} .elmadd-3Dimage' => 'border-color: {{VALUE}};',
 				],
 				'condition' => [
 					'image_border_style!' => '',
@@ -435,13 +478,118 @@ class Carousel_3D extends \Elementor\Widget_Base {
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%' ],
 				'selectors' => [
-					'{{WRAPPER}} .elmadd-3Dcard' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .elmadd-3Dimage' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
-				'separator' => 'before',
+				'separator' => 'after',
 			]
 		);
 
+		$this->add_group_control(
+			\Elementor\Group_Control_Css_Filter::get_type(),
+			[
+				'name' => 'image_css_filters',
+				'selector' => '{{WRAPPER}} .elmadd-3Dimage',
+			]
+		);
+
+		$this->end_controls_tab(); // Image normal
+		// END TAB_STYLE Image normal tab
+
+		// BEGIN TAB_STYLE Image hover tab
+		$this->start_controls_tab(
+			'image_hover',
+			[
+				'label' => esc_html__( 'Hover', 'elementor' ),
+			]
+		);
+		$this->add_control(
+			'image_border_hover',
+			[
+				'label' => esc_html__( 'Border', 'elemendas-addons' ),
+				'type' => \Elementor\Controls_Manager::HEADING,
+			]
+		);
+
+		$this->add_control(
+			'image_border_style_hover',
+			[
+				'label' => esc_html__( 'Style', 'elementor' ),
+				'type' => 'border-style',
+				'default' => '',
+				'selectors' => [
+					'{{WRAPPER}} .elmadd-3Dimage:hover' => 'border-style: {{VALUE}};',
+				],
+			]
+		);
+
+		$this->add_control(
+			'image_border_width_hover',
+			[
+				'label' => esc_html__( 'Width', 'elementor' ),
+				'type' => Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', '%' ],
+				'selectors' => [
+					'{{WRAPPER}} .elmadd-3Dimage:hover' => 'border-width: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+				'condition' => [
+					'image_border_style_hover!' => '',
+				],
+			]
+		);
+		$this->add_control(
+			'image_border_color_hover',
+			[
+				//translators: Don't worry about this string, it will actually take it from Elementor's translation file for consistency.
+				'label' => esc_html__( 'Color', 'elementor' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .elmadd-3Dimage:hover' => 'border-color: {{VALUE}};',
+				],
+				'condition' => [
+					'image_border_style_hover!' => '',
+				],
+			]
+		);
+		$this->add_control(
+			'image_border_radius_hover',
+			[
+				'label' => esc_html__( 'Radius', 'elemendas-addons' ),
+				'type' => Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', '%' ],
+				'selectors' => [
+					'{{WRAPPER}} .elmadd-3Dimage:hover' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+				'separator' => 'after',
+			]
+		);
+
+		$this->add_group_control(
+			\Elementor\Group_Control_Css_Filter::get_type(),
+			[
+				'name' => 'image_css_filters_hover',
+				'selector' => '{{WRAPPER}} .elmadd-3Dimage:hover',
+			]
+		);
+
+		$this->add_control(
+			'image_hover_animation',
+			[
+				'label' => esc_html__( 'Animation', 'elemendas-addons' ),
+				'label_block' => true,
+				'type' => Controls_Manager::HOVER_ANIMATION,
+			]
+		);
+
+		$this->end_controls_tab(); // image hover
+		// END TAB_STYLE Image hover tab
+
+		$this->end_controls_tabs();
+		// END TAB_STYLE image tabs
+
+
 		$this->end_controls_section();
+		// END TAB_STYLE Image section
+		// END TAB_STYLE
 
 	}
 
@@ -453,7 +601,7 @@ class Carousel_3D extends \Elementor\Widget_Base {
 	 * @since 1.0.0
 	 * @access protected
 	 */
-	protected function render() {
+	protected function render() { //BEGIN render()
 		$settings = $this->get_settings_for_display();
 
 		if ( empty( $settings['carousel'] ) ) {
@@ -465,9 +613,30 @@ class Carousel_3D extends \Elementor\Widget_Base {
 		$rotateInc = 360 / $slides_count;
 		$rotateY = 0;
 
-		foreach ( $settings['carousel'] as $image) {
+		if ($settings['image_hover_animation']) {
+			$animation = ' elementor-animation-'.$settings['image_hover_animation'];
+		} else {
+			$animation = '';
+		}
+
+		foreach ( $settings['carousel'] as $index => $image) {
 			$image_url = esc_attr( $image['url'] );
-			$image_html = '<div class="elmadd-3Dcard" style="background-image: url(\'' . esc_attr( $image_url ) . '\'); transform: rotateY('.$rotateY.'deg) translateZ(var(--z-translation));" /></div>';
+			$image_html = '<figure class="elmadd-3Dcard" style="transform: rotateY('.$rotateY.'deg) translateZ(var(--z-translation));" />';
+			$image_html .= '<div class="elmadd-3Dimage'.$animation.'" style="background-image: url(\'' . esc_attr( $image_url ) . '\');" />';
+			$lightbox = 'yes' === $settings['open_lightbox'];
+			if ( $lightbox ) {
+				$link_key = 'link_' . $index;
+				$this->add_lightbox_data_attributes( $link_key, $image['id'], $lightbox, $this->get_id() );
+
+				if ( \Elementor\Plugin::$instance->editor->is_edit_mode() ) {
+					$this->add_render_attribute( $link_key, ['class' => 'elementor-clickable elmadd-lightbox-link', ] );
+				} else {
+					$this->add_render_attribute( $link_key, ['class' => 'elmadd-lightbox-link', ] );
+				}
+				$this->add_link_attributes( $link_key, ['url' => $image['url']] );
+				$image_html .= '<a ' . $this->get_render_attribute_string( $link_key ) . '></a>';
+			}
+			$image_html .= '</div></figure>';
 			$rotateY += $rotateInc;
 
 			$slides[] = $image_html;
@@ -493,6 +662,59 @@ class Carousel_3D extends \Elementor\Widget_Base {
 				<?php echo implode( '', $slides ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 			</div>
 		</div>
+		<?php
+	} // END render()
+
+
+	public function content_template() {
+		?>
+		<#
+		if ( settings.carousel && settings.carousel.length > 0  ) {
+            var slides = [];
+            var slides_count = settings.carousel.length ;
+			var rotateInc = 360 / slides_count;
+			var rotateY = 0;
+			var animation = '';
+
+			if (settings.image_hover_animation) {
+				animation = ' elementor-animation-'+ settings.image_hover_animation;
+			}
+
+			_.each( settings.carousel, function( image, index ) {
+
+				let image_html = '<figure class="elmadd-3Dcard" style="transform: rotateY('+rotateY+'deg) translateZ(var(--z-translation));" />';
+				image_html += '<div class="elmadd-3Dimage'+animation+'" style="background-image: url(\''+image.url+'\');" />';
+				let lightbox = ('yes' === settings.open_lightbox);
+				if ( lightbox ) {
+					image_html += '<a class="elementor-clickable elmadd-lightbox-link" data-elementor-open-lightbox="'+settings.open_lightbox+'" href="'+image.url+'"></a>';
+				}
+				image_html += '</div></figure>';
+				rotateY += rotateInc;
+
+				slides.push (image_html);
+			} );
+
+			view.addRenderAttribute( 'carousel', 'class', 'elmadd-carousel3D' );
+			view.addRenderAttribute( 'cards-div', 'class', 'elmadd-3Dcards-div' );
+
+		#>
+
+		<div {{{ view.getRenderAttributeString( 'carousel' ) }}}>
+			<div {{{ view.getRenderAttributeString( 'cards-div' ) }}}>
+				{{{slides.join("")}}}
+			</div>
+		</div>
+		<#
+		} else { #>
+				<div class="elementor-panel-alert elementor-panel-alert-info elemendas-notice">
+					<i aria-hidden="true" class=" eicon-slider-album"></i>
+					<span><?php
+						// translators: %s: widget name
+						printf( esc_html__('The carousel has no images, please select at least one', 'elemendas-addons')
+								);?>
+					</span>
+				</div>
+		<# } #>
 		<?php
 	}
 }
