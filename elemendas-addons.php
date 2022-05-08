@@ -1,11 +1,19 @@
-
 <?php
 /**
+ * This Elementor Addon plugin improves the search results archive page and adds awesome widgets.
+ *
+ * @package   Elemendas_Addons
+ * @author    Santiago Becerra <santi@wpcombo.com>
+ * @license   GPL-3.0+
+ * @link      https://elemendas.com
+ * @copyright 2022 Santiago Becerra
+ *
+ * @wordpress-plugin
  * Plugin Name: Elemendas Addons
  * Description: Improving the search results archive page for Elementor.
- * Plugin URI:  https://elementor.com/
+ * Plugin URI:  https://elemendas.com/elemendas-addons/
  * Text Domain: elemendas-addons
- * Version: 2.2.2
+ * Version: 2.2.3
  * Elementor tested up to: 3.6.5
  * Elementor Pro tested up to: 3.6.5
  * Author:      Elemendas, Santiago Becerra
