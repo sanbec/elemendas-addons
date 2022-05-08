@@ -62,7 +62,7 @@ class Carousel_3D extends \Elementor\Widget_Base {
 	 * @return string Widget icon.
 	 */
 	public function get_icon() {
-		return 'elm elm-gallery3D';
+		return 'elm elm-carousel3D';
 	}
 
 	/**
