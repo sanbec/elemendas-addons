@@ -13,7 +13,7 @@
  * Description: Improving the search results archive page for Elementor.
  * Plugin URI:  https://elemendas.com/elemendas-addons/
  * Text Domain: elemendas-addons
- * Version: 2.2.3
+ * Version: 2.2.4
  * Elementor tested up to: 3.6.5
  * Elementor Pro tested up to: 3.6.5
  * Author:      Elemendas, Santiago Becerra
@@ -25,7 +25,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
-define('ELEMENDAS_ADDONS_VERSION', '2.2.2' );
+define('ELEMENDAS_ADDONS_VERSION', '2.2.4' );
 define('ELM_PLUGIN_URL', trailingslashit(plugins_url('/', __FILE__)));
 
 

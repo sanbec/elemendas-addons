@@ -80,6 +80,12 @@ __Remember__: these widgets will only appear in archive templates.
 
 ## Changelog
 
+### 2.2.4
+* Fix css error
+
+### 2.2.3
+* minor aesthetic improvements
+
 ### 2.2.2
 * Added lightbox, CSS filters and hover animations to the Carousel 3D widget.
 
