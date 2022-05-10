@@ -345,6 +345,9 @@ final class Plugin {
 		require_once( __DIR__ . '/widgets/added/carousel3D.php' );
 		$widgets_manager->register( new Carousel_3D() );
 
+		require_once( __DIR__ . '/widgets/added/menu-hover-fill.php' );
+		$widgets_manager->register( new Menu_Hover_Fill() );
+
 	}
 
 	/**
