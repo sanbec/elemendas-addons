@@ -96,12 +96,12 @@ Relax! If you don't follow the steps correctly, you will get a note with instruc
 2. Multiple results
 3. No results found
 4. Only one result
-5. Warning if any text is missing
-6. Warning if used in an archive other than search results
-7. Highlight the search terms in the title using the text color
-8. Highlight the search terms in the title using the background color
-9. Highlight the search terms in the title with the highlighter
-10. Highlight the search terms in the title with quotation marks.
+5. Highlight the search terms in the title using the text color
+6. Highlight the search terms in the title using the background color
+7. Highlight the search terms in the title with the highlighter
+8. Highlight the search terms in the title with quotation marks.
+9. Leaves list
+10. Carousel 3D
 
 == Changelog ==
 
