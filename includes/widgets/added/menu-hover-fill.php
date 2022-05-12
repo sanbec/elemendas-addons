@@ -17,6 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 class Menu_Hover_Fill extends \Elementor\Widget_Base {
 
 	protected $nav_menu_index = 1;
+	private $submenu_icon;
 
 	public function get_name() {
 		return 'menu-hover-fill';
@@ -38,9 +39,10 @@ class Menu_Hover_Fill extends \Elementor\Widget_Base {
 		return [ 'menu', 'nav', 'button' ];
 	}
 
-	public function get_script_depends() {
-		return [ 'smartmenus' ];
-	}
+//	public function get_script_depends() {
+//		return [ 'smartmenus' ];
+//	}
+
 	public function get_style_depends() {
 		wp_register_style( 'menu-hover-fill-style', plugins_url( 'assets/css/menu-hover-fill.css', __FILE__ ), false, ELEMENDAS_ADDONS_VERSION );
 		return ['menu-hover-fill-style'];
@@ -287,9 +289,21 @@ class Menu_Hover_Fill extends \Elementor\Widget_Base {
 				'recommended' => [
 					'fa-solid' => [
 						'chevron-down',
+						'chevron-circle-down',
 						'angle-down',
 						'caret-down',
+						'caret-square-down',
+						'arrow-down',
+						'arrow-alt-circle-down',
 						'plus',
+						'plus-square',
+						'plus-circle',
+					],
+					'fa-regular' => [
+						'plus-square',
+						'plus-circle',
+						'caret-square-down',
+						'arrow-alt-circle-down',
 					],
 				],
 				'label_block' => false,
@@ -429,6 +443,10 @@ class Menu_Hover_Fill extends \Elementor\Widget_Base {
 						],
 					],
 				],
+				'default' => [
+					'value' => $icon_prefix . 'fa-bars',
+					'library' => 'fa-solid',
+				],
 				'recommended' => [
 					'fa-solid' => [
 						'plus-square',
@@ -547,7 +565,7 @@ class Menu_Hover_Fill extends \Elementor\Widget_Base {
 					'right' => 'margin-left: auto',
 				],
 				'selectors' => [
-					'{{WRAPPER}} .elementor-menu-toggle' => '{{VALUE}}',
+					'{{WRAPPER}} .elemendas-menu-toggle' => '{{VALUE}}',
 				],
 				'condition' => [
 					'toggle!' => '',
@@ -952,7 +970,7 @@ class Menu_Hover_Fill extends \Elementor\Widget_Base {
 				'type' => Controls_Manager::COLOR,
 				'default' => '',
 				'selectors' => [
-					'{{WRAPPER}} .elemendas-nav-menu--dropdown a, {{WRAPPER}} .elementor-menu-toggle' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .elemendas-nav-menu--dropdown a, {{WRAPPER}} .elemendas-menu-toggle' => 'color: {{VALUE}}',
 				],
 			]
 		);
@@ -989,7 +1007,7 @@ class Menu_Hover_Fill extends \Elementor\Widget_Base {
 					'{{WRAPPER}} .elemendas-nav-menu--dropdown a:hover,
 					{{WRAPPER}} .elemendas-nav-menu--dropdown a.elementor-item-active,
 					{{WRAPPER}} .elemendas-nav-menu--dropdown a.highlighted,
-					{{WRAPPER}} .elementor-menu-toggle:hover' => 'color: {{VALUE}}',
+					{{WRAPPER}} .elemendas-menu-toggle:hover' => 'color: {{VALUE}}',
 				],
 			]
 		);
@@ -1206,8 +1224,8 @@ class Menu_Hover_Fill extends \Elementor\Widget_Base {
 				'label' => esc_html__( 'Color', 'elementor-pro' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} div.elementor-menu-toggle' => 'color: {{VALUE}}', // Harder selector to override text color control
-					'{{WRAPPER}} div.elementor-menu-toggle svg' => 'fill: {{VALUE}}',
+					'{{WRAPPER}} div.elemendas-menu-toggle' => 'color: {{VALUE}}', // Harder selector to override text color control
+					'{{WRAPPER}} div.elemendas-menu-toggle svg' => 'fill: {{VALUE}}',
 				],
 			]
 		);
@@ -1218,7 +1236,7 @@ class Menu_Hover_Fill extends \Elementor\Widget_Base {
 				'label' => esc_html__( 'Background Color', 'elementor-pro' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .elementor-menu-toggle' => 'background-color: {{VALUE}}',
+					'{{WRAPPER}} .elemendas-menu-toggle' => 'background-color: {{VALUE}}',
 				],
 			]
 		);
@@ -1238,8 +1256,8 @@ class Menu_Hover_Fill extends \Elementor\Widget_Base {
 				'label' => esc_html__( 'Color', 'elementor-pro' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} div.elementor-menu-toggle:hover' => 'color: {{VALUE}}', // Harder selector to override text color control
-					'{{WRAPPER}} div.elementor-menu-toggle:hover svg' => 'fill: {{VALUE}}',
+					'{{WRAPPER}} div.elemendas-menu-toggle:hover' => 'color: {{VALUE}}', // Harder selector to override text color control
+					'{{WRAPPER}} div.elemendas-menu-toggle:hover svg' => 'fill: {{VALUE}}',
 				],
 			]
 		);
@@ -1250,7 +1268,7 @@ class Menu_Hover_Fill extends \Elementor\Widget_Base {
 				'label' => esc_html__( 'Background Color', 'elementor-pro' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .elementor-menu-toggle:hover' => 'background-color: {{VALUE}}',
+					'{{WRAPPER}} .elemendas-menu-toggle:hover' => 'background-color: {{VALUE}}',
 				],
 			]
 		);
@@ -1287,7 +1305,7 @@ class Menu_Hover_Fill extends \Elementor\Widget_Base {
 					],
 				],
 				'selectors' => [
-					'{{WRAPPER}} .elementor-menu-toggle' => 'border-width: {{SIZE}}{{UNIT}}',
+					'{{WRAPPER}} .elemendas-menu-toggle' => 'border-width: {{SIZE}}{{UNIT}}',
 				],
 			]
 		);
@@ -1299,39 +1317,12 @@ class Menu_Hover_Fill extends \Elementor\Widget_Base {
 				'type' => Controls_Manager::SLIDER,
 				'size_units' => [ 'px', '%' ],
 				'selectors' => [
-					'{{WRAPPER}} .elementor-menu-toggle' => 'border-radius: {{SIZE}}{{UNIT}}',
+					'{{WRAPPER}} .elemendas-menu-toggle' => 'border-radius: {{SIZE}}{{UNIT}}',
 				],
 			]
 		);
 
 		$this->end_controls_section();
-	}
-
-	public function get_frontend_settings() {
-		$frontend_settings = parent::get_frontend_settings();
-
-		// If the saved value is FA4, but the user has upgraded to FA5, the value needs to be converted to FA5.
-		if ( 'fa ' === substr( $frontend_settings['submenu_icon']['value'], 0, 3 ) && Icons_Manager::is_migration_allowed() ) {
-			$frontend_settings['submenu_icon']['value'] = str_replace( 'fa ', 'fas ', $frontend_settings['submenu_icon']['value'] );
-		}
-
-		// Determine the submenu icon markup.
-		if ( Plugin::elementor()->experiments->is_feature_active( 'e_font_icon_svg' ) ) {
-			$icon_classes = [];
-
-			if ( false !== strpos( $frontend_settings['submenu_icon']['value'], 'chevron-down' ) ) {
-				$icon_classes['class'] = 'fa-svg-chevron-down';
-			}
-
-			$icon_content = Icons_Manager::render_font_icon( $frontend_settings['submenu_icon'], $icon_classes );
-		} else {
-			$icon_content = sprintf( '<i class="%s"></i>', $frontend_settings['submenu_icon']['value'] );
-		}
-
-		// Passing the entire icon markup to the frontend settings because it can be either <i> or <svg> tag.
-		$frontend_settings['submenu_icon']['value'] = $icon_content;
-
-		return $frontend_settings;
 	}
 
 	protected function render() {
@@ -1356,11 +1347,32 @@ class Menu_Hover_Fill extends \Elementor\Widget_Base {
 			$args['menu_class'] .= ' sm-vertical';
 		}
 
+		// submenu_icon
+		// If the saved value is FA4, but the user has upgraded to FA5, the value needs to be converted to FA5.
+		$submenu_icon = $settings['submenu_icon']['value'];
+		if ( 'fa ' === substr( $submenu_icon, 0, 3 ) && Icons_Manager::is_migration_allowed() ) {
+			$$submenu_icon = str_replace( 'fa ', 'fas ', $submenu_icon );
+		}
+		// Determine the submenu icon markup.
+		if ( Plugin::elementor()->experiments->is_feature_active( 'e_font_icon_svg' ) ) {
+			$icon_classes = [];
+
+			if ( false !== strpos( $submenu_icon, 'chevron-down' ) ) {
+				$icon_classes['class'] = 'fa-svg-chevron-down';
+			}
+
+			$icon_content = Icons_Manager::render_font_icon( $submenu_icon, $icon_classes );
+		} else {
+			$icon_content = sprintf( '<i class="%s"></i>', $submenu_icon );
+		}
+
+		// Passing the entire icon markup to the frontend settings because it can be either <i> or <svg> tag.
+		$this->submenu_icon=$icon_content;
+
 		// Add custom filter to handle Nav Menu HTML output.
-		add_filter( 'nav_menu_link_attributes', [ $this, 'handle_link_classes' ], 10, 4 );
-		add_filter( 'nav_menu_link_attributes', [ $this, 'handle_link_tabindex' ], 10, 3 );
-		add_filter( 'nav_menu_link_attributes', [ $this, 'handle_link_datatext' ], 10, 3 );
+		add_filter( 'nav_menu_link_attributes', [ $this, 'handle_link_attributes' ], 10, 4 );
 		add_filter( 'nav_menu_submenu_css_class', [ $this, 'handle_sub_menu_classes' ] );
+		add_filter( 'nav_menu_item_title', [ $this, 'handle_item_title'], 10, 4);
 		add_filter( 'nav_menu_item_id', '__return_empty_string' );
 
 		// General Menu.
@@ -1372,9 +1384,9 @@ class Menu_Hover_Fill extends \Elementor\Widget_Base {
 		$dropdown_menu_html = wp_nav_menu( $args );
 
 		// Remove all our custom filters.
-		remove_filter( 'nav_menu_link_attributes', [ $this, 'handle_link_classes' ] );
-		remove_filter( 'nav_menu_link_attributes', [ $this, 'handle_link_tabindex' ] );
+		remove_filter( 'nav_menu_link_attributes', [ $this, 'handle_link_attributes' ] );
 		remove_filter( 'nav_menu_submenu_css_class', [ $this, 'handle_sub_menu_classes' ] );
+		remove_filter( 'nav_menu_item_title', [ $this, 'handle_item_title'] );
 		remove_filter( 'nav_menu_item_id', '__return_empty_string' );
 
 		if ( empty( $menu_html ) ) {
@@ -1382,7 +1394,7 @@ class Menu_Hover_Fill extends \Elementor\Widget_Base {
 		}
 
 		$this->add_render_attribute( 'menu-toggle', [
-			'class' => 'elementor-menu-toggle',
+			'class' => 'elemendas-menu-toggle',
 			'role' => 'button',
 			'tabindex' => '0',
 			'aria-label' => esc_html__( 'Menu Toggle', 'elementor-pro' ),
@@ -1437,8 +1449,8 @@ class Menu_Hover_Fill extends \Elementor\Widget_Base {
 			? ' elementor-animation-' . $settings['toggle_icon_hover_animation']
 			: '';
 
-			$open_class = 'elementor-menu-toggle__icon--open' . $toggle_icon_hover_animation;
-			$close_class = 'elementor-menu-toggle__icon--close' . $toggle_icon_hover_animation;
+			$open_class = 'elemendas-menu-toggle__icon--open' . $toggle_icon_hover_animation;
+			$close_class = 'elemendas-menu-toggle__icon--close' . $toggle_icon_hover_animation;
 
 			$normal_icon = ! empty( $settings['toggle_icon_normal']['value'] )
 				? $settings['toggle_icon_normal']
@@ -1446,7 +1458,6 @@ class Menu_Hover_Fill extends \Elementor\Widget_Base {
 					'library' => 'eicons',
 					'value' => 'eicon-menu-bar',
 				];
-
 			if ( 'svg' === $settings['toggle_icon_normal']['library'] ) {
 				echo '<span class="' . esc_attr( $open_class ) . '">';
 			}
@@ -1499,13 +1510,15 @@ class Menu_Hover_Fill extends \Elementor\Widget_Base {
 		<?php
 	}
 
-	public function handle_link_classes( $atts, $item, $args, $depth ) {
+	public function handle_link_attributes( $atts, $item, $args, $depth ) {
+		// classes
 		$classes = $depth ? 'elementor-sub-item' : 'elementor-item';
 		$is_anchor = false !== strpos( $atts['href'], '#' );
 
 		if ( ! $is_anchor && in_array( 'current-menu-item', $item->classes ) ) {
 			$classes .= ' elementor-item-active';
 		}
+//		var_dump($item);
 
 		if ( $is_anchor ) {
 			$classes .= ' elementor-item-anchor';
@@ -1517,10 +1530,7 @@ class Menu_Hover_Fill extends \Elementor\Widget_Base {
 			$atts['class'] .= ' ' . $classes;
 		}
 
-		return $atts;
-	}
-
-	public function handle_link_tabindex( $atts, $item, $args ) {
+		//tabindex
 		$settings = $this->get_active_settings();
 
 		// Add `tabindex = -1` to the links if it's a dropdown, for A11y.
@@ -1530,10 +1540,7 @@ class Menu_Hover_Fill extends \Elementor\Widget_Base {
 		if ( $is_dropdown ) {
 			$atts['tabindex'] = '-1';
 		}
-
-		return $atts;
-	}
-	public function handle_link_datatext( $atts, $item, $args ) {
+		//data-text
 		$atts['data-text'] = $item->title;
 		return $atts;
 	}
@@ -1543,6 +1550,16 @@ class Menu_Hover_Fill extends \Elementor\Widget_Base {
 
 		return $classes;
 	}
+
+	public function handle_item_title( $title, $item, $args, $depth ) {
+		if ( in_array( 'menu-item-has-children', $item->classes ) ) {
+			$title .= '<span class="sub-arrow">'.$this->submenu_icon.'</span>';
+		}
+		return $title;
+	}
+
+
+
 
 	public function render_plain_content() {}
 }

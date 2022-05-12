@@ -518,10 +518,6 @@
     display: -ms-flexbox;
     display: flex;
 }
-.elemendas-nav-menu--layout-horizontal .elemendas-nav-menu > li > .scroll-down,
-.elemendas-nav-menu--layout-horizontal .elemendas-nav-menu > li ul {
-    top: 100% !important;
-}
 .elemendas-nav-menu--layout-horizontal .elemendas-nav-menu > li:not(:first-child) > a {
     -webkit-margin-start: var(--e-nav-menu-horizontal-menu-item-margin);
     margin-inline-start: var(--e-nav-menu-horizontal-menu-item-margin);
@@ -586,10 +582,10 @@
     -ms-flex-pack: center;
     justify-content: center;
 }
-.elementor-widget-nav-menu:not(.elemendas-nav-menu--toggle) .elemendas-menu-toggle {
+.elementor-widget-menu-hover-fill:not(.elemendas-nav-menu--toggle) .elemendas-menu-toggle {
     display: none;
 }
-.elementor-widget-nav-menu .elementor-widget-container {
+.elementor-widget-menu-hover-fill .elementor-widget-container {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -858,3 +854,41 @@ ul.elemendas-nav-menu--dropdown a:hover {
         display: none;
     }
 }
+/* CSS menda */
+ul.elemendas-nav-menu li.menu-item:hover > ul.sub-menu {
+    transition: 1s;
+    display: block;
+    left: 100%;
+}
+
+nav.elemendas-nav-menu--layout-horizontal  ul.sub-menu > li.menu-item > ul.sub-menu {
+    top: 0;
+}
+.elemendas-nav-menu--layout-horizontal .elemendas-nav-menu > li > .scroll-down,
+.elemendas-nav-menu--layout-horizontal .elemendas-nav-menu > li ul {
+    top: 100%;
+}
+
+nav.elemendas-nav-menu--layout-vertical li.menu-item > ul.sub-menu {
+    top: 0;
+}
+
+.elemendas-nav-menu--layout-vertical  .menu-item-has-children i {
+    -webkit-transform: rotate(-90deg);
+    -ms-transform: rotate(-90deg);
+    transform: rotate(-90deg);
+}
+
+
+.elementor-widget-menu-hover-fill .elemendas-nav-menu--main .elementor-item {
+  color: var( --e-global-color-text );
+  fill: var( --e-global-color-text );
+}
+.elementor-widget-menu-hover-fill .elemendas-nav-menu .elementor-item {
+  font-family: var( --e-global-typography-primary-font-family ), Sans-serif;
+  font-weight: var( --e-global-typography-primary-font-weight );
+}
+
+.elementor-widget-menu-hover-fill .elemendas-nav-menu--main .elementor-item:hover, .elementor-widget-menu-hover-fill .elemendas-nav-menu--main .elementor-item.elementor-item-active, .elementor-widget-menu-hover-fill .elemendas-nav-menu--main .elementor-item.highlighted, .elementor-widget-menu-hover-fill .elemendas-nav-menu--main .elementor-item:focus {
+  color: var( --e-global-color-accent );
+  fill: var( --e-global-color-accent );
