@@ -569,35 +569,37 @@ $this->start_controls_section(
 			#>
 				<div class="elementor-panel-alert elementor-panel-alert-warning elemendas-warning elemendas-warning">
 					<i aria-hidden="true" class="fas fa-exclamation-circle"></i>
-					<h4><?php echo esc_html__('This widget only works on the search results page', 'elemendas-addons')?></h4>
-					<ol>
-						<li><?php
-							//translators: %s: Preview Settings
-							printf( esc_html__('Go to "%s"', 'elemendas-addons'),
-									//translators: Don't worry about this string, it will actually take it from Elementor's translation file for consistency.
-									esc_html__( 'Preview Settings', 'elementor-pro' ))?>
-							<i class="eicon-cog" aria-hidden="true"></i>.
-						</li>
-						<li><?php
-							//translators: 1: 'Preview Dynamic Content as', 2: 'Search Results' 3: 'Search Term'
-							printf( esc_html__('Set "%1$s" "%2$s" and fill the "%3$s"', 'elemendas-addons'),
+					<div class="elementor-panel-alert-message">
+						<h4><?php echo esc_html__('This widget only works on the search results page', 'elemendas-addons')?></h4>
+						<ol>
+							<li><?php
+								//translators: %s: Preview Settings
+								printf( esc_html__('Go to "%s"', 'elemendas-addons'),
 										//translators: Don't worry about this string, it will actually take it from Elementor's translation file for consistency.
-										esc_html__( 'Preview Dynamic Content as', 'elementor-pro' ),
+										esc_html__( 'Preview Settings', 'elementor-pro' ))?>
+								<i class="eicon-cog" aria-hidden="true"></i>.
+							</li>
+							<li><?php
+								//translators: 1: 'Preview Dynamic Content as', 2: 'Search Results' 3: 'Search Term'
+								printf( esc_html__('Set "%1$s" "%2$s" and fill the "%3$s"', 'elemendas-addons'),
+											//translators: Don't worry about this string, it will actually take it from Elementor's translation file for consistency.
+											esc_html__( 'Preview Dynamic Content as', 'elementor-pro' ),
+											//translators: Don't worry about this string, it will actually take it from Elementor's translation file for consistency.
+											esc_html__( 'Search Results', 'elementor-pro' ),
+											//translators: Don't worry about this string, it will actually take it from Elementor's translation file for consistency.
+											esc_html__( 'Search Term', 'elementor-pro' ) )?>.
+							</li>
+							<li><?php
+								//translators: 1: 'Display Conditions' 2: flow icon 3: 'Search Results'
+								printf( esc_html__('Adjust the "%1$s" %2$s to "%3$s"', 'elemendas-addons'),
 										//translators: Don't worry about this string, it will actually take it from Elementor's translation file for consistency.
-										esc_html__( 'Search Results', 'elementor-pro' ),
+										esc_html__( 'Display Conditions', 'elementor-pro' ),
+										'<i class="eicon-flow" aria-hidden="true"></i>',
 										//translators: Don't worry about this string, it will actually take it from Elementor's translation file for consistency.
-										esc_html__( 'Search Term', 'elementor-pro' ) )?>.
-						</li>
-						<li><?php
-							//translators: 1: 'Display Conditions' 2: flow icon 3: 'Search Results'
-							printf( esc_html__('Adjust the "%1$s" %2$s to "%3$s"', 'elemendas-addons'),
-									//translators: Don't worry about this string, it will actually take it from Elementor's translation file for consistency.
-									esc_html__( 'Display Conditions', 'elementor-pro' ),
-									'<i class="eicon-flow" aria-hidden="true"></i>',
-									//translators: Don't worry about this string, it will actually take it from Elementor's translation file for consistency.
-									esc_html__( 'Search Results', 'elementor-pro' )) ?>.
-						</li>
-					</ol>
+										esc_html__( 'Search Results', 'elementor-pro' )) ?>.
+							</li>
+						</ol>
+					</div>
 				</div>
 			<#
 			}
