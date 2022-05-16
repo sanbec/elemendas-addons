@@ -15,14 +15,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 final class Plugin {
 
 	/**
-	 * Addon Version
-	 *
-	 * @since 1.0.0
-	 * @var string The addon version.
-	 */
-	const VERSION = '1.0.0';
-
-	/**
 	 * Minimum Elementor Version
 	 *
 	 * @since 1.0.0
@@ -324,6 +316,9 @@ final class Plugin {
         add_action( 'elementor/preview/enqueue_styles', [ $this, 'elemendas_preview_styles' ] );
 		// Initiate extensions to existing elements
 		self::elemendas_init_extensions();
+		require_once( __DIR__ . '/acf/menu-fields.php' );
+		require_once( __DIR__ . '/acf/acf-svg-icon-field.php' );
+
 	}
 
 	/**
