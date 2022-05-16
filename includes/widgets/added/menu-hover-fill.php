@@ -1552,6 +1552,12 @@ class Menu_Hover_Fill extends \Elementor\Widget_Base {
 	}
 
 	public function handle_item_title( $title, $item, $args, $depth ) {
+		$iconName = get_field('icono', $item);
+		if ($iconName) {
+			$iconURL = ELM_PLUGIN_URL . 'includes/acf/assets/img/svg/' . $iconName . '.svg';
+			$iconTag = file_get_contents($iconURL);
+			$title = $iconTag .= $title;
+		}
 		if ( in_array( 'menu-item-has-children', $item->classes ) ) {
 			$title .= '<span class="sub-arrow">'.$this->submenu_icon.'</span>';
 		}
