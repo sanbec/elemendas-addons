@@ -882,7 +882,6 @@ nav.elemendas-nav-menu--layout-vertical li.menu-item > ul.sub-menu {
 
 .elementor-widget-menu-hover-fill .elemendas-nav-menu--main .elementor-item {
   color: var( --e-global-color-text );
-  fill: var( --e-global-color-text );
 }
 .elementor-widget-menu-hover-fill .elemendas-nav-menu .elementor-item {
   font-family: var( --e-global-typography-primary-font-family ), Sans-serif;
@@ -891,4 +890,11 @@ nav.elemendas-nav-menu--layout-vertical li.menu-item > ul.sub-menu {
 
 .elementor-widget-menu-hover-fill .elemendas-nav-menu--main .elementor-item:hover, .elementor-widget-menu-hover-fill .elemendas-nav-menu--main .elementor-item.elementor-item-active, .elementor-widget-menu-hover-fill .elemendas-nav-menu--main .elementor-item.highlighted, .elementor-widget-menu-hover-fill .elemendas-nav-menu--main .elementor-item:focus {
   color: var( --e-global-color-accent );
-  fill: var( --e-global-color-accent );
+}
+
+ul.elemendas-nav-menu li.menu-item > a > svg{
+  fill: currentColor;
+  width: 1em;
+  height: 1em;
+  margin: 0 0.2em;
+}
