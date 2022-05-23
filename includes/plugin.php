@@ -339,10 +339,6 @@ final class Plugin {
 
 		require_once( __DIR__ . '/widgets/added/carousel3D.php' );
 		$widgets_manager->register( new Carousel_3D() );
-
-		require_once( __DIR__ . '/widgets/added/menu-hover-fill.php' );
-		$widgets_manager->register( new Menu_Hover_Fill() );
-
 	}
 
 	/**
@@ -368,7 +364,12 @@ final class Plugin {
 	public function elemendas_init_extensions(  ) {
 		// Include extension classes
 		require_once( __DIR__ . '/widgets/extended/search-results-archive-title.php' );
-		$extensions_array = [ 'Search_Results_Archive_Title' ];
 		Search_Results_Archive_Title::init();
+		require_once( __DIR__ . '/widgets/extended/fancy-nav-menu.php' );
+		Fancy_Nav_Menu::init();
+
+
+		$extensions_array = [ 'Search_Results_Archive_Title','Fancy_Nav_Menu'];
+
 	}
 }
