@@ -29,17 +29,7 @@ class Search_Results_Archive_Title {
 //        add_action( 'elementor/preview/enqueue_scripts', [ __CLASS__, 'enqueue_scripts' ] );
 
     }
-    
-	public static function change_heading_widget_content( $widget_content, $element ) {
 
-		if ( 'theme-archive-title' === $element->get_name() ) {
-			$settings = $element->get_settings_for_display();
-			$title = $settings['title'];
-			$widget_content = str_replace ($title,"Otra cosa",$widget_content);		
-		}
-		return $widget_content;
-
-	}
 
 	// BEGIN register_controls
 	public static function add_content_section_title(Element_Base $element) {
@@ -485,7 +475,7 @@ class Search_Results_Archive_Title {
 		return $widget_content;
 	}
 
-	public function editor_preview_content_template($template, $element) {
+	public static function editor_preview_content_template($template, $element) {
 		if ( 'theme-archive-title' === $element->get_name() ) {
 
 			$template = <<<"term"
