@@ -21,6 +21,7 @@ acf_add_local_field_group(array(
 			),
 			'initial_value' => '',
 		),
+/*
 		array(
 			'key' => 'elm_ext_wp_menus_icon_fixed',
 			'label' => esc_html__('Fixed color icon', 'elemendas-addons' ),
@@ -45,7 +46,8 @@ acf_add_local_field_group(array(
 			'return_format' => 'value',
 			'save_custom' => 0,
 		),
-			array(
+*/
+		array(
 			'key' => 'elm_ext_wp_menus_normal_color',
 			'label' => esc_html__('Normal Color', 'elemendas-addons' ),
 			'name' => 'elm_normal_color',
