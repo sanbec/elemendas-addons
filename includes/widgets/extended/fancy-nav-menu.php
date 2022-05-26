@@ -355,16 +355,17 @@ class Fancy_Nav_Menu {
 	} // END render_fancy_nav_menu
 
 	public static function handle_item_title( $title, $item, $args, $depth ) {
-		$iconName = get_field('elm_icono', $item);
-		if ($iconName) :
-			$iconURL = ELM_PLUGIN_URL . 'includes/acf/assets/img/svg/' . $iconName . '.svg';
-			$fixedIcon = get_field('elm_fixicon', $item);
+		$icon = get_field('elm_icono', $item);
+		if ($icon) :
+//			$iconURL = esc_url(ELM_PLUGIN_URL . 'includes/acf/assets/img/svg/' . $icon);
+			$iconPATH = trailingslashit( wp_upload_dir()['basedir']) . 'elemendas-svg-icons/' . $icon;
+/*			$fixedIcon = get_field('elm_fixicon', $item);
 			if (in_array('fixed', $fixedIcon)):
 				$iconTag = '<object data="'.$iconURL.'"></object>';
 			else :
-				$iconTag = file_get_contents($iconURL);
+*/				$iconTag = file_get_contents($iconPATH);
 				$iconTag = str_replace('<svg','<svg width="1em" height="1em"',$iconTag);
-			endif;
+//			endif;
 			$title = $iconTag .= $title;
 		endif;
 		return $title;

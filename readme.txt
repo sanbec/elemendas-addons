@@ -1,7 +1,7 @@
 === Elemendas Addons ===
 Contributors: sanbec, elemendas
 Donate link: https://paypal.me/sanbec
-Tags: elementor,elementor addon,elementor addons,elementor widgets,elementor extensions,search results
+Tags: elementor,elementor widgets,search results,menu,carousel
 Requires at least: 5.0
 Tested up to: 6.0
 Requires PHP: 5.6

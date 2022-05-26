@@ -1,8 +1,7 @@
 (function($) {
   var active_item;
-  var item_width = 105;
-  var item_height = 76 + 6;
-  var recycled_items = [];
+  var item_width = 120;
+  var item_height = 90+15;
   const { __, _x, _n, _nx } = wp.i18n;
 
   jQuery(document).on('click', 'li[data-svg]', function() {
@@ -38,14 +37,30 @@
         list += `</ul>`;
       }
 
+
+      var dirs = '<ul class="acf-icon-picker__families">';
+      dirs += '<h4>'+__('Icon Families','elemendas-addons')+'</h4>';
+      dirs += '<li><a class="acf-icon-picker__all-families" href="#">' + __('All','elemendas-addons') + '</a></li>';
+      if (iconSets.length > 0) {
+        for (let x in iconSets) {
+          if (iconSets[x]==='Uploaded Icons')
+            dirs += '<li><a class="acf-icon-picker__uploaded" href="#">' + iconSets[x] + '</a></li>'
+          else
+            dirs += '<li><a href="#">' + iconSets[x] + '</a></li>';
+
+        }
+      }
+      dirs += '</ul>';
+
       jQuery('body').append(
         '<div class="acf-icon-picker__popup-holder">' +
-          '<div class="acf-icon-picker__popup">' +
+          '<div class="acf-icon-picker__popup">' + dirs +
             '<a class="acf-icon-picker__popup__close" href="javascript:">' +
-                '<img src="'+path+'../cross.svg" style="width: 2em;" alt="'+ __('close','elemendas-addons') +'">' +
+                '<img src="'+plugin_url+'assets/img/cross.svg" style="width: 2em;" alt="'+ __('close','elemendas-addons') +'">' +
             '</a>' +
-            '<h4 class="acf-icon-picker__popup__title">' + __('ACF Icon Picker - Choose icon','elemendas-addons') + '</h4>' +
-            '<input class="acf-icon-picker__filter" type="text" id="filterIcons" placeholder="' + __('Start typing to filter icons','elemendas-addons') + '" />' +
+            '<div class="acf-icon-picker__popup__title"><h4>' + __('Icon Picker - Choose icon','elemendas-addons') + '</h4>' +
+            '<span>' + __('Displaying the icons for all families','elemendas-addons') + '</span></div>' +
+            '<input class="acf-icon-picker__filter" type="search" id="filterIcons" placeholder="' + __('Start typing to filter icons','elemendas-addons') + '" />' +
             '<div class="acf-icon-picker__popup__icons">' + list + '</div>' +
           '</div>' +
         '</div>'
@@ -58,10 +73,11 @@
       var $list = $('#icons-list');
       var margin = 200; // number of px to show above and below.
 
-      var width = jQuery('.acf-icon-picker__popup').width();
+      var width = jQuery('.acf-icon-picker__popup__icons').width()  ;
       var columns = (width / item_width)>>0 ;
       $('.acf-icon-picker__popup__icons').css('--columns',columns);
-      var svgs = allSVGs;
+      var familySVGs = allSVGs;
+      var svgs = familySVGs;
 
       function setListHeight() {
         var total_lines = Math.ceil(svgs.length / columns);
@@ -71,7 +87,6 @@
       function removeAllItems() {
         $('[data-acf-icon-index]').each(function(i, el) {
           var $el = $(el);
-          recycled_items.push($el);
           $el.remove();
         });
       }
@@ -86,20 +101,19 @@
         var index_min = Math.ceil(scroll_min / item_height) * columns;
         var index_max = Math.ceil(scroll_max / item_height) * columns;
 
-        // remove unneeded items and add them to recycled items.
+        // remove unneeded items
         $('[data-acf-icon-index]').each(function(i, el) {
           var $el = $(el);
           var index = $el.attr('data-acf-icon-index');
-          var name = $el.attr('data-svg');
+          var icon = $el.attr('data-svg');
           // Check if we have the element in the resulting array.
           var elementExist = function() {
             return svgs.find(function (svg) {
-              return svg.name === name;
+              return svg.icon === icon;
             });
           }
 
           if (index < index_min || index > index_max || !elementExist()) {
-            recycled_items.push($el);
             $el.remove();
           }
         });
@@ -112,29 +126,22 @@
           var x = i % columns * item_width;
 
           // If we already have the element visible we can continue
-          var $el = $('[data-acf-icon-index="' + i + '"][data-svg="' + svg.name + '"]');
+          var $el = $('[data-acf-icon-index="' + i + '"][data-svg="' + svg.icon + '"]');
           // If item already exist we can skip.
           if ($el.length) continue;
 
-          if (recycled_items.length) {
-            // If there are recycled items reuse one.
-            $el = recycled_items.pop();
-          }
-          else {
-            // Or create a new element.
-            $el = $(
-              '<li>' +
-                '<div class="acf-icon-picker__popup-svg">' +
-                  '<img src="" alt=""/>' +
-                '</div>' +
-                '<span class="icons-list__name"></span>' +
-              '</li>'
-            );
-          }
+          $el = $(
+            '<li>' +
+              '<div class="acf-icon-picker__popup-svg">' +
+                '<img src="" alt=""/>' +
+              '</div>' +
+              '<span class="icons-list__name"></span>' +
+            '</li>'
+          );
 
           // We use attr instead of data since we want to use css selector.
           $el.attr({
-            'data-svg': svg.name,
+            'data-svg': svg.icon,
             'data-acf-icon-index': i
           }).css({
             transform: 'translate(' + x + 'px, ' + y + 'px)'
@@ -154,31 +161,64 @@
         render();
       }
 
-      const iconsFilter = document.querySelector('#filterIcons');
-
       function filterIcons(wordToMatch) {
-        return allSVGs.filter(icon => {
+        return familySVGs.filter(icon => {
           var name = icon.name.replace(/[-_]/g, ' ');
           const regex = new RegExp(wordToMatch, 'gi');
           return name.match(regex);
         });
       }
 
-      function displayResults() {
+      $('#filterIcons').on('focus', function(e) {
+        e.stopPropagation();
+        $(this).val('');
+      });
+
+      $('#filterIcons').on('keyup focus', function(e) {
+        e.stopPropagation();
         svgs = filterIcons($(this).val());
         removeAllItems();
         setListHeight();
+      });
+
+      // Family filtering
+
+      function filterFamilyIcons(family) {
+        return allSVGs.filter(icon => {
+          var name = icon.icon;
+          const regex = new RegExp(family, 'gi');
+          return name.match(regex);
+        });
       }
 
-      iconsFilter.focus();
+      $('.acf-icon-picker__families > li > a.acf-icon-picker__uploaded').click( function(e) {
+        e.stopPropagation();
+        alert(__('Note: In the current version, there is no mechanism for uploading icons. If you want to use your own icons, please upload them by hand to the subfolder "Uploaded Icons" of your "uploads" folder','elemendas-addons') );
+      });
 
-      iconsFilter.addEventListener('keyup', displayResults);
+      $('.acf-icon-picker__families > li > a:not(.acf-icon-picker__all-families)').click( function(e) {
+        e.stopPropagation();
+        familySVGs = filterFamilyIcons($(this).html());
+        svgs = filterIcons($('#filterIcons').val());
+        $('.acf-icon-picker__popup__title span').html(__('Displaying icons for the family','elemendas-addons') + ' <strong>' + $(this).html() + '</strong>' );
+        removeAllItems();
+        setListHeight();
+      });
+
+      $('.acf-icon-picker__families > li > a.acf-icon-picker__all-families').click( function(e) {
+        e.stopPropagation();
+        familySVGs = allSVGs;
+        svgs = filterIcons($('#filterIcons').val());
+        $('.acf-icon-picker__popup__title span').html( __('Displaying the icons for all families','elemendas-addons') );
+        removeAllItems();
+        setListHeight();
+      });
 
       // Closing
-      jQuery('.acf-icon-picker__popup__close').on('click', function(e) {
+      $('.acf-icon-picker__popup__close').on('click', function(e) {
         e.stopPropagation();
         is_open = false;
-        jQuery('.acf-icon-picker__popup-holder').remove();
+        $('.acf-icon-picker__popup-holder').remove();
       });
     });
 
