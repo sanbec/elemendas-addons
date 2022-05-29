@@ -1,0 +1,70 @@
+
+form#uploadSVG_form {
+    width: 40vw;
+    background: #eee;
+    margin: 0 auto;
+    padding: 1em;
+    border: 1px solid black;
+}
+
+#elm_icon_preview ol {
+    padding: 0;
+    margin: 0;
+}
+
+#elm_icon_preview li {
+    background: #fff;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap:wrap;
+    margin: 0.5em 0 0 0;
+    padding: 0.3em;
+    list-style-type: none;
+    border: 1px solid #dcdcde;
+}
+#elm_icon_preview .elm_icon_desc {
+  display: flex;
+  justify-content: space-between;
+  flex: 1 1 10em;
+  flex-wrap: wrap;
+}
+
+#elm_icon_preview .elm_icon_desc p {
+  margin: 5px 0;
+}
+
+#elm_icon_preview img {
+    width: 55px;
+    max-height: 55px;
+    order: 1;
+    padding-left: 1em;
+}
+
+#elm_icon_uploads label, #elm_icon_uploads button {
+    display: inline-block;
+    color: #2271b1;
+    border: 1px solid #2271b1;
+    background-color: #f6f7f7;
+    line-height: 2.15384615;
+    padding: 0 10px;
+    cursor: pointer;
+    border-radius: 3px;
+    -webkit-appearance: none;
+    white-space: nowrap;
+}
+
+#elm_icon_uploads  label:hover, #elm_icon_uploads  button:hover {
+    background-color: #f0f0f1;
+    border-color: #0a4b78;
+    color: #0a4b78;
+}
+
+#elm_icon_uploads  label:active, #elm_icon_uploads  button:active {
+    background-color: #f6f7f7;
+    border-color: #8c8f94;
+}
+
+#elm_icon_uploads input#elm_icon_files {
+    opacity:0;
+    width:0;
+}

@@ -318,7 +318,9 @@ final class Plugin {
 		self::elemendas_init_extensions();
 		require_once( __DIR__ . '/acf/menu-fields.php' );
 		require_once( __DIR__ . '/acf/acf-svg-icon-field.php' );
-
+		// Load settings.
+		require_once( __DIR__ . '/acf/acf-svg-icon-settings.php' );
+		Menu_Icons_Settings::init();
 	}
 
 	/**

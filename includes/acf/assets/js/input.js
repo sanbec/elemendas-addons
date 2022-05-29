@@ -193,10 +193,15 @@
 
       $('.acf-icon-picker__families > li > a.acf-icon-picker__uploaded').click( function(e) {
         e.stopPropagation();
+        familySVGs = filterFamilyIcons($(this).html());
+        svgs = filterIcons($('#filterIcons').val());
+        $('.acf-icon-picker__popup__title span').html(__('Displaying icons for the family','elemendas-addons') + ' <strong>' + $(this).html() + '</strong>' );
+        removeAllItems();
+        setListHeight();
         alert(__('Note: In the current version, there is no mechanism for uploading icons. If you want to use your own icons, please upload them by hand to the subfolder "Uploaded Icons" of your "uploads" folder','elemendas-addons') );
       });
 
-      $('.acf-icon-picker__families > li > a:not(.acf-icon-picker__all-families)').click( function(e) {
+      $('.acf-icon-picker__families > li > a:not(.acf-icon-picker__all-families,.acf-icon-picker__uploaded)').click( function(e) {
         e.stopPropagation();
         familySVGs = filterFamilyIcons($(this).html());
         svgs = filterIcons($('#filterIcons').val());
