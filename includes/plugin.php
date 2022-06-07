@@ -31,6 +31,14 @@ final class Plugin {
 	const MINIMUM_ELEMENTOR_PRO_VERSION = '3.6.0';
 
 	/**
+	 * Minimum Advanced Custom Fields Version
+	 *
+	 * @since 2.3.0
+	 * @var string Minimum Advanced Custom Fields version required to run the nav menu extension.
+	 */
+	const MINIMUM_ACF_VERSION = '5.9.0';
+
+	/**
 	 * Instance
 	 *
 	 * @since 1.0.0
@@ -151,6 +159,41 @@ final class Plugin {
 			add_action( 'admin_notices', [ $this, 'admin_notice_minimum_elementor_pro_version' ] );
 			return true;
 		}
+		// Check if Advanced Custom Fields or ACF pro are installed
+		if ( !$this->is_plugin_installed ( 'advanced-custom-fields/acf.php' ) && !$this->is_plugin_installed ( 'advanced-custom-fields-pro/acf.php' ) ) {
+			add_action( 'admin_notices', [ $this, 'admin_notice_missing_acf_plugin' ] );
+			return false;
+		}
+
+		if ( $this->is_plugin_installed ( 'advanced-custom-fields-pro/acf.php' ) && 
+			 $this->is_plugin_active ( 'advanced-custom-fields-pro/acf.php' ) && 
+			 version_compare( ACF_VERSION, self::MINIMUM_ACF_VERSION, '>=' ) ) return true;
+		
+		// Check if Advanced Custom Fields is activated
+		if ( $this->is_plugin_installed ( 'advanced-custom-fields/acf.php' ) ) {
+			if ( !$this->is_plugin_active ( 'advanced-custom-fields/acf.php' ) ) {
+				add_action( 'admin_notices', [ $this, 'admin_notice_disabled_acf_plugin' ] );
+				return false;
+			}
+			// Check for required Advanced Custom Fields  version
+			if ( ! version_compare( ACF_VERSION, self::MINIMUM_ACF_VERSION, '>=' ) ) {
+				add_action( 'admin_notices', [ $this, 'admin_notice_minimum_acf_version' ] );
+				return false;
+			}
+			return true;	
+		}
+		
+		// Check if Advanced Custom Fields is activated
+		if (!$this->is_plugin_active ( 'advanced-custom-fields-pro/acf.php' ) ) {
+			add_action( 'admin_notices', [ $this, 'admin_notice_disabled_acf_pro_plugin' ] );
+			return false;
+		}
+		// Check for required Advanced Custom Fields  version
+		if (! version_compare( ACF_VERSION, self::MINIMUM_ACF_VERSION, '>=' ) ) {
+			add_action( 'admin_notices', [ $this, 'admin_notice_minimum_acf_pro_version' ] );
+			return false;
+		}
+
 		return true;
 	}
 
@@ -162,14 +205,15 @@ final class Plugin {
 	 * @since 1.0.0
 	 * @access public
 	 */
-	public function compatibility_admin_notice( $item, $action, $requirement, $action_url = "", $min_version = "" ) {
+	public function compatibility_admin_notice( $itemDir, $action, $requirement, $action_url = "", $min_version = "", $item = "" ) {
 
 		if ( isset( $_GET['activate'] ) ) unset( $_GET['activate'] );
-		$itemName = ucwords(str_replace("-"," ",$item));
+		$itemName = ucwords(str_replace("-"," ",$itemDir));
+		if ( $item === "") $item = $itemDir;
 
 		switch ($action) {
 			case "install":
-				if ("" === $action_url) $action_url = wp_nonce_url(self_admin_url('update.php?action=install-plugin&plugin='.$item), 'install-plugin_'.$item);
+				if ("" === $action_url) $action_url = wp_nonce_url(self_admin_url('update.php?action=install-plugin&plugin='.$itemDir), 'install-plugin_'.$itemDir);
 				if ("requires" === $requirement) {
 					/* translators: 1: Plugin name 2: Elementor/Elementor Pro */
 					$message_text = esc_html__( '"%1$s" requires "%2$s" to be installed and activated.', 'elemendas-addons' );
@@ -181,7 +225,7 @@ final class Plugin {
 				$button_text = sprintf(__('Install %s', 'elemendas-addons'), $itemName );
 				break;
 			case "activate":
-				$plugin = $item.'/'.$item.'.php';
+				$plugin = $itemDir.'/'.$item.'.php';
 				if ("" === $action_url) $action_url = wp_nonce_url('plugins.php?action=activate&amp;plugin=' . $plugin . '&amp;plugin_status=all&amp;paged=1&amp;s', 'activate-plugin_' . $plugin);
 				if ("requires" === $requirement) {
 					/* translators: 1: Plugin name 2: Elementor/Elementor Pro */
@@ -194,7 +238,7 @@ final class Plugin {
 				$button_text = sprintf(__('Activate %s', 'elemendas-addons'), $itemName );
 				break;
 			case "update":
-				$plugin = $item.'/'.$item.'.php';
+				$plugin = $itemDir.'/'.$item.'.php';
 				if ("" === $action_url) $action_url = wp_nonce_url(self_admin_url('update.php?action=upgrade-plugin&plugin='.$plugin), 'upgrade-plugin_'.$plugin);
 				/* translators: 1: Plugin name 2: Elementor/Elementor Pro 3: Required Elementor version */
 				$message_text = esc_html__( '"%1$s" requires "%2$s" version %3$s or greater.', 'elemendas-addons' );
@@ -216,7 +260,7 @@ final class Plugin {
 				$message = sprintf(
 					$message_text,
 						'<strong>' . esc_html__( 'Elemendas Addons', 'elemendas-addons' ) . '</strong>',
-					'<strong>' . 'Elementor' . '</strong>',
+					'<strong>' . $itemName . '</strong>',
 					$min_version
 				);
 		}
@@ -293,6 +337,63 @@ final class Plugin {
 	 */
 	public function admin_notice_minimum_elementor_pro_version() {
 		$this->compatibility_admin_notice( 'elementor-pro','update','requires', '' , self::MINIMUM_ELEMENTOR_PRO_VERSION);
+	}
+
+		/**
+	 * Admin notice
+	 *
+	 * Warning when the site doesn't have Advanced Custom Fields installed or activated.
+	 *
+	 * @since 2.3.0
+	 * @access public
+	 */
+	public function admin_notice_missing_acf_plugin() {
+		$this->compatibility_admin_notice( 'advanced-custom-fields','install','recommends');
+	}
+
+	/**
+	 * Admin notice warning when the site doesn't have Advanced Custom Fields activated.
+	 *
+	 * @since 2.3.0
+	 * @access public
+	 */
+	public function admin_notice_disabled_acf_plugin() {
+		$this->compatibility_admin_notice( 'advanced-custom-fields','activate','recommends', '', '', 'acf');
+	}
+
+	/**
+	 * Admin notice
+	 *
+	 * Warning when the site doesn't have a minimum required Advanced Custom Fields version.
+	 *
+	 * @since 2.3.0
+	 * @access public
+	 */
+	public function admin_notice_minimum_acf_version() {
+		$this->compatibility_admin_notice( 'advanced-custom-fields','update','recommends', '' , self::MINIMUM_ACF_VERSION, 'acf');
+	}
+
+
+	/**
+	 * Admin notice warning when the site doesn't have Advanced Custom Fields activated.
+	 *
+	 * @since 2.3.0
+	 * @access public
+	 */
+	public function admin_notice_disabled_acf_pro_plugin() {
+		$this->compatibility_admin_notice( 'advanced-custom-fields-pro','activate','recommends', '', '', 'acf');
+	}
+
+	/**
+	 * Admin notice
+	 *
+	 * Warning when the site doesn't have a minimum required Advanced Custom Fields version.
+	 *
+	 * @since 2.3.0
+	 * @access public
+	 */
+	public function admin_notice_minimum_acf_pro_version() {
+		$this->compatibility_admin_notice( 'advanced-custom-fields-pro','update','recommends', '' , self::MINIMUM_ACF_VERSION, 'acf');
 	}
 
 	/**
