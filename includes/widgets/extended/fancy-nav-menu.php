@@ -75,10 +75,6 @@ class Fancy_Nav_Menu {
 					'{{WRAPPER}} .elementor-nav-menu--main .elementor-item.elementor-item-active' => 'color: var( --elm-active-color, var( --elm-hover-color, {{VALUE}} )); fill: {{VALUE}};',
 				],
 
-
-
-
-
 			]
 		);
 		// hover pointer color
@@ -132,8 +128,17 @@ class Fancy_Nav_Menu {
 			[
 				'selectors' => [
 					'{{WRAPPER}} .elementor-nav-menu--dropdown a:hover,
-					 {{WRAPPER}} .elementor-nav-menu--dropdown a.elementor-item-active,
 					 {{WRAPPER}} .elementor-nav-menu--dropdown a.highlighted' => 'background-color: var( --elm-hover-color, {{VALUE}} )',
+				],
+			]
+		);
+
+		// hover background color
+		$element->update_control(
+			'background_color_dropdown_item_active',
+			[
+				'selectors' => [
+					'{{WRAPPER}} .elementor-nav-menu--dropdown a.elementor-item-active' => 'background-color: var( --elm-active-color, {{VALUE}} )',
 				],
 			]
 		);
