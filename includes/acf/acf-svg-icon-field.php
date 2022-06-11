@@ -1,4 +1,5 @@
 <?php
+namespace Elemendas\Addons\MenuIcons;
 /*
 Module Name: SVG icon picker for Advanced Custom Fields
 Based on: https://github.com/houke/acf-icon-picker

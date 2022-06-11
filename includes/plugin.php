@@ -1,5 +1,5 @@
 <?php
-namespace Elemendas_Addons;
+namespace Elemendas\Addons;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
@@ -421,7 +421,7 @@ final class Plugin {
 		require_once( __DIR__ . '/acf/acf-svg-icon-field.php' );
 		// Load settings.
 		require_once( __DIR__ . '/acf/acf-svg-icon-settings.php' );
-		Menu_Icons_Settings::init();
+		MenuIcons\Menu_Icons_Upload::init();
 	}
 
 	/**
@@ -435,13 +435,13 @@ final class Plugin {
 	 */
 	public function register_widgets( $widgets_manager ) {
 		require_once( __DIR__ . '/widgets/added/search-results-highlighted.php' );
-		$widgets_manager->register( new Search_Results_Highlighted() );
+		$widgets_manager->register( new Widgets\Search_Results_Highlighted() );
 
 		require_once( __DIR__ . '/widgets/added/leaveslist.php' );
-		$widgets_manager->register( new Leaves_List() );
+		$widgets_manager->register( new Widgets\Leaves_List() );
 
 		require_once( __DIR__ . '/widgets/added/carousel3D.php' );
-		$widgets_manager->register( new Carousel_3D() );
+		$widgets_manager->register( new Widgets\Carousel_3D() );
 	}
 
 	/**
@@ -455,21 +455,21 @@ final class Plugin {
 	 */
 	public function register_controls( $controls_manager ) {
 		require_once( __DIR__ . '/controls/quotation-marks.php' );
-		$controls_manager->register( new Quotation_Control() );
+		$controls_manager->register( new Controls\Quotation_Control() );
 
 		require_once( __DIR__ . '/controls/highlighter.php' );
-		$controls_manager->register( new Highlighter_Control() );
+		$controls_manager->register( new Controls\Highlighter_Control() );
 
 		require_once( __DIR__ . '/controls/border-style.php' );
-		$controls_manager->register( new Border_Style_Control() );
+		$controls_manager->register( new Controls\Border_Style_Control() );
 	}
 	
 	public function elemendas_init_extensions(  ) {
 		// Include extension classes
 		require_once( __DIR__ . '/widgets/extended/search-results-archive-title.php' );
-		Search_Results_Archive_Title::init();
+		Extensions\Search_Results_Archive_Title::init();
 		require_once( __DIR__ . '/widgets/extended/fancy-nav-menu.php' );
-		Fancy_Nav_Menu::init();
+		Extensions\Fancy_Nav_Menu::init();
 
 
 		$extensions_array = [ 'Search_Results_Archive_Title','Fancy_Nav_Menu'];

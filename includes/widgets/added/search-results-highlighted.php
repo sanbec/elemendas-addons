@@ -1,5 +1,5 @@
 <?php
-namespace Elemendas_Addons;
+namespace Elemendas\Addons\Widgets;
 
 use Elementor\Controls_Manager;
 use Elementor\Group_Control_Typography;

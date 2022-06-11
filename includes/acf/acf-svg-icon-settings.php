@@ -1,5 +1,5 @@
 <?php
-namespace Elemendas_Addons;
+namespace Elemendas\Addons\MenuIcons;
 
 /**
  * Settings
@@ -11,13 +11,11 @@ namespace Elemendas_Addons;
 /**
  * Menu Icons Settings module
  */
-final class Menu_Icons_Settings {
+final class Menu_Icons_Upload {
 
-	const UPDATE_KEY = 'menu-icons-settings-update';
+	const UPDATE_KEY = 'elmadd_icons_upload';
 
-	const RESET_KEY = 'menu-icons-settings-reset';
-
-	const TRANSIENT_KEY = 'menu_icons_message';
+	const TRANSIENT_KEY = 'elmadd_icons_message';
 
 	/**
 	 * Default setting values
@@ -77,6 +75,7 @@ final class Menu_Icons_Settings {
 		self::$settings = apply_filters( 'menu_icons_settings', self::$settings );
 
 		add_action( 'load-nav-menus.php', array( __CLASS__, '_load_nav_menus' ), 1 );
+//		add_action( 'admin_menu', array( __CLASS__, '_add_icons_submenu_page' ));
 		add_action( 'wp_ajax_menu_icons_update_settings', array( __CLASS__, '_ajax_menu_icons_update_settings' ) );
 	}
 
@@ -204,14 +203,11 @@ final class Menu_Icons_Settings {
 	 * @since 0.3.0
 	 */
 	public static function _maybe_update_settings() {
-		if ( ! empty( $_POST['menu-icons']['settings'] ) ) {
+		if ( ! empty( $_FILES['elm_icon_files'] ) ) {
 			check_admin_referer( self::UPDATE_KEY, self::UPDATE_KEY );
 
 			$redirect_url = self::_update_settings( $_POST['menu-icons']['settings'] ); // Input var okay.
-			wp_redirect( $redirect_url );
-		} elseif ( ! empty( $_REQUEST[ self::RESET_KEY ] ) ) {
-			check_admin_referer( self::RESET_KEY, self::RESET_KEY );
-			wp_redirect( self::_reset_settings() );
+			wp_redirect(wp_get_referer());
 		}
 	}
 
@@ -234,33 +230,8 @@ final class Menu_Icons_Settings {
 			)
 		);
 		set_transient( self::TRANSIENT_KEY, 'updated', 30 );
-
-		$redirect_url = remove_query_arg(
-			array( 'menu-icons-reset' ),
-			wp_get_referer()
-		);
-
-		return $redirect_url;
 	}
 
-	/**
-	 * Reset settings
-	 *
-	 * @since  0.7.0
-	 * @access protected
-	 * @return string    Redirect URL.
-	 */
-	protected static function _reset_settings() {
-		delete_option( 'menu-icons' );
-		set_transient( self::TRANSIENT_KEY, 'reset', 30 );
-
-		$redirect_url = remove_query_arg(
-			array( self::RESET_KEY, 'menu-icons-updated' ),
-			wp_get_referer()
-		);
-
-		return $redirect_url;
-	}
 
 	/**
 	 * Settings meta box
@@ -269,15 +240,31 @@ final class Menu_Icons_Settings {
 	 * @access private
 	 */
 	private static function _add_settings_meta_box() {
+
 		add_meta_box(
-			'menu-icons-settings',
+			'elmadd-upload-custom-icons',
 			__( 'Upload Custom Icons', 'elemendas-addons' ),
-			array( __CLASS__, '_meta_box' ),
-			'nav-menus',
-			'side',
-			'low',
-			array()
+			 [ __CLASS__, '_meta_box' ],
+		   'nav-menus',
+		   'side',
+		   'low'
 		);
+
+	}
+
+
+	/* No parece hacer nada */
+	public static function _add_icons_submenu_page() {
+
+		add_submenu_page(
+			'nav-menus',
+			__( 'Upload Custom Icons Page', 'elemendas-addons' ),
+			__( 'Upload Custom Icons Title', 'elemendas-addons' ),
+			'manage_options',
+			'elmadd-upload-custom-icons',
+			[ __CLASS__, '_meta_box' ]
+		);
+
 	}
 
 	/**
@@ -306,7 +293,7 @@ final class Menu_Icons_Settings {
 		?>
 			<div id="elm_icon_uploads">
 				<label for="elm_icon_files">Choose SVG to upload</label>
-				<input type="file" id="elm_icon_files" name="elm_icon_files" accept=".svg" multiple>
+				<input type="file" id="elm_icon_files" name="elm_icon_files[]" accept=".svg" multiple>
 				<div id="elm_icon_preview">
 					<p>No files currently selected for upload</p>
 				</div>

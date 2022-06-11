@@ -22,6 +22,7 @@
  * Version:                    2.3.0
  * Requires at least and Requires PHP tags are declared at readme.txt and verified by a built-in function at /includes/plugin.php
  */
+namespace Elemendas\Addons;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
@@ -36,6 +37,6 @@ function elemendas_addons() {
 	require_once( __DIR__ . '/includes/plugin.php' );
 
 	// Run the plugin
-	\Elemendas_Addons\Plugin::instance();
+	Plugin::instance();
 }
-add_action( 'plugins_loaded', 'elemendas_addons' );
+add_action( 'plugins_loaded', 'Elemendas\Addons\elemendas_addons' );

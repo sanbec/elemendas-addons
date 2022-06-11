@@ -1,5 +1,5 @@
 <?php
-namespace Elemendas_Addons;
+namespace Elemendas\Addons\Extensions;
 use ElementorPro\Plugin;
 use Elementor\Icons_Manager;
 use Elementor\Controls_Manager;
