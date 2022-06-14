@@ -10,14 +10,15 @@ form#uploadSVG_form {
 #elm_icon_preview ol {
     padding: 0;
     margin: 0;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 #elm_icon_preview li {
     background: #fff;
     display: flex;
-    justify-content: space-between;
-    flex-wrap:wrap;
-    margin: 0.5em 0 0 0;
+    flex-basis: 30em;
+    margin: 0.5em 0.5em 0 0;
     padding: 0.3em;
     list-style-type: none;
     border: 1px solid #dcdcde;
@@ -47,6 +48,7 @@ form#uploadSVG_form {
     background-color: #f6f7f7;
     line-height: 2.15384615;
     padding: 0 10px;
+    margin: 2em 0;
     cursor: pointer;
     border-radius: 3px;
     -webkit-appearance: none;
@@ -67,4 +69,9 @@ form#uploadSVG_form {
 #elm_icon_uploads input#elm_icon_files {
     opacity:0;
     width:0;
+}
+
+#icons-upload {
+margin-top: 1em;
+visibility: hidden;
 }

@@ -420,7 +420,7 @@ final class Plugin {
 		require_once( __DIR__ . '/acf/menu-fields.php' );
 		require_once( __DIR__ . '/acf/acf-svg-icon-field.php' );
 		// Load settings.
-		require_once( __DIR__ . '/acf/acf-svg-icon-settings.php' );
+		require_once( __DIR__ . '/acf/acf-svg-icons-upload.php' );
 		MenuIcons\Menu_Icons_Upload::init();
 	}
 

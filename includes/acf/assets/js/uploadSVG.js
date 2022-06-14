@@ -1,6 +1,7 @@
 const { __, _x, _n, _nx } = wp.i18n;
 const input = document.querySelector('input#elm_icon_files');
 const preview = document.querySelector('div#elm_icon_preview');
+const uploadButton = document.querySelector('input#icons-upload');
 
 input.addEventListener('change', updateImageDisplay);
 
@@ -13,6 +14,7 @@ function updateImageDisplay() {
         const iconDesc = document.createElement('p');
         iconDesc.textContent = __('No files currently selected for upload','elemendas-addons');
         preview.appendChild(iconDesc);
+        uploadButton.style.visibility = 'hidden';
     } else {
         const list = document.createElement('ol');
         preview.appendChild(list);
@@ -41,6 +43,7 @@ function updateImageDisplay() {
             }
             list.appendChild(listItem);
         }
+        uploadButton.style.visibility = 'visible';
     }
 }
 

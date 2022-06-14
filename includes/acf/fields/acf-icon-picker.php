@@ -134,9 +134,17 @@ class acf_field_svg_icon_picker extends acf_field {
 		$inline_script .= 'let iconSets='.json_encode($this->iconSets).';';
 		wp_add_inline_script( 'acf-input-icon-picker', $inline_script, 'before');
 
-		wp_localize_script( 'acf-input-icon-picker', 'i10nStr', array(
-			'no_icons_msg' => sprintf( esc_html__('To add icons, add your svg files in the /%s folder in the WordPress uploads folder.', 'elemendas-addons'), $this->folder),
-		) );
+		wp_localize_script( 'acf-input-icon-picker', 'i10nStr',
+							array (
+									'no_icons_msg' => 		sprintf( esc_html__('To add icons, add your svg files in the /%s folder in the WordPress uploads folder.', 'elemendas-addons'), $this->folder),
+									'upload_icons_msg' => 	sprintf ( __('In order to upload new icons to the "Uploaded Icons" folder, go to %1$s %2$s > %3$s %4$s', 'elemendas-addons') ,
+																			'<a href="themes.php?page=elmadd-upload-custom-icons">' ,
+																			__( 'Appearance' ),
+																			__('Upload Menu Icons', 'elemendas-addons') ,
+																			'</a>'
+															),
+							)
+		);
 
 		wp_register_style( 'acf-input-icon-picker', "{$url}assets/css/input.css", array('acf-input'), ELEMENDAS_ADDONS_VERSION );
 		wp_enqueue_style('acf-input-icon-picker');

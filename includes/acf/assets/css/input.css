@@ -64,6 +64,17 @@
 	border-right: 1px solid #ddd;
 	margin: 0 1em 0 0;
 	height: 100%;
+	width: 10vw;
+}
+
+
+.acf-icon-picker__families p {
+	max-width: 10vw;
+	font-style: italic;
+	border-top: 1px solid #ddd;
+	padding-top: 1em;
+	bottom: 0;
+	position: absolute;
 }
 .acf-icon-picker__popup ul#icons-list:before,
 .acf-icon-picker__popup ul#icons-list:after{
@@ -138,3 +149,4 @@
 	display: block;
 	width: 50%;
 }
+

@@ -50,6 +50,7 @@
 
         }
       }
+      dirs += '<p>' + i10nStr.upload_icons_msg +'</p>';
       dirs += '</ul>';
 
       jQuery('body').append(
@@ -117,43 +118,51 @@
             $el.remove();
           }
         });
+        if (svgs.length) {
+          if (index_min < 0) index_min = 0;
+          if (index_max > svgs.length) index_max = svgs.length;
 
-        for (var i = index_min; i < index_max; i++) {
-          if (i < 0 || i >= svgs.length) continue;
-          var svg = svgs[i];
-          // Calculate the position of the item.
-          var y = ((i / columns)>>0) * item_height;
-          var x = i % columns * item_width;
 
-          // If we already have the element visible we can continue
-          var $el = $('[data-acf-icon-index="' + i + '"][data-svg="' + svg.icon + '"]');
-          // If item already exist we can skip.
-          if ($el.length) continue;
+          for (var i = index_min; i < index_max; i++) {
+            if (i < 0 || i >= svgs.length) continue;
+            var svg = svgs[i];
+            // Calculate the position of the item.
+            var y = ((i / columns)>>0) * item_height;
+            var x = i % columns * item_width;
 
-          $el = $(
-            '<li>' +
-              '<div class="acf-icon-picker__popup-svg">' +
-                '<img src="" alt=""/>' +
-              '</div>' +
-              '<span class="icons-list__name"></span>' +
-            '</li>'
-          );
+            // If we already have the element visible we can continue
+            var $el = $('[data-acf-icon-index="' + i + '"][data-svg="' + svg.icon + '"]');
+            // If item already exist we can skip.
+            if ($el.length) continue;
 
-          // We use attr instead of data since we want to use css selector.
-          $el.attr({
-            'data-svg': svg.icon,
-            'data-acf-icon-index': i
-          }).css({
-            transform: 'translate(' + x + 'px, ' + y + 'px)'
-          });
-          $el.find('.icons-list__name').text(svg['name'].replace(
-            /[-_]/g,
-            ' '
-          ));
-          $el.find('img').attr('src', path + svg['icon']);
-          $list.append($el);
+            $el = $(
+              '<li>' +
+                '<div class="acf-icon-picker__popup-svg">' +
+                  '<img src="" alt=""/>' +
+                '</div>' +
+                '<span class="icons-list__name"></span>' +
+              '</li>'
+            );
+
+            // We use attr instead of data since we want to use css selector.
+            $el.attr({
+              'data-svg': svg.icon,
+              'data-acf-icon-index': i
+            }).css({
+              transform: 'translate(' + x + 'px, ' + y + 'px)'
+            });
+            $el.find('.icons-list__name').text(svg['name'].replace(
+              /[-_]/g,
+              ' '
+            ));
+            $el.find('img').attr('src', path + svg['icon']);
+            $list.append($el);
+          }
+        } else {
+            addicon = '<p>' + __('Para subir nuevos iconos a la carpeta Uploaded Icons, ve a', 'elemendas-addons') + '<a href="themes.php?page=elmadd-upload-custom-icons">' + __('Apariencia &gt; Upload Menu Icons', 'elemendas-addons') +'</a></p>';
+            $list.append(addicon);
+
         }
-
         requestAnimationFrame(render);
       }
       if (svgs.length) {
@@ -191,17 +200,7 @@
         });
       }
 
-      $('.acf-icon-picker__families > li > a.acf-icon-picker__uploaded').click( function(e) {
-        e.stopPropagation();
-        familySVGs = filterFamilyIcons($(this).html());
-        svgs = filterIcons($('#filterIcons').val());
-        $('.acf-icon-picker__popup__title span').html(__('Displaying icons for the family','elemendas-addons') + ' <strong>' + $(this).html() + '</strong>' );
-        removeAllItems();
-        setListHeight();
-        alert(__('Note: In the current version, there is no mechanism for uploading icons. If you want to use your own icons, please upload them by hand to the subfolder "Uploaded Icons" of your "uploads" folder','elemendas-addons') );
-      });
-
-      $('.acf-icon-picker__families > li > a:not(.acf-icon-picker__all-families,.acf-icon-picker__uploaded)').click( function(e) {
+      $('.acf-icon-picker__families > li > a:not(.acf-icon-picker__all-families)').click( function(e) {
         e.stopPropagation();
         familySVGs = filterFamilyIcons($(this).html());
         svgs = filterIcons($('#filterIcons').val());
