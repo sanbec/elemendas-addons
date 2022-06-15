@@ -3,19 +3,12 @@ Widgets and Extensions to improve Elementor
 
 ## Description
 
-This plugin is an addon for Elementor Pro. It modifies the __Archive Title__ and adds the __Search Results Highlight__ widget to the Search Results Archive. This widgets allows you to show the number of posts containing the search query, and to highlight the search query string within the results.
+This plugin is an addon for Elementor Pro with several widgets and extensions.
 
-You can customize the message according to the number of results obtained:
-
-* For no result,
-* for a single result and
-* for more than one result.
-
-You can choose many alternatives to highlight the search string:
-* Quotation marks
-* Highlighter
-* Underline
-* and the typical color and typography controls
+1. Search Results:  Modifies the __Archive Title__ and adds the __Search Results Highlight__ widget to the Search Results Archive. This widgets allows you to show the number of posts containing the search query, and to highlight the search query string within the results.
+2. Leaves list
+3. Carousel 3D
+4. Fancy Nav Menu: Modifies the Nav Menu from Elementor Pro to add custom icons and custom color to each menu item individually.
 
 ## Requirements
 * WordPress 5.0, tested up to 6.0
@@ -79,6 +72,8 @@ __Remember__: these widgets will only appear in archive templates.
 * Built by [Santiago Becerra](https://elemendas.com/)
 
 ## Changelog
+### 2.3.0
+* Introducing Fancy Nav Menu
 
 ### 2.2.4
 * Fix css error

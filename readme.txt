@@ -5,7 +5,7 @@ Tags: elementor,elementor widgets,search results,menu,carousel
 Requires at least: 5.0
 Tested up to: 6.0
 Requires PHP: 5.6
-Stable tag: 2.2.4
+Stable tag: 2.3.0
 License: GPL 3.0 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -36,7 +36,7 @@ In addition to the above widgets, this plugin is constantly expanding, and now h
 
 * Leaf List, a widget that transforms a simple list into a plant where each item is a leaf.
 * 3D Carousel, an image carousel that rotates in three dimensions, with lightbox and hover effects.
-
+* Fancy Nav Menu: Modifies the Nav Menu from Elementor Pro to add custom icons and custom colors to each menu item individually.
 
 == Installation ==
 
@@ -107,7 +107,7 @@ Relax! If you don't follow the steps correctly, you will get a note with instruc
 
 =======
 = 2.3.0 =
-* Introducing Fancy Nav Menu
+* Introducing Fancy Nav Menu: Modifies Elementor Pro's Nav Menu and the WP Menu Screen to add custom icons and colors to each menu item individually.
 
 = 2.2.4 =
 * Fix css error
