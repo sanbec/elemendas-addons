@@ -1,0 +1,112 @@
+ul.elementor-nav-menu li.menu-item > a > svg, ul.elementor-nav-menu li.menu-item > a > object {
+  fill: currentColor;
+  width: 1em;
+  height: 1em;
+  margin: 0 0.2em;
+}
+
+
+/* Custom item color: The custom color of the menu item takes precedence over the widget settings */
+
+/* Custom item normal text color */
+.elementor-widget-nav-menu nav.elemendas-fancy-nav-menu.elementor-nav-menu--main a.elementor-item {
+  color: var( --elm-normal-color, var( --e-global-color-text ) );
+}
+
+/* Custom item hover text color */
+.elementor-widget-nav-menu nav.elemendas-fancy-nav-menu.elementor-nav-menu--main  a.elementor-item:hover,
+.elementor-widget-nav-menu nav.elemendas-fancy-nav-menu.elementor-nav-menu--main  a.elementor-item:focus {
+  color: var( --elm-hover-color, var( --e-global-color-accent ));
+}
+
+/* Custom item hover text color (background pointer) */
+.elementor-widget-nav-menu nav.elemendas-fancy-nav-menu.e--pointer-background  a.elementor-item:hover,
+.elementor-widget-nav-menu nav.elemendas-fancy-nav-menu.e--pointer-background  a.elementor-item:focus {
+  color: #fff ;
+}
+
+/* Custom item hover pointer color (all but framed) */
+.elementor-widget-nav-menu nav.elemendas-fancy-nav-menu.elementor-nav-menu--main:not(.e--pointer-framed) a.elementor-item::before,
+.elementor-widget-nav-menu nav.elemendas-fancy-nav-menu.elementor-nav-menu--main:not(.e--pointer-framed) a.elementor-item::after {
+  background-color: var( --elm-hover-color, var( --e-global-color-accent ));
+}
+
+/* Custom item hover pointer color (framed pointer) */
+.elementor-widget-nav-menu nav.elemendas-fancy-nav-menu.e--pointer-framed a.elementor-item::before,
+.elementor-widget-nav-menu nav.elemendas-fancy-nav-menu.e--pointer-framed a.elementor-item::after {
+  border-color: var( --elm-hover-color, var( --e-global-color-accent ));
+}
+
+
+/* Custom item active text color */
+.elementor-widget-nav-menu nav.elemendas-fancy-nav-menu.elementor-nav-menu--main  a.elementor-item.highlighted {
+  color: var( --elm-hover-color,  var( --e-global-color-accent ));
+}
+
+.elementor-widget-nav-menu nav.elemendas-fancy-nav-menu.elementor-nav-menu--main  a.elementor-item.elementor-item-active {
+  color: var( --elm-active-color, var( --elm-hover-color, var( --e-global-color-accent )));
+}
+
+/* Custom item active text color (background pointer) */
+.elementor-widget-nav-menu nav.elemendas-fancy-nav-menu.e--pointer-background  a.elementor-item.elementor-item-active {
+  color: #fff ;
+}
+
+/* Custom item active pointer color (all but framed) */
+.elementor-widget-nav-menu nav.elemendas-fancy-nav-menu.elementor-nav-menu--main:not(.e--pointer-framed) a.elementor-item.elementor-item-active::before,
+.elementor-widget-nav-menu nav.elemendas-fancy-nav-menu.elementor-nav-menu--main:not(.e--pointer-framed) a.elementor-item.elementor-item-active::after {
+  background-color: var( --elm-active-color, var( --elm-hover-color, var( --e-global-color-accent )));
+}
+
+/* Custom item active pointer color (framed pointer) */
+.elementor-widget-nav-menu nav.elemendas-fancy-nav-menu.e--pointer-framed a.elementor-item.elementor-item-active::before,
+.elementor-widget-nav-menu nav.elemendas-fancy-nav-menu.e--pointer-framed a.elementor-item.elementor-item-active::after {
+  border-color: var( --elm-active-color, var( --e-global-color-accent ));
+}
+
+
+/* Dropdown menu   */
+/*    Normal color */
+nav.elemendas-fancy-nav-menu.elementor-nav-menu--dropdown a {
+  color: var( --elm-normal-color, #494c4f);
+}
+/*    Hover color */
+nav.elemendas-fancy-nav-menu.elementor-nav-menu--dropdown a.highlighted,
+nav.elemendas-fancy-nav-menu.elementor-nav-menu--dropdown a:focus,
+nav.elemendas-fancy-nav-menu.elementor-nav-menu--dropdown a:hover {
+  background-color: var( --elm-hover-color,#55595c);
+  color: #fff;
+}
+
+/*    Active color */
+nav.elemendas-fancy-nav-menu.elementor-nav-menu--dropdown a.elementor-item-active {
+  background-color:  var( --elm-active-color, var( --elm-hover-color, #55595c ));
+  color: #fff;
+}
+
+
+/* Submenus (dropdown) */
+/*    Normal color */
+nav.elemendas-fancy-nav-menu ul.sub-menu.elementor-nav-menu--dropdown a {
+  color: var( --elm-normal-color, #494c4f);
+}
+/*    Hover color */
+nav.elemendas-fancy-nav-menu ul.sub-menu.elementor-nav-menu--dropdown a.highlighted,
+nav.elemendas-fancy-nav-menu ul.sub-menu.elementor-nav-menu--dropdown a:focus,
+nav.elemendas-fancy-nav-menu ul.sub-menu.elementor-nav-menu--dropdown a:hover {
+  background-color: var( --elm-hover-color,#55595c);
+  color: #fff;
+}
+
+nav.elemendas-fancy-nav-menu ul.sub-menu.elementor-nav-menu--dropdown a.elementor-item-active {
+  background-color: var( --elm-active-color, var( --elm-hover-color, #55595c ));
+  color: #fff;
+}
+*/
+
+
+
+
+
+
+

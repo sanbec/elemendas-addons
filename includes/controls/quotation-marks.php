@@ -1,5 +1,5 @@
 <?php
-namespace Elemendas_Addons;
+namespace Elemendas\Addons\Controls;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.

@@ -1,7 +1,7 @@
 === Elemendas Addons ===
 Contributors: sanbec, elemendas
 Donate link: https://paypal.me/sanbec
-Tags: elementor,elementor addon,elementor addons,elementor widgets,elementor extensions,search results
+Tags: elementor,elementor widgets,search results,menu,carousel
 Requires at least: 5.0
 Tested up to: 6.0
 Requires PHP: 5.6
@@ -104,6 +104,10 @@ Relax! If you don't follow the steps correctly, you will get a note with instruc
 10. Carousel 3D
 
 == Changelog ==
+
+=======
+= 2.3.0 =
+* Introducing Fancy Nav Menu
 
 = 2.2.4 =
 * Fix css error
