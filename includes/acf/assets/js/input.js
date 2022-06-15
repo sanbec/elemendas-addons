@@ -159,7 +159,7 @@
             $list.append($el);
           }
         } else {
-            addicon = '<p>' + __('Para subir nuevos iconos a la carpeta Uploaded Icons, ve a', 'elemendas-addons') + '<a href="themes.php?page=elmadd-upload-custom-icons">' + __('Apariencia &gt; Upload Menu Icons', 'elemendas-addons') +'</a></p>';
+            addicon = '<p>' + i10nStr.upload_icons_msg +'</p>';
             $list.append(addicon);
 
         }

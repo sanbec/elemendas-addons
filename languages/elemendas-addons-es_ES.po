@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Elemendas Addon 1.0.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/elemendas-addons\n"
-"POT-Creation-Date: 2022-05-07T14:37:25+02:00\n"
-"PO-Revision-Date: 2022-05-07 14:40+0200\n"
+"POT-Creation-Date: 2022-06-15T13:45:32+02:00\n"
+"PO-Revision-Date: 2022-06-15 14:04+0200\n"
 "Last-Translator: Santiago Becerra <santi@wpcombo.com>\n"
 "Language-Team: \n"
 "Language: es_ES\n"
@@ -17,13 +17,13 @@ msgstr ""
 "X-Domain: elemendas-addon\n"
 
 #. Plugin Name of the plugin
-#: includes/plugin.php:219 includes/plugin.php:226
+#: includes/plugin.php:255 includes/plugin.php:262
 msgid "Elemendas Addons"
 msgstr "Elemendas Addons"
 
 #. Plugin URI of the plugin
-msgid "https://elementor.com/"
-msgstr "https://elementor.com/"
+msgid "https://elemendas.com/elemendas-addons/"
+msgstr "https://elemendas.com/elemendas-addons/"
 
 #. Description of the plugin
 msgid "Improving the search results archive page for Elementor."
@@ -36,6 +36,82 @@ msgstr "Elemendas, Santiago Becerra"
 #. Author URI of the plugin
 msgid "https://elemendas.com/"
 msgstr "https://elemendas.com/"
+
+#: includes/acf/acf-svg-icons-upload.php:37
+#: includes/acf/acf-svg-icons-upload.php:61
+#: includes/acf/fields/acf-icon-picker.php:145
+msgid "Upload Menu Icons"
+msgstr "Subir iconos de mení"
+
+#: includes/acf/acf-svg-icons-upload.php:41
+msgid "Choose SVG to upload"
+msgstr "Elige SVG para subir"
+
+#: includes/acf/acf-svg-icons-upload.php:44
+#: includes/acf/assets/js/uploadSVG.js:15
+msgid "No files currently selected for upload"
+msgstr "No se han seleccionado archivos para subir"
+
+#: includes/acf/acf-svg-icons-upload.php:48
+msgid "Upload Icons"
+msgstr "Subir iconos"
+
+#: includes/acf/acf-svg-icons-upload.php:60
+msgid "Upload Custom Menu Icons"
+msgstr "Subir iconos personalizados de menú"
+
+#. translators: %d: number of icons uploaded
+#: includes/acf/acf-svg-icons-upload.php:157
+msgid "%d icon successfully uploaded."
+msgid_plural "%d icons have been successfully uploaded."
+msgstr[0] "%d icono subido correctamente"
+msgstr[1] "Se han subido %d iconos correctamente"
+
+#: includes/acf/fields/acf-icon-picker.php:13
+msgid "Icon Picker"
+msgstr "Recolector de iconos"
+
+#: includes/acf/fields/acf-icon-picker.php:22
+msgid "Error!"
+msgstr "¡Error!"
+
+#. translators: %s icons folder name
+#: includes/acf/fields/acf-icon-picker.php:140
+msgid ""
+"To add icons, add your svg files in the /%s folder in the WordPress uploads "
+"folder."
+msgstr ""
+"Para añadir iconos, añade tus archivos svg en la carpeta /%s bajo la carpeta "
+"de subidas de WordPress."
+
+#. translators: 1: anchor tag open 2: "Appearance" (WP Menu Path)  3: "Upload Menu Icons" (WP Submenu Path) 4: anchor tag close
+#: includes/acf/fields/acf-icon-picker.php:142
+msgid ""
+"In order to upload new icons to the \"Uploaded Icons\" folder, go to %1$s "
+"%2$s > %3$s %4$s"
+msgstr ""
+"Para subir nuevos iconos a la carpeta «Uploaded Icons», ve a a %1$s %2$s > "
+"%3$s %4$s"
+
+#: includes/acf/fields/acf-icon-picker.php:144
+msgid "Appearance"
+msgstr "Apariencia"
+
+#: includes/acf/menu-fields.php:11
+msgid "Icon"
+msgstr "Icono"
+
+#: includes/acf/menu-fields.php:52
+msgid "Normal Color"
+msgstr "Color normal"
+
+#: includes/acf/menu-fields.php:69
+msgid "Hover Color"
+msgstr "Color al pasar el cursor"
+
+#: includes/acf/menu-fields.php:86
+msgid "Active Color"
+msgstr "Color activo"
 
 #: includes/controls/border-style.php:55
 msgctxt "Border Control"
@@ -80,7 +156,7 @@ msgstr "Elevado"
 #: includes/controls/highlighter.php:76
 #: includes/widgets/added/search-results-highlighted.php:238
 #: includes/widgets/added/search-results-highlighted.php:378
-#: includes/widgets/extended/search-results-archive-title.php:279
+#: includes/widgets/extended/search-results-archive-title.php:269
 msgid "Thickness (px)"
 msgstr "Grosor (px)"
 
@@ -90,7 +166,7 @@ msgstr "Grosor (px)"
 #: includes/widgets/added/carousel3D.php:543
 #: includes/widgets/added/search-results-highlighted.php:220
 #: includes/widgets/added/search-results-highlighted.php:360
-#: includes/widgets/extended/search-results-archive-title.php:261
+#: includes/widgets/extended/search-results-archive-title.php:251
 msgid "Color"
 msgstr "Color"
 
@@ -129,42 +205,42 @@ msgid "No quotation marks"
 msgstr "Sin entrecomillado"
 
 #. translators: 1: Plugin name 2: Elementor/Elementor Pro
-#: includes/plugin.php:183
+#: includes/plugin.php:219
 msgid "\"%1$s\" requires \"%2$s\" to be installed and activated."
 msgstr "\"%1$s\" necesita que \"%2$s\" esté instalado y activado."
 
 #. translators: 1: Plugin name 2: Elementor/Elementor Pro
-#: includes/plugin.php:186
+#: includes/plugin.php:222
 msgid "\"%1$s\" recommends \"%2$s\" to be installed and activated."
 msgstr "«%1$s» recomienda que «%2$s» esté instalado y activado."
 
 #. translators: %s: Elementor/Elementor Pro
-#: includes/plugin.php:189
+#: includes/plugin.php:225
 msgid "Install %s"
 msgstr "Instalar %s"
 
 #. translators: 1: Plugin name 2: Elementor/Elementor Pro
-#: includes/plugin.php:196
+#: includes/plugin.php:232
 msgid "\"%1$s\" requires \"%2$s\" to be activated."
 msgstr "«%1$s» necesita que «%2$s» esté activado."
 
 #. translators: 1: Plugin name 2: Elementor/Elementor Pro
-#: includes/plugin.php:199
+#: includes/plugin.php:235
 msgid "\"%1$s\" recommends \"%2$s\" to be activated."
 msgstr "«%1$s» recomienda que «%2$s» esté activado."
 
 #. translators: %s: Elementor/Elementor Pro
-#: includes/plugin.php:202
+#: includes/plugin.php:238
 msgid "Activate %s"
 msgstr "Activar %s"
 
 #. translators: 1: Plugin name 2: Elementor/Elementor Pro 3: Required Elementor version
-#: includes/plugin.php:208
+#: includes/plugin.php:244
 msgid "\"%1$s\" requires \"%2$s\" version %3$s or greater."
 msgstr "«%1$s» necesita la version %3$s o superior de «%2$s»."
 
 #. translators: %s: Elementor/Elementor Pro
-#: includes/plugin.php:210
+#: includes/plugin.php:246
 msgid "Update %s"
 msgstr "Actualizar %s"
 
@@ -214,7 +290,7 @@ msgstr "Pausar al pasar el cursor"
 #: includes/widgets/added/search-results-highlighted.php:144
 #: includes/widgets/added/search-results-highlighted.php:286
 #: includes/widgets/added/search-results-highlighted.php:426
-#: includes/widgets/extended/search-results-archive-title.php:327
+#: includes/widgets/extended/search-results-archive-title.php:317
 msgid "Yes"
 msgstr "Sí"
 
@@ -224,7 +300,7 @@ msgstr "Sí"
 #: includes/widgets/added/search-results-highlighted.php:145
 #: includes/widgets/added/search-results-highlighted.php:287
 #: includes/widgets/added/search-results-highlighted.php:427
-#: includes/widgets/extended/search-results-archive-title.php:328
+#: includes/widgets/extended/search-results-archive-title.php:318
 msgid "No"
 msgstr "No"
 
@@ -287,7 +363,7 @@ msgstr "Borde"
 #: includes/widgets/added/carousel3D.php:516
 #: includes/widgets/added/search-results-highlighted.php:263
 #: includes/widgets/added/search-results-highlighted.php:403
-#: includes/widgets/extended/search-results-archive-title.php:304
+#: includes/widgets/extended/search-results-archive-title.php:294
 msgid "Style"
 msgstr "Estilo"
 
@@ -392,17 +468,18 @@ msgstr "Color del tallo"
 #. translators: Don't worry about this string, it will actually take it from Elementor's translation file for consistency.
 #: includes/widgets/added/leaveslist.php:278
 #: includes/widgets/added/search-results-highlighted.php:466
-#: includes/widgets/extended/search-results-archive-title.php:376
+#: includes/widgets/extended/search-results-archive-title.php:366
 msgid "Text Color"
 msgstr "Color del texto"
 
 #. translators: Don't worry about this string, it will actually take it from Elementor's translation file for consistency.
 #: includes/widgets/added/leaveslist.php:292
 #: includes/widgets/added/search-results-highlighted.php:480
-#: includes/widgets/extended/search-results-archive-title.php:390
+#: includes/widgets/extended/search-results-archive-title.php:380
 msgid "Background Color"
 msgstr "Color de fondo"
 
+#. translators: %s: widget name
 #: includes/widgets/added/search-results-highlighted.php:18
 #: includes/widgets/added/search-results-highlighted.php:70
 #: includes/widgets/added/search-results-highlighted.php:90
@@ -423,19 +500,19 @@ msgid "%1$sNote:%2$s You can only add the %3$s widget once."
 msgstr "%1$sNota:%2$s Solo puedes añadir una vez el widget %3$s."
 
 #: includes/widgets/added/search-results-highlighted.php:105
-#: includes/widgets/extended/search-results-archive-title.php:67
-#: includes/widgets/extended/search-results-archive-title.php:113
-#: includes/widgets/extended/search-results-archive-title.php:121
+#: includes/widgets/extended/search-results-archive-title.php:57
+#: includes/widgets/extended/search-results-archive-title.php:103
+#: includes/widgets/extended/search-results-archive-title.php:111
 msgid "Searched string"
 msgstr "Cadena buscada"
 
 #: includes/widgets/added/search-results-highlighted.php:115
-#: includes/widgets/extended/search-results-archive-title.php:131
+#: includes/widgets/extended/search-results-archive-title.php:121
 msgid "Post count"
 msgstr "Contador de entradas"
 
 #: includes/widgets/added/search-results-highlighted.php:132
-#: includes/widgets/extended/search-results-archive-title.php:198
+#: includes/widgets/extended/search-results-archive-title.php:188
 msgid "Search string highlighting"
 msgstr "Destacar la cadena de búsqueda"
 
@@ -448,7 +525,7 @@ msgid "Choose between highlighting the whole string or each word separately."
 msgstr "Elige entre resaltar toda la cadena o cada palabra por separado."
 
 #: includes/widgets/added/search-results-highlighted.php:155
-#: includes/widgets/extended/search-results-archive-title.php:208
+#: includes/widgets/extended/search-results-archive-title.php:198
 msgid "Highlight elements"
 msgstr "Elementos de resaltado"
 
@@ -460,56 +537,56 @@ msgstr "Títulos"
 #: includes/widgets/added/search-results-highlighted.php:187
 #: includes/widgets/added/search-results-highlighted.php:318
 #: includes/widgets/added/search-results-highlighted.php:327
-#: includes/widgets/extended/search-results-archive-title.php:219
-#: includes/widgets/extended/search-results-archive-title.php:228
+#: includes/widgets/extended/search-results-archive-title.php:209
+#: includes/widgets/extended/search-results-archive-title.php:218
 msgid "Highlighter"
 msgstr "Remarcador"
 
 #: includes/widgets/added/search-results-highlighted.php:208
 #: includes/widgets/added/search-results-highlighted.php:348
-#: includes/widgets/extended/search-results-archive-title.php:249
+#: includes/widgets/extended/search-results-archive-title.php:239
 msgid "Underline"
 msgstr "Subrayado"
 
 #: includes/widgets/added/search-results-highlighted.php:265
 #: includes/widgets/added/search-results-highlighted.php:405
-#: includes/widgets/extended/search-results-archive-title.php:306
+#: includes/widgets/extended/search-results-archive-title.php:296
 msgid "Solid"
 msgstr "Sólido"
 
 #: includes/widgets/added/search-results-highlighted.php:266
 #: includes/widgets/added/search-results-highlighted.php:406
-#: includes/widgets/extended/search-results-archive-title.php:307
+#: includes/widgets/extended/search-results-archive-title.php:297
 msgid "Double"
 msgstr "Doble"
 
 #: includes/widgets/added/search-results-highlighted.php:267
 #: includes/widgets/added/search-results-highlighted.php:407
-#: includes/widgets/extended/search-results-archive-title.php:308
+#: includes/widgets/extended/search-results-archive-title.php:298
 msgid "Dotted"
 msgstr "Punteado"
 
 #: includes/widgets/added/search-results-highlighted.php:268
 #: includes/widgets/added/search-results-highlighted.php:408
-#: includes/widgets/extended/search-results-archive-title.php:309
+#: includes/widgets/extended/search-results-archive-title.php:299
 msgid "Dashed"
 msgstr "Discontinuo"
 
 #: includes/widgets/added/search-results-highlighted.php:269
 #: includes/widgets/added/search-results-highlighted.php:409
-#: includes/widgets/extended/search-results-archive-title.php:310
+#: includes/widgets/extended/search-results-archive-title.php:300
 msgid "Wavy"
 msgstr "Ondulado"
 
 #: includes/widgets/added/search-results-highlighted.php:284
 #: includes/widgets/added/search-results-highlighted.php:424
-#: includes/widgets/extended/search-results-archive-title.php:325
+#: includes/widgets/extended/search-results-archive-title.php:315
 msgid "Skip Ink"
 msgstr "Evitar trazos"
 
 #: includes/widgets/added/search-results-highlighted.php:290
 #: includes/widgets/added/search-results-highlighted.php:430
-#: includes/widgets/extended/search-results-archive-title.php:331
+#: includes/widgets/extended/search-results-archive-title.php:321
 msgid "Specifies how underline is drawn when it pass over glyph descenders."
 msgstr ""
 "Especifica cómo se dibuja el subrayado cuando pasa por encima de los trazos "
@@ -520,7 +597,7 @@ msgid "Excerpts"
 msgstr "Extractos"
 
 #: includes/widgets/added/search-results-highlighted.php:454
-#: includes/widgets/extended/search-results-archive-title.php:364
+#: includes/widgets/extended/search-results-archive-title.php:354
 msgid "Text style"
 msgstr "Estilo del texto"
 
@@ -535,128 +612,182 @@ msgstr "Este widget solo funciona en la página de resultados de búsqueda"
 
 #. translators: %s: Preview Settings
 #: includes/widgets/added/search-results-highlighted.php:576
-#: includes/widgets/extended/search-results-archive-title.php:81
+#: includes/widgets/extended/search-results-archive-title.php:71
 msgid "Go to \"%s\""
 msgstr "Ve a «%s»"
 
 #. translators: Don't worry about this string, it will actually take it from Elementor's translation file for consistency.
 #: includes/widgets/added/search-results-highlighted.php:578
-#: includes/widgets/extended/search-results-archive-title.php:83
+#: includes/widgets/extended/search-results-archive-title.php:73
 msgid "Preview Settings"
 msgstr "Ajustes de previsualización"
 
 #. translators: 1: 'Preview Dynamic Content as', 2: 'Search Results' 3: 'Search Term'
 #: includes/widgets/added/search-results-highlighted.php:583
-#: includes/widgets/extended/search-results-archive-title.php:86
+#: includes/widgets/extended/search-results-archive-title.php:76
 msgid "Set \"%1$s\" \"%2$s\" and fill the \"%3$s\""
 msgstr "Establece «%1$s» «%2$s» y rellena el «%3$s»"
 
 #. translators: Don't worry about this string, it will actually take it from Elementor's translation file for consistency.
 #: includes/widgets/added/search-results-highlighted.php:585
-#: includes/widgets/extended/search-results-archive-title.php:88
+#: includes/widgets/extended/search-results-archive-title.php:78
 msgid "Preview Dynamic Content as"
 msgstr "Mostrar contenido dinámico como"
 
 #. translators: Don't worry about this string, it will actually take it from Elementor's translation file for consistency.
 #: includes/widgets/added/search-results-highlighted.php:587
 #: includes/widgets/added/search-results-highlighted.php:598
+#: includes/widgets/extended/search-results-archive-title.php:80
 #: includes/widgets/extended/search-results-archive-title.php:90
-#: includes/widgets/extended/search-results-archive-title.php:100
 msgid "Search Results"
 msgstr "Resultados de búsqueda"
 
 #. translators: Don't worry about this string, it will actually take it from Elementor's translation file for consistency.
 #: includes/widgets/added/search-results-highlighted.php:589
-#: includes/widgets/extended/search-results-archive-title.php:92
+#: includes/widgets/extended/search-results-archive-title.php:82
 msgid "Search Term"
 msgstr "Término de búsqueda"
 
 #. translators: 1: 'Display Conditions' 2: flow icon 3: 'Search Results'
 #: includes/widgets/added/search-results-highlighted.php:593
-#: includes/widgets/extended/search-results-archive-title.php:95
+#: includes/widgets/extended/search-results-archive-title.php:85
 msgid "Adjust the \"%1$s\" %2$s to \"%3$s\""
 msgstr "Ajusta las «%1$s» %2$s a «%3$s»"
 
 #. translators: Don't worry about this string, it will actually take it from Elementor's translation file for consistency.
 #: includes/widgets/added/search-results-highlighted.php:595
-#: includes/widgets/extended/search-results-archive-title.php:97
+#: includes/widgets/extended/search-results-archive-title.php:87
 msgid "Display Conditions"
 msgstr "Condiciones de visualización"
 
-#. translators: Don't worry about this string, it will actually take it from Elementor's translation file for consistency.
-#: includes/widgets/extended/search-results-archive-title.php:55
-msgid "Content"
-msgstr "Contenido"
+#: includes/widgets/extended/fancy-nav-menu.php:38
+msgid "Activate root menu"
+msgstr "Activar el menú raíz"
 
-#. translators: 1: strong open tag, 2: strong closing tag. 3: Widget name
-#: includes/widgets/extended/search-results-archive-title.php:78
-msgid ""
-"%1$sNote:%2$s This section is only available on the search results page."
+#: includes/widgets/extended/fancy-nav-menu.php:40
+msgid "The first level item appears active if one of its descendants is active"
 msgstr ""
-"%1$sNota:%2$s Esta sección solo está disponible en la página de resultados "
-"de búsqueda."
+"El elemento de primer nivel aparece activo si uno de sus descendientes está "
+"activo"
 
-#: includes/widgets/extended/search-results-archive-title.php:138
-msgid "Multiple results"
-msgstr "Varios resultados"
-
-#. translators: Keep {{result-number}} and {{search-string}}  as they are, without translation
-#: includes/widgets/extended/search-results-archive-title.php:142
-msgid "Here are the {{result-number}} posts containing {{search-string}}"
-msgstr ""
-"Aquí están las {{result-number}} entradas que contienen {{search-string}}"
-
-#: includes/widgets/extended/search-results-archive-title.php:144
-msgid "Shown when there are more than one post found"
-msgstr "Se muestra cuando se encuentra más de una entrada"
-
-#. translators: Keep {{result-number}} as it is, without translation
-#: includes/widgets/extended/search-results-archive-title.php:146
-msgid "Use {{result-number}} to show the post found number"
-msgstr "Usa {{result-number}} para mostrar el número de entradas encontradas"
-
-#. translators: Keep {{search-string}}  as it is, without translation
-#: includes/widgets/extended/search-results-archive-title.php:148
-msgid "Use {{search-string}} to show the search string"
-msgstr "Usa {{search-string}} para mostrar la cadena buscada"
-
-#: includes/widgets/extended/search-results-archive-title.php:155
-msgid "Only one result"
-msgstr "Un solo resultado"
-
-#. translators: Keep {{search-string}}  as it is, without translation
-#: includes/widgets/extended/search-results-archive-title.php:159
-msgid "Here is the unique post containing {{search-string}}"
-msgstr "Esta es la única  entrada que contiene {{search-string}}"
-
-#: includes/widgets/extended/search-results-archive-title.php:161
-msgid "Shown when a single entry is found"
-msgstr "Se muestra cuando se encuentra una sola entrada"
-
-#: includes/widgets/extended/search-results-archive-title.php:168
-msgid "No results found"
-msgstr "Sin resultados"
-
-#. translators: Keep {{search-string}}  as it is, without translation
-#: includes/widgets/extended/search-results-archive-title.php:172
-msgid "There are no posts containing {{search-string}}"
-msgstr "No hay entradas que contengan {{search-string}}"
-
-#: includes/widgets/extended/search-results-archive-title.php:174
-msgid "Shown when there are no posts found"
-msgstr "Se muestra cuando no se encuentran entradas"
-
-#: includes/widgets/extended/search-results-archive-title.php:348
-msgid "Quotation Marks"
-msgstr "Entrecomillado"
-
-#: includes/widgets/extended/search-results-archive-title.php:434
+#: includes/widgets/extended/fancy-nav-menu.php:158
+#: includes/widgets/extended/search-results-archive-title.php:424
 msgid ""
 "This setting will have no effect if the font size is set in the typography "
 "control"
 msgstr ""
 "Este ajuste no tendrá ningún efecto si se especifica el tamaño de la fuente "
 "en el control de tipografía"
+
+#: includes/widgets/extended/fancy-nav-menu.php:238
+msgid "Menu Toggle"
+msgstr "Alternar menú"
+
+#: includes/widgets/extended/fancy-nav-menu.php:352
+msgid "Menu"
+msgstr "Menú"
+
+#. translators: Don't worry about this string, it will actually take it from Elementor's translation file for consistency.
+#: includes/widgets/extended/search-results-archive-title.php:45
+msgid "Content"
+msgstr "Contenido"
+
+#. translators: 1: strong open tag, 2: strong closing tag. 3: Widget name
+#: includes/widgets/extended/search-results-archive-title.php:68
+msgid ""
+"%1$sNote:%2$s This section is only available on the search results page."
+msgstr ""
+"%1$sNota:%2$s Esta sección solo está disponible en la página de resultados "
+"de búsqueda."
+
+#: includes/widgets/extended/search-results-archive-title.php:128
+msgid "Multiple results"
+msgstr "Varios resultados"
+
+#. translators: Keep {{result-number}} and {{search-string}}  as they are, without translation
+#: includes/widgets/extended/search-results-archive-title.php:132
+msgid "Here are the {{result-number}} posts containing {{search-string}}"
+msgstr ""
+"Aquí están las {{result-number}} entradas que contienen {{search-string}}"
+
+#: includes/widgets/extended/search-results-archive-title.php:134
+msgid "Shown when there are more than one post found"
+msgstr "Se muestra cuando se encuentra más de una entrada"
+
+#. translators: Keep {{result-number}} as it is, without translation
+#: includes/widgets/extended/search-results-archive-title.php:136
+msgid "Use {{result-number}} to show the post found number"
+msgstr "Usa {{result-number}} para mostrar el número de entradas encontradas"
+
+#. translators: Keep {{search-string}}  as it is, without translation
+#: includes/widgets/extended/search-results-archive-title.php:138
+msgid "Use {{search-string}} to show the search string"
+msgstr "Usa {{search-string}} para mostrar la cadena buscada"
+
+#: includes/widgets/extended/search-results-archive-title.php:145
+msgid "Only one result"
+msgstr "Un solo resultado"
+
+#. translators: Keep {{search-string}}  as it is, without translation
+#: includes/widgets/extended/search-results-archive-title.php:149
+msgid "Here is the unique post containing {{search-string}}"
+msgstr "Esta es la única  entrada que contiene {{search-string}}"
+
+#: includes/widgets/extended/search-results-archive-title.php:151
+msgid "Shown when a single entry is found"
+msgstr "Se muestra cuando se encuentra una sola entrada"
+
+#: includes/widgets/extended/search-results-archive-title.php:158
+msgid "No results found"
+msgstr "Sin resultados"
+
+#. translators: Keep {{search-string}}  as it is, without translation
+#: includes/widgets/extended/search-results-archive-title.php:162
+msgid "There are no posts containing {{search-string}}"
+msgstr "No hay entradas que contengan {{search-string}}"
+
+#: includes/widgets/extended/search-results-archive-title.php:164
+msgid "Shown when there are no posts found"
+msgstr "Se muestra cuando no se encuentran entradas"
+
+#: includes/widgets/extended/search-results-archive-title.php:338
+msgid "Quotation Marks"
+msgstr "Entrecomillado"
+
+#: includes/acf/assets/js/input.js:42
+msgid "Icon Families"
+msgstr "Familias de iconos"
+
+#: includes/acf/assets/js/input.js:43
+msgid "All"
+msgstr "Todas"
+
+#: includes/acf/assets/js/input.js:60
+msgid "close"
+msgstr "cerrar"
+
+#: includes/acf/assets/js/input.js:62
+msgid "Icon Picker - Choose icon"
+msgstr "Recolector de iconos - Elije un icono"
+
+#: includes/acf/assets/js/input.js:63 includes/acf/assets/js/input.js:216
+msgid "Displaying the icons for all families"
+msgstr "Mostrando los iconos de todas las familias"
+
+#: includes/acf/assets/js/input.js:64
+msgid "Start typing to filter icons"
+msgstr "Empieza a escribir para filtrar los iconos"
+
+#: includes/acf/assets/js/input.js:207
+msgid "Displaying icons for the family"
+msgstr "Mostrando los iconos de la familia"
+
+#: includes/acf/assets/js/uploadSVG.js:40
+msgid "Invalid file type. Update your selection."
+msgstr "Tipo de archivo no válido. Actualiza tu selección."
+
+#~ msgid "https://elementor.com/"
+#~ msgstr "https://elementor.com/"
 
 #~ msgid "Image border"
 #~ msgstr "Borde de la imagen"

@@ -136,7 +136,9 @@ class acf_field_svg_icon_picker extends acf_field {
 
 		wp_localize_script( 'acf-input-icon-picker', 'i10nStr',
 							array (
+																	// translators: %s icons folder name
 									'no_icons_msg' => 		sprintf( esc_html__('To add icons, add your svg files in the /%s folder in the WordPress uploads folder.', 'elemendas-addons'), $this->folder),
+																	// translators: 1: anchor tag open 2: "Appearance" (WP Menu Path)  3: "Upload Menu Icons" (WP Submenu Path) 4: anchor tag close
 									'upload_icons_msg' => 	sprintf ( __('In order to upload new icons to the "Uploaded Icons" folder, go to %1$s %2$s > %3$s %4$s', 'elemendas-addons') ,
 																			'<a href="themes.php?page=elmadd-upload-custom-icons">' ,
 																			__( 'Appearance' ),

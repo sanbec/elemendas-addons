@@ -153,7 +153,8 @@ final class Menu_Icons_Upload {
 		$iconsUploaded = get_transient( self::TRANSIENT_KEY );
 
 		if ( $iconsUploaded > 0 ) {
-			$message = sprintf ( _n( 'Icon successfully uploaded.', '%s icons have been successfully uploaded.', $iconsUploaded , 'elemendas-addons' ), number_format_i18n( $iconsUploaded ));
+			// translators: %d: number of icons uploaded
+			$message = sprintf ( _n( '%d icon successfully uploaded.', '%d icons have been successfully uploaded.', $iconsUploaded , 'elemendas-addons' ), number_format_i18n( $iconsUploaded ));
 			printf(
 				'<div class="updated notice is-dismissible"><p>%s</p></div>',  wp_kses( $message , array( 'strong' => true ) )
 			);
